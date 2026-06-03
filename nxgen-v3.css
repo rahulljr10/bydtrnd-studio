@@ -2040,33 +2040,125 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
 .wine-cta .btn.secondary .arr svg{ color: var(--indigo); }
 
 /* ============================================================
-   NAV DROPDOWN
+   NAV DROPDOWN — premium redesign
    ============================================================ */
 .nav-drop-wrap{ position: relative; display: flex; align-items: center; }
-.nav-drop-toggle{ display: flex; align-items: center; gap: 4px; }
-.nav-arr{ font-size: 10px; transition: transform .2s var(--e); }
-.nav-drop-wrap:hover .nav-arr{ transform: rotate(180deg); }
+
+.nav-drop-toggle{
+  display: flex; align-items: center; gap: 6px; cursor: pointer;
+}
+.nav-arr{
+  display: inline-block; width: 6px; height: 6px;
+  border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform .25s var(--e), border-color .25s;
+  margin-left: 2px;
+}
+.nav-drop-wrap:hover .nav-arr{
+  transform: rotate(-135deg) translateY(-2px);
+  border-color: var(--a);
+}
+.nav-drop-wrap:hover .nav-drop-toggle{ color: var(--w); }
+
+/* Dropdown panel */
 .nav-dropdown{
-  position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%);
-  background: #0e0e10; border: 1px solid rgba(255,255,255,.1);
-  border-radius: 14px; padding: 10px; min-width: 210px;
-  opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-8px);
-  transition: opacity .22s var(--e), transform .22s var(--e);
-  box-shadow: 0 24px 60px rgba(0,0,0,.5); backdrop-filter: blur(20px);
-  z-index: 200;
+  position: absolute; top: calc(100% + 20px); left: 50%;
+  transform: translateX(-50%) translateY(-12px);
+  width: 320px;
+  background: rgba(8,8,10,.96);
+  border: 1px solid rgba(250,250,248,.08);
+  border-radius: 16px;
+  padding: 8px;
+  opacity: 0; pointer-events: none;
+  transition: opacity .28s var(--e), transform .28s var(--e);
+  box-shadow: 0 32px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(139,30,60,.12) inset;
+  backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+  z-index: 300;
+  overflow: hidden;
+}
+/* Arrow tip pointing up */
+.nav-dropdown::before{
+  content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 10px;
+  background: rgba(8,8,10,.96);
+  border-left: 1px solid rgba(250,250,248,.08);
+  border-top: 1px solid rgba(250,250,248,.08);
+  transform: translateX(-50%) rotate(45deg);
 }
 .nav-drop-wrap:hover .nav-dropdown{
-  opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0);
+  opacity: 1; pointer-events: all;
+  transform: translateX(-50%) translateY(0);
 }
-.nav-dropdown a{
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 14px; border-radius: 9px;
-  font-size: .8rem; letter-spacing: .04em; text-transform: uppercase;
-  color: rgba(250,250,248,.7); text-decoration: none;
-  transition: background .15s, color .15s;
+
+/* Each item */
+.nd-item{
+  display: flex; align-items: center; gap: 14px;
+  padding: 12px 14px; border-radius: 10px;
+  text-decoration: none; color: var(--w);
+  position: relative; overflow: hidden;
+  transition: background .2s;
+  border-left: 2px solid transparent;
+  transition: border-color .2s var(--e), background .2s var(--e);
 }
-.nav-dropdown a:hover{ background: rgba(139,30,60,.15); color: #fff; }
-.nd-icon{ font-size: 1rem; }
+.nd-item::before{
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(139,30,60,.12) 0%, transparent 100%);
+  opacity: 0; transition: opacity .2s var(--e);
+}
+.nd-item:hover{ border-left-color: var(--a); background: rgba(139,30,60,.06); }
+.nd-item:hover::before{ opacity: 1; }
+
+/* Staggered reveal animation */
+.nav-dropdown .nd-item:nth-child(1){ transition-delay: .03s; }
+.nav-dropdown .nd-item:nth-child(2){ transition-delay: .06s; }
+.nav-dropdown .nd-item:nth-child(3){ transition-delay: .09s; }
+.nav-dropdown .nd-item:nth-child(4){ transition-delay: .12s; }
+.nav-dropdown .nd-item:nth-child(5){ transition-delay: .15s; }
+
+.nd-num{
+  font-family: var(--mono); font-size: .65rem; letter-spacing: .12em;
+  color: rgba(250,250,248,.25); flex-shrink: 0; width: 20px;
+  transition: color .2s;
+}
+.nd-item:hover .nd-num{ color: var(--a); }
+
+.nd-body{ display: flex; flex-direction: column; gap: 2px; flex: 1; }
+.nd-name{
+  font-family: var(--syne); font-size: .82rem; font-weight: 700;
+  letter-spacing: .04em; color: var(--w); line-height: 1;
+  transition: color .2s;
+}
+.nd-item:hover .nd-name{ color: var(--w); }
+.nd-desc{
+  font-family: var(--grotesk); font-size: .68rem;
+  color: rgba(250,250,248,.35); letter-spacing: .01em;
+  transition: color .2s;
+}
+.nd-item:hover .nd-desc{ color: rgba(250,250,248,.55); }
+
+.nd-go{
+  font-size: .9rem; color: rgba(250,250,248,.2);
+  transform: translateX(-4px); opacity: 0;
+  transition: transform .2s var(--e), opacity .2s var(--e), color .2s;
+}
+.nd-item:hover .nd-go{ transform: translateX(0); opacity: 1; color: var(--a); }
+
+/* Divider between items */
+.nd-item + .nd-item{ border-top: 1px solid rgba(250,250,248,.05); border-radius: 0; }
+.nd-item:last-of-type{ border-radius: 0 0 0 0; }
+.nd-item:first-of-type{ border-radius: 10px 10px 0 0; }
+
+/* "View all" footer link */
+.nd-all{
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 10px 14px; margin-top: 6px;
+  font-family: var(--mono); font-size: .68rem; letter-spacing: .12em;
+  text-transform: uppercase; color: rgba(250,250,248,.3);
+  text-decoration: none; border-top: 1px solid rgba(250,250,248,.06);
+  border-radius: 0 0 10px 10px;
+  transition: color .2s, background .2s;
+}
+.nd-all:hover{ color: var(--w); background: rgba(250,250,248,.04); }
 
 /* ============================================================
    HERO 3D CANVAS
