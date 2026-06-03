@@ -352,79 +352,203 @@ document.documentElement.classList.remove('no-js');
     });
     card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
-})();
 
 /* ============================================================
-   HERO 3D CANVAS — floating geometric shapes (Three.js)
+   HERO 3D CANVAS — Marketing-themed 3D objects
+   Rocket, Megaphone, Bar Chart, Star, Play Button, Ring
    ============================================================ */
 (function(){
   const canvas = document.getElementById('hero-3d');
   if (!canvas) return;
 
-  // Dynamically load Three.js
   const s = document.createElement('script');
   s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-  s.onload = initThree;
+  s.onload = initScene;
   document.head.appendChild(s);
 
-  function initThree(){
+  function initScene(){
+    const W = canvas.offsetWidth, H = canvas.offsetHeight;
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
     renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+    renderer.setSize(W, H);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(60, canvas.offsetWidth / canvas.offsetHeight, 0.1, 100);
-    camera.position.z = 6;
+    const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 100);
+    camera.position.z = 7;
 
-    // Materials
-    const wireMat = new THREE.MeshBasicMaterial({ color: 0x8B1E3C, wireframe: true, transparent: true, opacity: 0.35 });
-    const indMat  = new THREE.MeshBasicMaterial({ color: 0x1D04BD, wireframe: true, transparent: true, opacity: 0.25 });
-    const whiteMat = new THREE.MeshBasicMaterial({ color: 0xfafaf8, wireframe: true, transparent: true, opacity: 0.12 });
+    /* ── Materials ── */
+    const mWine  = new THREE.MeshBasicMaterial({ color: 0x8B1E3C, wireframe: true, transparent: true, opacity: 0.50 });
+    const mIndig = new THREE.MeshBasicMaterial({ color: 0x1D04BD, wireframe: true, transparent: true, opacity: 0.38 });
+    const mLight = new THREE.MeshBasicMaterial({ color: 0xfafaf8, wireframe: true, transparent: true, opacity: 0.18 });
+    /* Solid accent for faces */
+    const mWineSolid  = new THREE.MeshBasicMaterial({ color: 0x8B1E3C, transparent: true, opacity: 0.08, side: THREE.DoubleSide });
+    const mIndigSolid = new THREE.MeshBasicMaterial({ color: 0x1D04BD, transparent: true, opacity: 0.06, side: THREE.DoubleSide });
 
-    // Create shapes
-    const shapes = [
-      { geo: new THREE.IcosahedronGeometry(0.9, 1), mat: wireMat,  pos: [-3, 1.2, -2],  speed: [0.003, 0.005, 0.002] },
-      { geo: new THREE.OctahedronGeometry(0.7, 0),  mat: indMat,   pos: [3.2, -1, -1],  speed: [0.004, -0.003, 0.005] },
-      { geo: new THREE.TetrahedronGeometry(0.6, 0), mat: wireMat,  pos: [0.5, 2.2, -3], speed: [-0.005, 0.004, 0.003] },
-      { geo: new THREE.IcosahedronGeometry(0.5, 0), mat: whiteMat, pos: [-2.5, -1.8, -1], speed: [0.006, -0.004, 0.002] },
-      { geo: new THREE.OctahedronGeometry(1.1, 1),  mat: indMat,   pos: [4, 2, -4],     speed: [-0.002, 0.006, -0.003] },
-      { geo: new THREE.TetrahedronGeometry(0.4, 0), mat: whiteMat, pos: [-1, -2.5, -2], speed: [0.005, 0.003, -0.004] },
-    ];
+    const objects = []; // { mesh/group, speed:[rx,ry,rz], floatAmp, floatSpeed, floatOffset }
 
-    const meshes = shapes.map(({ geo, mat, pos, speed }) => {
-      const m = new THREE.Mesh(geo, mat);
-      m.position.set(...pos);
-      m.userData.speed = speed;
-      scene.add(m);
-      return m;
-    });
+    /* ── 1. ROCKET — brand launch ── */
+    (function(){
+      const g = new THREE.Group();
+      // Body
+      const body = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.28, 1.0, 8), mWine);
+      const bodySolid = new THREE.Mesh(new THREE.CylinderGeometry(0.22, 0.28, 1.0, 8), mWineSolid);
+      // Nose cone
+      const nose = new THREE.Mesh(new THREE.ConeGeometry(0.22, 0.55, 8), mWine);
+      const noseSolid = new THREE.Mesh(new THREE.ConeGeometry(0.22, 0.55, 8), mWineSolid);
+      nose.position.y = 0.77;
+      noseSolid.position.y = 0.77;
+      // Fins (3 flat triangles)
+      [-1, 0, 1].forEach((_, i) => {
+        const finGeo = new THREE.ConeGeometry(0.22, 0.4, 3);
+        const fin = new THREE.Mesh(finGeo, mWine);
+        fin.position.y = -0.55;
+        fin.rotation.y = (i * Math.PI * 2) / 3;
+        fin.rotation.z = Math.PI;
+        fin.scale.set(0.6, 1, 0.2);
+        g.add(fin);
+      });
+      g.add(body, bodySolid, nose, noseSolid);
+      g.position.set(-3.5, 1.5, -1.5);
+      g.rotation.set(0.3, 0.2, 0.25);
+      scene.add(g);
+      objects.push({ grp: g, speed: [0.004, 0.006, 0.002], floatAmp: 0.18, floatSpeed: 0.8, floatOffset: 0 });
+    })();
 
-    // Mouse parallax
+    /* ── 2. MEGAPHONE — amplify brand voice ── */
+    (function(){
+      const g = new THREE.Group();
+      // Horn (frustum open toward audience)
+      const horn = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.18, 0.9, 10, 1, true), mIndig);
+      horn.rotation.z = Math.PI / 2;
+      const hornSolid = new THREE.Mesh(new THREE.CylinderGeometry(0.65, 0.18, 0.9, 10, 1, true), mIndigSolid);
+      hornSolid.rotation.z = Math.PI / 2;
+      // Handle/body
+      const handle = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.1, 0.5, 8), mIndig);
+      handle.rotation.z = Math.PI / 2;
+      handle.position.x = 0.7;
+      // Bell rim
+      const rim = new THREE.Mesh(new THREE.TorusGeometry(0.65, 0.04, 8, 24), mWine);
+      rim.rotation.y = Math.PI / 2;
+      rim.position.x = -0.45;
+      g.add(horn, hornSolid, handle, rim);
+      g.position.set(3.0, -1.2, -2.0);
+      g.rotation.set(-0.2, -0.4, 0.15);
+      scene.add(g);
+      objects.push({ grp: g, speed: [-0.003, 0.005, -0.004], floatAmp: 0.22, floatSpeed: 0.65, floatOffset: 1.2 });
+    })();
+
+    /* ── 3. TRENDING BAR CHART — growth / going viral ── */
+    (function(){
+      const g = new THREE.Group();
+      const heights = [0.4, 0.65, 0.55, 0.85, 1.1]; // ascending = growth
+      const cols = [mLight, mIndig, mLight, mWine, mWine];
+      const colsSolid = [mIndigSolid, mIndigSolid, mIndigSolid, mWineSolid, mWineSolid];
+      heights.forEach((h, i) => {
+        const bar = new THREE.Mesh(new THREE.BoxGeometry(0.18, h, 0.18), cols[i]);
+        const barSolid = new THREE.Mesh(new THREE.BoxGeometry(0.18, h, 0.18), colsSolid[i]);
+        const x = (i - 2) * 0.28;
+        bar.position.set(x, h / 2 - 0.55, 0);
+        barSolid.position.set(x, h / 2 - 0.55, 0);
+        g.add(bar, barSolid);
+      });
+      g.position.set(0.5, 2.2, -3.5);
+      g.rotation.set(0.2, 0.5, -0.1);
+      scene.add(g);
+      objects.push({ grp: g, speed: [0.002, -0.004, 0.003], floatAmp: 0.14, floatSpeed: 0.9, floatOffset: 2.3 });
+    })();
+
+    /* ── 4. VIRAL STAR — trending / going beyond ── */
+    (function(){
+      const shape = new THREE.Shape();
+      const outer = 0.52, inner = 0.22, pts = 5;
+      for (let i = 0; i < pts * 2; i++){
+        const r = i % 2 === 0 ? outer : inner;
+        const a = (i * Math.PI) / pts - Math.PI / 2;
+        if (i === 0) shape.moveTo(Math.cos(a) * r, Math.sin(a) * r);
+        else shape.lineTo(Math.cos(a) * r, Math.sin(a) * r);
+      }
+      shape.closePath();
+      const geo = new THREE.ExtrudeGeometry(shape, { depth: 0.14, bevelEnabled: true, bevelSize: 0.03, bevelThickness: 0.03, bevelSegments: 2 });
+      const star = new THREE.Mesh(geo, mWine);
+      const starSolid = new THREE.Mesh(geo, mWineSolid);
+      const g = new THREE.Group();
+      g.add(star, starSolid);
+      g.position.set(-2.8, -1.6, -1.0);
+      g.rotation.set(0.3, 0.6, 0.1);
+      scene.add(g);
+      objects.push({ grp: g, speed: [-0.005, 0.007, -0.003], floatAmp: 0.20, floatSpeed: 1.1, floatOffset: 0.8 });
+    })();
+
+    /* ── 5. PLAY BUTTON — video / content creation ── */
+    (function(){
+      const shape = new THREE.Shape();
+      shape.moveTo(-0.35, -0.42);
+      shape.lineTo(0.52, 0);
+      shape.lineTo(-0.35, 0.42);
+      shape.closePath();
+      const geo = new THREE.ExtrudeGeometry(shape, { depth: 0.2, bevelEnabled: true, bevelSize: 0.04, bevelThickness: 0.04, bevelSegments: 2 });
+      const play = new THREE.Mesh(geo, mIndig);
+      const playSolid = new THREE.Mesh(geo, mIndigSolid);
+      const g = new THREE.Group();
+      g.add(play, playSolid);
+      // Circle outline around play button (like a video player)
+      const ring = new THREE.Mesh(new THREE.TorusGeometry(0.65, 0.05, 10, 32), mIndig);
+      ring.position.z = 0.1;
+      g.add(ring);
+      g.position.set(3.5, 1.8, -3.0);
+      g.rotation.set(-0.3, -0.5, 0.2);
+      scene.add(g);
+      objects.push({ grp: g, speed: [0.003, -0.005, 0.004], floatAmp: 0.16, floatSpeed: 0.75, floatOffset: 1.8 });
+    })();
+
+    /* ── 6. NOTIFICATION RING — engagement / reach ── */
+    (function(){
+      const g = new THREE.Group();
+      // Outer ring
+      const ring1 = new THREE.Mesh(new THREE.TorusGeometry(0.55, 0.06, 10, 32), mWine);
+      // Inner ring (smaller, rotated)
+      const ring2 = new THREE.Mesh(new THREE.TorusGeometry(0.32, 0.04, 8, 24), mLight);
+      ring2.rotation.x = Math.PI / 3;
+      // Bell dome (notification icon suggestion)
+      const dome = new THREE.Mesh(new THREE.SphereGeometry(0.18, 10, 8, 0, Math.PI * 2, 0, Math.PI / 2), mWine);
+      dome.position.y = 0.08;
+      g.add(ring1, ring2, dome);
+      g.position.set(-1.0, -2.6, -2.5);
+      g.rotation.set(0.5, 0.3, -0.2);
+      scene.add(g);
+      objects.push({ grp: g, speed: [0.006, -0.004, 0.005], floatAmp: 0.24, floatSpeed: 0.6, floatOffset: 3.5 });
+    })();
+
+    /* ── Mouse parallax ── */
     let mx = 0, my = 0;
     window.addEventListener('mousemove', e => {
-      mx = (e.clientX / window.innerWidth - 0.5) * 0.8;
-      my = (e.clientY / window.innerHeight - 0.5) * 0.5;
+      mx = (e.clientX / window.innerWidth - 0.5) * 1.0;
+      my = (e.clientY / window.innerHeight - 0.5) * 0.6;
     });
 
-    // Resize
+    /* ── Resize ── */
     window.addEventListener('resize', () => {
-      camera.aspect = canvas.offsetWidth / canvas.offsetHeight;
+      const w = canvas.offsetWidth, h = canvas.offsetHeight;
+      camera.aspect = w / h;
       camera.updateProjectionMatrix();
-      renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+      renderer.setSize(w, h);
     });
 
-    // Animate
-    (function animate(){
-      requestAnimationFrame(animate);
-      meshes.forEach(m => {
-        m.rotation.x += m.userData.speed[0];
-        m.rotation.y += m.userData.speed[1];
-        m.rotation.z += m.userData.speed[2];
+    /* ── Animate ── */
+    let t = 0;
+    (function tick(){
+      requestAnimationFrame(tick);
+      t += 0.016;
+      objects.forEach(o => {
+        o.grp.rotation.x += o.speed[0];
+        o.grp.rotation.y += o.speed[1];
+        o.grp.rotation.z += o.speed[2];
+        // Float up/down
+        o.grp.position.y += Math.sin(t * o.floatSpeed + o.floatOffset) * o.floatAmp * 0.016;
       });
-      camera.position.x += (mx - camera.position.x) * 0.04;
-      camera.position.y += (-my - camera.position.y) * 0.04;
+      camera.position.x += (mx - camera.position.x) * 0.03;
+      camera.position.y += (-my - camera.position.y) * 0.03;
       renderer.render(scene, camera);
     })();
   }
 })();
-
