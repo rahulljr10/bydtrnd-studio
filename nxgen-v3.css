@@ -2056,7 +2056,7 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
 }
 .nav-drop-wrap:hover .nav-arr{
   transform: rotate(-135deg) translateY(-2px);
-  border-color: var(--a);
+  border-color: var(--wine);
 }
 .nav-drop-wrap:hover .nav-drop-toggle{ color: var(--w); }
 
@@ -2065,7 +2065,7 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
   position: absolute; top: calc(100% + 20px); left: 50%;
   transform: translateX(-50%) translateY(-12px);
   width: 320px;
-  background: var(--a);
+  background: var(--wine);
   border: 1px solid rgba(255,255,255,.15);
   border-radius: 16px;
   padding: 8px;
@@ -2080,7 +2080,7 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
 .nav-dropdown::before{
   content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
   width: 10px; height: 10px;
-  background: var(--a);
+  background: var(--wine);
   border-left: 1px solid rgba(255,255,255,.15);
   border-top: 1px solid rgba(255,255,255,.15);
   transform: translateX(-50%) rotate(45deg);

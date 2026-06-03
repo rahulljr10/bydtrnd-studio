@@ -385,15 +385,14 @@ document.documentElement.classList.remove('no-js');
 
   function initScene(){ try {
     // Use hero element for reliable dimensions (canvas may not be laid out yet)
-    const hero = canvas.closest('.hero') || canvas.parentElement;
-    const W = hero ? hero.clientWidth : window.innerWidth;
-    const H = hero ? hero.clientHeight : window.innerHeight;
+    const W = window.innerWidth;
+    const H = window.innerHeight;
     const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-    renderer.setSize(W || window.innerWidth, H || window.innerHeight);
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+    renderer.setSize(W, H);
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(55, (W || window.innerWidth) / (H || window.innerHeight), 0.1, 100);
+    const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 100);
     camera.position.z = 7;
 
     /* ── Materials ── */
@@ -548,12 +547,9 @@ document.documentElement.classList.remove('no-js');
 
     /* ── Resize ── */
     window.addEventListener('resize', () => {
-      const heroEl = canvas.closest('.hero') || canvas.parentElement;
-      const w = heroEl ? heroEl.clientWidth : window.innerWidth;
-      const h = heroEl ? heroEl.clientHeight : window.innerHeight;
-      camera.aspect = (w || window.innerWidth) / (h || window.innerHeight);
+      camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
-      renderer.setSize(w || window.innerWidth, h || window.innerHeight);
+      renderer.setSize(window.innerWidth, window.innerHeight);
     });
 
     /* ── Animate ── */
