@@ -12,8 +12,8 @@
 <body class="no-js">
 
 <div class="grain" aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true"></div>
-<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true" style="opacity:0"></div>
+<div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
 <div class="scrollbar" aria-hidden="true"><div></div></div>
 
 <!-- PRELOADER -->
@@ -38,9 +38,18 @@
     <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
   </a>
   <div class="nav-links">
-    <a href="services.html" data-cursor>Services</a>
-    <a href="index.html#process" data-cursor>Process</a>
-    <a href="index.html#contact" data-cursor>Contact</a>
+    <div class="nav-drop-wrap">
+      <a href="services.html" data-cursor class="nav-drop-toggle">Services <span class="nav-arr">▾</span></a>
+      <div class="nav-dropdown">
+        <a href="services/seo-audit.html" data-cursor><span class="nd-icon">🔍</span>AI-SEO Audit</a>
+        <a href="services/ugc-ads.html" data-cursor><span class="nd-icon">🎬</span>UGC &amp; Reels</a>
+        <a href="services/social-media.html" data-cursor><span class="nd-icon">📱</span>Social Media</a>
+        <a href="services/influencer.html" data-cursor><span class="nd-icon">🌟</span>Influencer</a>
+        <a href="services/thumbnails.html" data-cursor><span class="nd-icon">🖼</span>Thumbnails</a>
+      </div>
+    </div>
+    <a href="pricing.html" data-cursor>Pricing</a>
+    <a href="contact.html" data-cursor>Contact</a>
   </div>
   <a href="pricing.html" class="nav-cta" data-cursor>
     <span class="dot"></span> What&apos;s the damage? &rarr;

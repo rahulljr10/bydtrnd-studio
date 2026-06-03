@@ -2037,3 +2037,138 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
 .wine-cta .btn.primary:hover .arr{ background: #FFF; }
 .wine-cta .btn.primary:hover .arr svg{ color: var(--wine); }
 .wine-cta .btn.secondary .arr svg{ color: var(--indigo); }
+
+/* ============================================================
+   NAV DROPDOWN
+   ============================================================ */
+.nav-drop-wrap{ position: relative; display: flex; align-items: center; }
+.nav-drop-toggle{ display: flex; align-items: center; gap: 4px; }
+.nav-arr{ font-size: 10px; transition: transform .2s var(--e); }
+.nav-drop-wrap:hover .nav-arr{ transform: rotate(180deg); }
+.nav-dropdown{
+  position: absolute; top: calc(100% + 14px); left: 50%; transform: translateX(-50%);
+  background: #0e0e10; border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 10px; min-width: 210px;
+  opacity: 0; pointer-events: none; transform: translateX(-50%) translateY(-8px);
+  transition: opacity .22s var(--e), transform .22s var(--e);
+  box-shadow: 0 24px 60px rgba(0,0,0,.5); backdrop-filter: blur(20px);
+  z-index: 200;
+}
+.nav-drop-wrap:hover .nav-dropdown{
+  opacity: 1; pointer-events: all; transform: translateX(-50%) translateY(0);
+}
+.nav-dropdown a{
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 9px;
+  font-size: .8rem; letter-spacing: .04em; text-transform: uppercase;
+  color: rgba(250,250,248,.7); text-decoration: none;
+  transition: background .15s, color .15s;
+}
+.nav-dropdown a:hover{ background: rgba(139,30,60,.15); color: #fff; }
+.nd-icon{ font-size: 1rem; }
+
+/* ============================================================
+   HERO 3D CANVAS
+   ============================================================ */
+#hero-3d{
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  pointer-events: none; z-index: 0; opacity: .55;
+}
+
+/* ============================================================
+   3D SERVICE CARD TILT
+   ============================================================ */
+.svc-item{
+  transform-style: preserve-3d; perspective: 800px;
+  transition: transform .1s linear;
+}
+
+/* ============================================================
+   CURSOR — start hidden, reveal on first move
+   ============================================================ */
+.cursor-ring, .cursor-dot{ transition: opacity .3s; }
+
+/* ============================================================
+   CONTACT PAGE (contact.html)
+   ============================================================ */
+.contact-page{ min-height: 100vh; background: var(--k); color: var(--w); }
+.cp-hero{
+  padding: 160px 5vw 80px; border-bottom: 1px solid var(--bd);
+  background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(139,30,60,.18) 0%, transparent 70%);
+}
+.cp-eyebrow{ font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--a); margin-bottom: 1rem; }
+.cp-title{ font-size: clamp(2.8rem,7vw,6rem); font-family: 'Syne',sans-serif; font-weight: 800; line-height: .95; margin-bottom: 1.2rem; }
+.cp-title em{ font-family: 'Playfair Display',serif; font-weight: 400; font-style: italic; color: var(--a); }
+.cp-sub{ max-width: 500px; color: rgba(250,250,248,.55); font-size: 1rem; line-height: 1.7; }
+
+.cp-grid{
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  max-width: 1280px; margin: 0 auto; padding: 80px 5vw;
+}
+@media(max-width:860px){ .cp-grid{ grid-template-columns: 1fr; } }
+
+/* Form side */
+.cp-form-wrap{ padding-right: 6vw; border-right: 1px solid var(--bd); }
+@media(max-width:860px){ .cp-form-wrap{ padding-right: 0; border-right: 0; border-bottom: 1px solid var(--bd); padding-bottom: 3rem; margin-bottom: 3rem; } }
+.cp-form-label{ font-size: .7rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(250,250,248,.4); margin-bottom: .5rem; display: block; }
+.cp-field{
+  width: 100%; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+  color: var(--w); font-family: inherit; font-size: .95rem;
+  padding: 14px 18px; border-radius: 10px; margin-bottom: 20px;
+  transition: border-color .2s, background .2s; outline: none;
+  -webkit-appearance: none;
+}
+.cp-field:focus{ border-color: var(--a); background: rgba(139,30,60,.07); }
+textarea.cp-field{ min-height: 140px; resize: vertical; }
+.cp-send{
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--a); color: #fff; border: 2px solid var(--a);
+  padding: 16px 36px; border-radius: 50px; font-size: .85rem;
+  letter-spacing: .1em; text-transform: uppercase; font-weight: 600;
+  cursor: pointer; transition: background .2s, transform .2s, box-shadow .2s;
+  font-family: inherit; box-shadow: 0 0 0 0 rgba(139,30,60,.4);
+}
+.cp-send:hover{ background: transparent; color: var(--a); box-shadow: 0 0 0 6px rgba(139,30,60,.15); transform: translateY(-2px); }
+
+/* Info side */
+.cp-info-wrap{ padding-left: 6vw; display: flex; flex-direction: column; gap: 2rem; }
+@media(max-width:860px){ .cp-info-wrap{ padding-left: 0; } }
+.cp-info-block{ display: flex; gap: 18px; align-items: flex-start; }
+.cp-info-icon{
+  width: 48px; height: 48px; border-radius: 12px;
+  background: rgba(139,30,60,.15); border: 1px solid rgba(139,30,60,.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; flex-shrink: 0;
+}
+.cp-info-label{ font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(250,250,248,.4); margin-bottom: 4px; }
+.cp-info-val{ font-size: 1rem; color: var(--w); }
+.cp-info-val a{ color: var(--w); text-decoration: none; transition: color .2s; }
+.cp-info-val a:hover{ color: var(--a); }
+
+.cp-divider{ height: 1px; background: var(--bd); margin: 0; }
+.cp-cta-strip{
+  background: var(--a); padding: 80px 5vw; text-align: center;
+  background-image: radial-gradient(ellipse 80% 100% at 50% -20%, rgba(255,255,255,.08) 0%, transparent 60%);
+}
+.cp-cta-strip h2{ font-family: 'Syne',sans-serif; font-size: clamp(2rem,5vw,3.5rem); font-weight: 800; margin-bottom: 1.2rem; }
+.cp-cta-strip p{ color: rgba(255,255,255,.75); margin-bottom: 2rem; max-width: 520px; margin-inline: auto; }
+.cp-cta-btn{
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #fff; color: var(--a); padding: 16px 40px;
+  border-radius: 50px; font-weight: 700; font-family: 'Syne',sans-serif;
+  letter-spacing: .05em; font-size: 1rem; text-decoration: none;
+  transition: transform .2s, box-shadow .2s;
+}
+.cp-cta-btn:hover{ transform: translateY(-3px); box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+
+/* 3D floating orbs in CP hero */
+.cp-orbs{ position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+.cp-orb{
+  position: absolute; border-radius: 50%;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+.cp-orb:nth-child(1){ width:300px;height:300px; top:-80px;right:10%; background:radial-gradient(circle,rgba(139,30,60,.25),transparent 70%); animation-duration:9s; }
+.cp-orb:nth-child(2){ width:200px;height:200px; bottom:20%;right:25%; background:radial-gradient(circle,rgba(29,4,189,.2),transparent 70%); animation-delay:-3s; animation-duration:11s; }
+.cp-orb:nth-child(3){ width:150px;height:150px; top:30%;right:5%; background:radial-gradient(circle,rgba(139,30,60,.15),transparent 70%); animation-delay:-6s; }
+@keyframes orbFloat{ 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-30px) scale(1.05);} }
+

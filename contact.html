@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Contact — BYDTRND.studio · Beyond Trend</title>
+<meta name="description" content="Get in touch with BYDTRND.studio. Book a call, ask a question, or start your next campaign." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="nxgen-v3.css" />
+<style>
+/* Page-specific overrides */
+.cp-wrap{ max-width: 1280px; margin: 0 auto; padding: 0 5vw; }
+.cp-hero-inner{ position: relative; z-index: 1; }
+.cp-hero{ position: relative; padding: 160px 5vw 100px; border-bottom: 1px solid var(--bd); overflow: hidden;
+  background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(139,30,60,.18) 0%, transparent 60%),
+              radial-gradient(ellipse 50% 60% at 20% 80%, rgba(29,4,189,.12) 0%, transparent 55%); }
+.cp-grid{ display: grid; grid-template-columns: 1fr 1fr; gap: 0; max-width: 1280px; margin: 0 auto; }
+@media(max-width:860px){ .cp-grid{ grid-template-columns: 1fr; } }
+.cp-form-side{ padding: 80px 5vw 80px; border-right: 1px solid var(--bd); }
+@media(max-width:860px){ .cp-form-side{ border-right: 0; border-bottom: 1px solid var(--bd); } }
+.cp-info-side{ padding: 80px 5vw 80px; display: flex; flex-direction: column; gap: 2.5rem; justify-content: flex-start; }
+.cp-form-h{ font-family: 'Syne',sans-serif; font-size: clamp(1.6rem,3.5vw,2.4rem); font-weight: 800; margin-bottom: .4rem; }
+.cp-form-sub{ color: rgba(250,250,248,.45); font-size: .9rem; margin-bottom: 2.5rem; }
+.cp-row{ display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media(max-width:600px){ .cp-row{ grid-template-columns: 1fr; } }
+.cp-label{ font-size: .68rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(250,250,248,.4); display: block; margin-bottom: 7px; }
+.cp-input{
+  width: 100%; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1);
+  color: var(--w); font-family: inherit; font-size: .95rem; padding: 14px 18px;
+  border-radius: 10px; margin-bottom: 20px; outline: none; transition: border-color .2s, background .2s;
+  -webkit-appearance: none;
+}
+.cp-input:focus{ border-color: var(--a); background: rgba(139,30,60,.06); }
+textarea.cp-input{ min-height: 150px; resize: vertical; }
+.cp-btn{
+  display: inline-flex; align-items: center; gap: 12px;
+  background: var(--a); color: #fff; border: 2px solid var(--a);
+  padding: 16px 40px; border-radius: 50px; font-size: .85rem;
+  letter-spacing: .1em; text-transform: uppercase; font-weight: 700;
+  cursor: pointer; transition: all .25s var(--e); font-family: 'Syne',sans-serif;
+  box-shadow: 0 0 0 0 rgba(139,30,60,.4);
+}
+.cp-btn:hover{ background: transparent; color: var(--a); box-shadow: 0 0 0 8px rgba(139,30,60,.12); transform: translateY(-2px); }
+.cp-btn svg{ transition: transform .2s; }
+.cp-btn:hover svg{ transform: translateX(4px); }
+
+/* Info blocks */
+.cp-info-h{ font-family: 'Syne',sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 2rem; }
+.cp-iblock{ display: flex; gap: 16px; align-items: flex-start; }
+.cp-iicon{
+  width: 50px; height: 50px; border-radius: 14px; flex-shrink: 0;
+  background: rgba(139,30,60,.12); border: 1px solid rgba(139,30,60,.25);
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+  transition: background .2s, border-color .2s;
+}
+.cp-iblock:hover .cp-iicon{ background: rgba(139,30,60,.25); border-color: var(--a); }
+.cp-ilabel{ font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(250,250,248,.4); margin-bottom: 5px; }
+.cp-ival{ font-size: 1rem; line-height: 1.4; }
+.cp-ival a{ color: var(--w); text-decoration: none; transition: color .2s; }
+.cp-ival a:hover{ color: var(--a); }
+
+/* Availability badge */
+.cp-avail{ display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 50px;
+  background: rgba(29,4,189,.12); border: 1px solid rgba(29,4,189,.3); font-size: .78rem;
+  letter-spacing: .08em; color: rgba(250,250,248,.7); margin-top: auto; }
+.cp-avail-dot{ width: 7px; height: 7px; background: #4ade80; border-radius: 50%; animation: pulse-green 2s infinite; }
+@keyframes pulse-green{ 0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.4);} 50%{box-shadow:0 0 0 6px rgba(74,222,128,0);} }
+
+/* CTA strip */
+.cp-cta{ padding: 100px 5vw; text-align: center; position: relative; overflow: hidden;
+  background: var(--a);
+  background-image: radial-gradient(ellipse 80% 100% at 50% 0%, rgba(255,255,255,.1) 0%, transparent 60%); }
+.cp-cta-title{ font-family: 'Syne',sans-serif; font-size: clamp(2rem,5vw,3.5rem); font-weight: 800; line-height: 1.05; margin-bottom: 1rem; }
+.cp-cta-sub{ color: rgba(255,255,255,.7); max-width: 480px; margin: 0 auto 2.5rem; font-size: 1rem; line-height: 1.7; }
+.cp-cta-a{
+  display: inline-flex; align-items: center; gap: 12px; padding: 18px 44px;
+  background: #fff; color: var(--a); border-radius: 50px; font-family: 'Syne',sans-serif;
+  font-weight: 800; font-size: 1rem; text-decoration: none; letter-spacing: .04em;
+  transition: transform .2s, box-shadow .2s;
+}
+.cp-cta-a:hover{ transform: translateY(-4px); box-shadow: 0 24px 60px rgba(0,0,0,.35); }
+
+/* Floating orbs */
+.cp-orb{ position: absolute; border-radius: 50%; pointer-events: none; }
+.cp-orb-1{ width:380px;height:380px; top:-120px; right:-60px;
+  background: radial-gradient(circle,rgba(139,30,60,.3),transparent 70%);
+  animation: orbFloat 10s ease-in-out infinite; }
+.cp-orb-2{ width:240px;height:240px; bottom:-60px; left:-40px;
+  background: radial-gradient(circle,rgba(29,4,189,.25),transparent 70%);
+  animation: orbFloat 13s ease-in-out infinite; animation-delay:-4s; }
+.cp-orb-3{ width:160px;height:160px; top:40%; right:15%;
+  background: radial-gradient(circle,rgba(139,30,60,.2),transparent 70%);
+  animation: orbFloat 8s ease-in-out infinite; animation-delay:-7s; }
+@keyframes orbFloat{ 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-28px) scale(1.04);} }
+
+/* Grain overlay */
+.grain{ position:fixed;inset:0;pointer-events:none;z-index:9999;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:256px; }
+</style>
+</head>
+<body class="no-js contact-page">
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true" style="opacity:0"></div>
+<div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
+<div class="scrollbar" aria-hidden="true"><div></div></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="index.html" class="brand" data-cursor>
+    <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
+  </a>
+  <div class="nav-links">
+    <div class="nav-drop-wrap">
+      <a href="services.html" data-cursor class="nav-drop-toggle">Services <span class="nav-arr">▾</span></a>
+      <div class="nav-dropdown">
+        <a href="services/seo-audit.html" data-cursor><span class="nd-icon">🔍</span>AI-SEO Audit</a>
+        <a href="services/ugc-ads.html" data-cursor><span class="nd-icon">🎬</span>UGC &amp; Reels</a>
+        <a href="services/social-media.html" data-cursor><span class="nd-icon">📱</span>Social Media</a>
+        <a href="services/influencer.html" data-cursor><span class="nd-icon">🌟</span>Influencer</a>
+        <a href="services/thumbnails.html" data-cursor><span class="nd-icon">🖼</span>Thumbnails</a>
+      </div>
+    </div>
+    <a href="pricing.html" data-cursor>Pricing</a>
+    <a href="contact.html" data-cursor class="nav-active">Contact</a>
+  </div>
+  <a href="mailto:hello@bydtrnd.studio" class="nav-cta" data-cursor>
+    <span class="dot"></span> hello@bydtrnd.studio
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="cp-hero">
+  <div class="cp-orb cp-orb-1"></div>
+  <div class="cp-orb cp-orb-2"></div>
+  <div class="cp-orb cp-orb-3"></div>
+  <div class="cp-wrap cp-hero-inner">
+    <div class="cp-eyebrow rv">Say hello</div>
+    <h1 class="cp-title rv d1">Let's build<br/><em>something</em><br/>unforgettable.</h1>
+    <p class="cp-sub rv d2">Drop us a line and we'll get back to you within one business day. No sales pitch — just a real conversation about what you're building.</p>
+  </div>
+</section>
+
+<!-- CONTACT GRID -->
+<div class="cp-grid">
+
+  <!-- FORM -->
+  <div class="cp-form-side">
+    <h2 class="cp-form-h rv">Send a message</h2>
+    <p class="cp-form-sub rv d1">Fill in the details below and we'll respond within 24 hours.</p>
+    <form action="mailto:hello@bydtrnd.studio" method="POST" enctype="text/plain" onsubmit="return handleForm(event)">
+      <div class="cp-row">
+        <div>
+          <label class="cp-label">First name</label>
+          <input class="cp-input" type="text" name="first" placeholder="Alex" required />
+        </div>
+        <div>
+          <label class="cp-label">Last name</label>
+          <input class="cp-input" type="text" name="last" placeholder="Morgan" required />
+        </div>
+      </div>
+      <label class="cp-label">Email address</label>
+      <input class="cp-input" type="email" name="email" placeholder="you@brand.com" required />
+      <label class="cp-label">Subject</label>
+      <input class="cp-input" type="text" name="subject" placeholder="New project / Collab / General inquiry" required />
+      <label class="cp-label">Message</label>
+      <textarea class="cp-input" name="message" placeholder="Tell us about your brand, goals, timeline, budget..." required></textarea>
+      <button class="cp-btn" type="submit">
+        <span>Send message</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+      </button>
+    </form>
+  </div>
+
+  <!-- INFO -->
+  <div class="cp-info-side">
+    <h2 class="cp-info-h rv">Get in touch</h2>
+
+    <div class="cp-iblock rv d1">
+      <div class="cp-iicon">📧</div>
+      <div>
+        <div class="cp-ilabel">Email</div>
+        <div class="cp-ival"><a href="mailto:hello@bydtrnd.studio">hello@bydtrnd.studio</a></div>
+      </div>
+    </div>
+
+    <div class="cp-iblock rv d2">
+      <div class="cp-iicon">💬</div>
+      <div>
+        <div class="cp-ilabel">WhatsApp</div>
+        <div class="cp-ival"><a href="https://wa.me/message/bydtrnd" target="_blank" rel="noopener">Chat on WhatsApp →</a></div>
+      </div>
+    </div>
+
+    <div class="cp-iblock rv d3">
+      <div class="cp-iicon">🌐</div>
+      <div>
+        <div class="cp-ilabel">Social</div>
+        <div class="cp-ival">
+          <a href="#" style="margin-right:16px">Instagram →</a>
+          <a href="#" style="margin-right:16px">X / Twitter →</a>
+          <a href="#">LinkedIn →</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="cp-iblock rv d4">
+      <div class="cp-iicon">⏰</div>
+      <div>
+        <div class="cp-ilabel">Response time</div>
+        <div class="cp-ival">Within 24 hours · Async-first studio</div>
+      </div>
+    </div>
+
+    <div class="cp-avail rv d5">
+      <span class="cp-avail-dot"></span>
+      Currently taking new clients for Q3 2026
+    </div>
+  </div>
+</div>
+
+<div class="cp-divider"></div>
+
+<!-- CTA STRIP -->
+<section class="cp-cta">
+  <h2 class="cp-cta-title">Ready to go<br/><em style="font-family:'Playfair Display',serif;font-style:italic;font-weight:400">beyond trend?</em></h2>
+  <p class="cp-cta-sub">From SEO to UGC to full-channel strategy — we build marketing that works while you sleep.</p>
+  <a href="services.html" class="cp-cta-a">
+    <span>Explore services</span>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+  </a>
+</section>
+
+<!-- FOOTER (minimal) -->
+<footer class="foot" style="padding:40px 5vw;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
+  <a href="index.html" class="brand" data-cursor style="text-decoration:none;">
+    <span class="logo" style="font-size:1.1rem;">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
+  </a>
+  <span style="color:rgba(250,250,248,.3);font-size:.8rem;">© 2026 BYDTRND.studio · All rights reserved.</span>
+  <a href="mailto:hello@bydtrnd.studio" style="color:rgba(250,250,248,.5);font-size:.85rem;text-decoration:none;transition:color .2s;" onmouseover="this.style.color='#8B1E3C'" onmouseout="this.style.color='rgba(250,250,248,.5)'">hello@bydtrnd.studio</a>
+</footer>
+
+<script>
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.cp-btn');
+  btn.innerHTML = '<span>Message sent!</span> ✓';
+  btn.style.background = '#4ade80';
+  btn.style.borderColor = '#4ade80';
+  btn.style.color = '#000';
+  setTimeout(() => {
+    btn.innerHTML = '<span>Send message</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>';
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    btn.style.color = '';
+    e.target.reset();
+  }, 3000);
+  return false;
+}
+</script>
+<script src="nxgen-v3.js"></script>
+</body>
+</html>

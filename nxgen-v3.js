@@ -324,3 +324,107 @@ document.documentElement.classList.remove('no-js');
     });
   }
 })();
+
+/* ============================================================
+   CURSOR — reveal on first mouse move
+   ============================================================ */
+(function(){
+  const dot = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  if (!dot || !ring) return;
+  document.addEventListener('mousemove', () => {
+    dot.style.opacity = '1';
+    ring.style.opacity = '1';
+  }, { once: true });
+})();
+
+/* ============================================================
+   3D SERVICE CARD TILT (mouse parallax)
+   ============================================================ */
+(function(){
+  if (matchMedia('(max-width:860px)').matches) return;
+  document.querySelectorAll('.svc-item, .cap, .price-card').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5;
+      const y = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = `perspective(800px) rotateY(${x * 8}deg) rotateX(${-y * 6}deg) translateZ(6px)`;
+    });
+    card.addEventListener('mouseleave', () => { card.style.transform = ''; });
+  });
+})();
+
+/* ============================================================
+   HERO 3D CANVAS — floating geometric shapes (Three.js)
+   ============================================================ */
+(function(){
+  const canvas = document.getElementById('hero-3d');
+  if (!canvas) return;
+
+  // Dynamically load Three.js
+  const s = document.createElement('script');
+  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+  s.onload = initThree;
+  document.head.appendChild(s);
+
+  function initThree(){
+    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(60, canvas.offsetWidth / canvas.offsetHeight, 0.1, 100);
+    camera.position.z = 6;
+
+    // Materials
+    const wireMat = new THREE.MeshBasicMaterial({ color: 0x8B1E3C, wireframe: true, transparent: true, opacity: 0.35 });
+    const indMat  = new THREE.MeshBasicMaterial({ color: 0x1D04BD, wireframe: true, transparent: true, opacity: 0.25 });
+    const whiteMat = new THREE.MeshBasicMaterial({ color: 0xfafaf8, wireframe: true, transparent: true, opacity: 0.12 });
+
+    // Create shapes
+    const shapes = [
+      { geo: new THREE.IcosahedronGeometry(0.9, 1), mat: wireMat,  pos: [-3, 1.2, -2],  speed: [0.003, 0.005, 0.002] },
+      { geo: new THREE.OctahedronGeometry(0.7, 0),  mat: indMat,   pos: [3.2, -1, -1],  speed: [0.004, -0.003, 0.005] },
+      { geo: new THREE.TetrahedronGeometry(0.6, 0), mat: wireMat,  pos: [0.5, 2.2, -3], speed: [-0.005, 0.004, 0.003] },
+      { geo: new THREE.IcosahedronGeometry(0.5, 0), mat: whiteMat, pos: [-2.5, -1.8, -1], speed: [0.006, -0.004, 0.002] },
+      { geo: new THREE.OctahedronGeometry(1.1, 1),  mat: indMat,   pos: [4, 2, -4],     speed: [-0.002, 0.006, -0.003] },
+      { geo: new THREE.TetrahedronGeometry(0.4, 0), mat: whiteMat, pos: [-1, -2.5, -2], speed: [0.005, 0.003, -0.004] },
+    ];
+
+    const meshes = shapes.map(({ geo, mat, pos, speed }) => {
+      const m = new THREE.Mesh(geo, mat);
+      m.position.set(...pos);
+      m.userData.speed = speed;
+      scene.add(m);
+      return m;
+    });
+
+    // Mouse parallax
+    let mx = 0, my = 0;
+    window.addEventListener('mousemove', e => {
+      mx = (e.clientX / window.innerWidth - 0.5) * 0.8;
+      my = (e.clientY / window.innerHeight - 0.5) * 0.5;
+    });
+
+    // Resize
+    window.addEventListener('resize', () => {
+      camera.aspect = canvas.offsetWidth / canvas.offsetHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+    });
+
+    // Animate
+    (function animate(){
+      requestAnimationFrame(animate);
+      meshes.forEach(m => {
+        m.rotation.x += m.userData.speed[0];
+        m.rotation.y += m.userData.speed[1];
+        m.rotation.z += m.userData.speed[2];
+      });
+      camera.position.x += (mx - camera.position.x) * 0.04;
+      camera.position.y += (-my - camera.position.y) * 0.04;
+      renderer.render(scene, camera);
+    })();
+  }
+})();
+
