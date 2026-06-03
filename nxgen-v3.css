@@ -2065,13 +2065,13 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
   position: absolute; top: calc(100% + 20px); left: 50%;
   transform: translateX(-50%) translateY(-12px);
   width: 320px;
-  background: rgba(8,8,10,.96);
-  border: 1px solid rgba(250,250,248,.08);
+  background: var(--a);
+  border: 1px solid rgba(255,255,255,.15);
   border-radius: 16px;
   padding: 8px;
   opacity: 0; pointer-events: none;
   transition: opacity .28s var(--e), transform .28s var(--e);
-  box-shadow: 0 32px 80px rgba(0,0,0,.7), 0 0 0 1px rgba(139,30,60,.12) inset;
+  box-shadow: 0 32px 80px rgba(139,30,60,.4), 0 0 0 1px rgba(255,255,255,.08) inset;
   backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
   z-index: 300;
   overflow: hidden;
@@ -2080,9 +2080,9 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
 .nav-dropdown::before{
   content: ''; position: absolute; top: -5px; left: 50%; transform: translateX(-50%);
   width: 10px; height: 10px;
-  background: rgba(8,8,10,.96);
-  border-left: 1px solid rgba(250,250,248,.08);
-  border-top: 1px solid rgba(250,250,248,.08);
+  background: var(--a);
+  border-left: 1px solid rgba(255,255,255,.15);
+  border-top: 1px solid rgba(255,255,255,.15);
   transform: translateX(-50%) rotate(45deg);
 }
 .nav-drop-wrap:hover .nav-dropdown{
@@ -2102,10 +2102,10 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
 }
 .nd-item::before{
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(139,30,60,.12) 0%, transparent 100%);
+  background: linear-gradient(90deg, rgba(255,255,255,.12) 0%, transparent 100%);
   opacity: 0; transition: opacity .2s var(--e);
 }
-.nd-item:hover{ border-left-color: var(--a); background: rgba(139,30,60,.06); }
+.nd-item:hover{ border-left-color: rgba(255,255,255,.6); background: rgba(255,255,255,.1); }
 .nd-item:hover::before{ opacity: 1; }
 
 /* Staggered reveal animation */
@@ -2117,10 +2117,10 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
 
 .nd-num{
   font-family: var(--mono); font-size: .65rem; letter-spacing: .12em;
-  color: rgba(250,250,248,.25); flex-shrink: 0; width: 20px;
+  color: rgba(255,255,255,.5); flex-shrink: 0; width: 20px;
   transition: color .2s;
 }
-.nd-item:hover .nd-num{ color: var(--a); }
+.nd-item:hover .nd-num{ color: #fff; }
 
 .nd-body{ display: flex; flex-direction: column; gap: 2px; flex: 1; }
 .nd-name{
@@ -2131,20 +2131,20 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
 .nd-item:hover .nd-name{ color: var(--w); }
 .nd-desc{
   font-family: var(--grotesk); font-size: .68rem;
-  color: rgba(250,250,248,.35); letter-spacing: .01em;
+  color: rgba(255,255,255,.6); letter-spacing: .01em;
   transition: color .2s;
 }
-.nd-item:hover .nd-desc{ color: rgba(250,250,248,.55); }
+.nd-item:hover .nd-desc{ color: rgba(255,255,255,.85); }
 
 .nd-go{
   font-size: .9rem; color: rgba(250,250,248,.2);
   transform: translateX(-4px); opacity: 0;
   transition: transform .2s var(--e), opacity .2s var(--e), color .2s;
 }
-.nd-item:hover .nd-go{ transform: translateX(0); opacity: 1; color: var(--a); }
+.nd-item:hover .nd-go{ transform: translateX(0); opacity: 1; color: #fff; }
 
 /* Divider between items */
-.nd-item + .nd-item{ border-top: 1px solid rgba(250,250,248,.05); border-radius: 0; }
+.nd-item + .nd-item{ border-top: 1px solid rgba(255,255,255,.1); border-radius: 0; }
 .nd-item:last-of-type{ border-radius: 0 0 0 0; }
 .nd-item:first-of-type{ border-radius: 10px 10px 0 0; }
 
@@ -2158,7 +2158,7 @@ body:not(.home) .nav:not(.scrolled) .nav-links a:hover{ color: #FFF; }
   border-radius: 0 0 10px 10px;
   transition: color .2s, background .2s;
 }
-.nd-all:hover{ color: var(--w); background: rgba(250,250,248,.04); }
+.nd-all:hover{ color: #fff; background: rgba(255,255,255,.1); }
 
 /* ============================================================
    HERO 3D CANVAS
