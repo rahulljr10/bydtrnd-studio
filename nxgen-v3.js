@@ -352,6 +352,7 @@ document.documentElement.classList.remove('no-js');
     });
     card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
+})();
 
 /* ============================================================
    HERO 3D CANVAS — Marketing-themed 3D objects
@@ -361,12 +362,28 @@ document.documentElement.classList.remove('no-js');
   const canvas = document.getElementById('hero-3d');
   if (!canvas) return;
 
-  const s = document.createElement('script');
-  s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-  s.onload = initScene;
-  document.head.appendChild(s);
+  // Wait for preloader to finish before loading Three.js (avoids RAF conflicts)
+  function loadThree() {
+    if (typeof THREE !== 'undefined') { initScene(); return; }
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+    s.onload = initScene;
+    document.head.appendChild(s);
+  }
+  // If body already has 'ready' (preloader done), start now; otherwise wait
+  if (document.body.classList.contains('ready')) {
+    loadThree();
+  } else {
+    const observer = new MutationObserver(() => {
+      if (document.body.classList.contains('ready')) {
+        observer.disconnect();
+        setTimeout(loadThree, 200); // small buffer after curtains finish
+      }
+    });
+    observer.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+  }
 
-  function initScene(){
+  function initScene(){ try {
     // Use hero element for reliable dimensions (canvas may not be laid out yet)
     const hero = canvas.closest('.hero') || canvas.parentElement;
     const W = hero ? hero.clientWidth : window.innerWidth;
@@ -555,5 +572,6 @@ document.documentElement.classList.remove('no-js');
       camera.position.y += (-my - camera.position.y) * 0.03;
       renderer.render(scene, camera);
     })();
+  } catch(e) { console.warn('3D scene error:', e); }
   }
 })();
