@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pricing — NXGEN STUDIO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body class="no-js">
+
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="curtain left"></div>
+  <div class="curtain right"></div>
+  <div class="preload-stage">
+    <div class="preload-count"><span id="count">000</span><em>%</em></div>
+    <div class="preload-bar"></div>
+    <div class="preload-label">Loading pricing</div>
+  </div>
+</div>
+
+<!-- NAV (matches home) -->
+<nav class="nav" id="nav">
+  <a href="Marketing Agency.html" class="brand" data-cursor>
+    <span class="mark"></span> NXGEN<sup>/STUDIO</sup>
+  </a>
+  <div class="nav-links">
+    <div class="nav-has-dropdown" id="services-dd">
+      <a href="Marketing Agency.html#services" data-cursor>
+        Services
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-dropdown" role="menu">
+        <a class="nav-dd-item" href="services/ai-seo-audit.html" data-cursor>
+          <span class="nd-num">01</span>
+          <span class="nd-name">AI-SEO &amp; AEO Audit<small>Search + answer-engine optimization.</small></span>
+          <svg class="nd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+        </a>
+        <a class="nav-dd-item" href="services/thumbnail-creator.html" data-cursor>
+          <span class="nd-num">02</span>
+          <span class="nd-name">Thumbnail Creator<small>CTR-engineered cover art.</small></span>
+          <svg class="nd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+        </a>
+        <a class="nav-dd-item" href="services/ugc-reels.html" data-cursor>
+          <span class="nd-num">03</span>
+          <span class="nd-name">AI UGC Ads &amp; Reels<small>Native UGC at scale.</small></span>
+          <svg class="nd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+        </a>
+        <a class="nav-dd-item" href="services/social-media-marketing.html" data-cursor>
+          <span class="nd-num">04</span>
+          <span class="nd-name">Social Media Marketing<small>Calendar, posting &amp; community.</small></span>
+          <svg class="nd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+        </a>
+        <a class="nav-dd-item" href="services/influencer-marketing.html" data-cursor>
+          <span class="nd-num">05</span>
+          <span class="nd-name">Influencer Marketing<small>Casting, briefs, contracts, perf.</small></span>
+          <svg class="nd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+        </a>
+        <div class="nav-dd-foot">
+          <span>All services</span>
+          <a href="Marketing Agency.html#services" data-cursor>View all →</a>
+        </div>
+      </div>
+    </div>
+    <a href="pricing.html" data-cursor>Pricing</a>
+    <a href="Marketing Agency.html#work" data-cursor>Work</a>
+  </div>
+  <a href="#contact" class="nav-cta" data-cursor>
+    <span class="dot"></span> Connect with team
+  </a>
+</nav>
+
+<!-- HERO -->
+<section class="pricing-hero">
+  <div class="wrap">
+    <div class="svc-breadcrumb">
+      <a href="Marketing Agency.html" data-cursor>Home</a>
+      <span class="sep"></span>
+      <span>Pricing</span>
+    </div>
+    <div class="svc-hero-eyebrow">Pricing · 2026</div>
+    <h1 class="pricing-hero-title">Real prices.<br/><em>No “contact us”.</em></h1>
+    <p class="pricing-hero-lead">
+      Plain pricing across our four monthly engines — <strong>SMM, AI UGC, Influencer, SEO + AEO</strong>. Pick a tier or stack a few and we'll discount the bundle. <strong>Thumbnails</strong> are priced per drop on the <a href="services/thumbnail-creator.html" style="text-decoration:underline; text-underline-offset: 3px;" data-cursor>thumbnail page</a> — instant quote, no calls.
+    </p>
+  </div>
+</section>
+
+<!-- SMM -->
+<section class="price-block">
+  <div class="wrap">
+    <div class="price-block-head">
+      <div class="l">
+        <span class="num">/01</span>
+        <h2>Social Media <em>Marketing</em></h2>
+      </div>
+      <p class="sub">Strategy, viral content engine, calendar, posting and community. The whole social product.</p>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Strategy</div>
+        <div class="pc-name">Strategy Sprint</div>
+        <div class="pc-price"><span class="amt">$3.5k</span><span class="per">/ one-time</span></div>
+        <div class="pc-desc">A focused intensive: channel strategy, voice guide, hook bank, and a 30-day starter calendar.</div>
+        <ul>
+          <li>Channel-by-channel strategy</li>
+          <li>Voice + tone guide</li>
+          <li>30-day starter calendar</li>
+          <li>50 hook concepts</li>
+          <li>1 live readout</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Book the sprint</span><span>→</span></a>
+      </div>
+
+      <div class="price-card feature">
+        <div class="pc-tag popular"><span class="dot"></span> Most chosen</div>
+        <div class="pc-name">Full Social Engine</div>
+        <div class="pc-price"><span class="amt">$5.8k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">Daily posting, rolling calendar, community ops, and a monthly performance review. From zero to always-on.</div>
+        <ul>
+          <li>Daily posting · 3 channels</li>
+          <li>Rolling 30-day calendar</li>
+          <li>Community + DM ops</li>
+          <li>Weekly hook refresh</li>
+          <li>Monthly board read</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Start the engine</span><span>→</span></a>
+      </div>
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Partnership</div>
+        <div class="pc-name">Brand Partnership</div>
+        <div class="pc-price"><span class="amt">$12.5k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">Embedded team across every channel. Full creative + community ownership with a dedicated lead.</div>
+        <ul>
+          <li>Multi-channel coverage</li>
+          <li>Creator + influencer ops</li>
+          <li>Dedicated community lead</li>
+          <li>Quarterly strategy off-site</li>
+          <li>Custom dashboards</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Talk to us</span><span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- UGC -->
+<section class="price-block alt">
+  <div class="wrap">
+    <div class="price-block-head">
+      <div class="l">
+        <span class="num">/02</span>
+        <h2>AI UGC <em>Videos &amp; Ads</em></h2>
+      </div>
+      <p class="sub">Native-feel UGC at scale. AI avatars, real-creator hooks, weekly platform-tuned cuts.</p>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Pilot</div>
+        <div class="pc-name">Pilot Sprint</div>
+        <div class="pc-price"><span class="amt">$4.2k</span><span class="per">/ one-time</span></div>
+        <div class="pc-desc">A 4-week pilot to prove the engine on your offer. Walk away with a system that works.</div>
+        <ul>
+          <li>20 hooks scripted</li>
+          <li>16 cuts delivered</li>
+          <li>4 weeks of production</li>
+          <li>Performance readout</li>
+          <li>Scale-up roadmap</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Run the pilot</span><span>→</span></a>
+      </div>
+
+      <div class="price-card feature">
+        <div class="pc-tag popular"><span class="dot"></span> Most chosen</div>
+        <div class="pc-name">Always-on Engine</div>
+        <div class="pc-price"><span class="amt">$6.5k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">Weekly hook + cut delivery for brands running paid media year-round.</div>
+        <ul>
+          <li>Up to 8 cuts / week</li>
+          <li>Hook bank refresh</li>
+          <li>AI avatar + UGC mix</li>
+          <li>Slack + Loom reviews</li>
+          <li>Monthly retro</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Start the engine</span><span>→</span></a>
+      </div>
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Partnership</div>
+        <div class="pc-name">Performance Partnership</div>
+        <div class="pc-price"><span class="amt">$14k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">We own the creative half of your performance team. Fully aligned to CAC and ROAS.</div>
+        <ul>
+          <li>Co-owned creative roadmap</li>
+          <li>Performance dashboard</li>
+          <li>Quarterly strategy</li>
+          <li>Dedicated team</li>
+          <li>Ad-platform integrations</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Talk to us</span><span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INFLUENCER -->
+<section class="price-block">
+  <div class="wrap">
+    <div class="price-block-head">
+      <div class="l">
+        <span class="num">/03</span>
+        <h2>Influencer <em>Marketing</em></h2>
+      </div>
+      <p class="sub">Casting, briefs, contracts, content rights, performance reads. End-to-end. Talent fees billed at cost.</p>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Single drop</div>
+        <div class="pc-name">Single Campaign</div>
+        <div class="pc-price"><span class="amt">$5.5k</span><span class="per">/ campaign</span></div>
+        <div class="pc-desc">One bounded campaign — research, cast, ship, report. Talent fees billed at cost on top.</div>
+        <ul>
+          <li>10–15 creators sourced</li>
+          <li>3–5 booked &amp; activated</li>
+          <li>Briefs + contracts + rights</li>
+          <li>Asset QC + approvals</li>
+          <li>Post-campaign report</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Run a campaign</span><span>→</span></a>
+      </div>
+
+      <div class="price-card feature">
+        <div class="pc-tag popular"><span class="dot"></span> Most chosen</div>
+        <div class="pc-name">Quarterly Engine</div>
+        <div class="pc-price"><span class="amt">$8.5k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">Always-sourcing creator pipeline. 8–12 creators per quarter, fully managed.</div>
+        <ul>
+          <li>Rolling sourcing &amp; outreach</li>
+          <li>8–12 creators / quarter</li>
+          <li>Whitelisting + paid usage</li>
+          <li>Performance dashboard</li>
+          <li>Quarterly strategy</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Start sourcing</span><span>→</span></a>
+      </div>
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Always-on</div>
+        <div class="pc-name">Always-on Network</div>
+        <div class="pc-price"><span class="amt">$15k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">A live creator network built for your brand. Continuous casting, weekly drops, full rights pipeline.</div>
+        <ul>
+          <li>Dedicated talent team</li>
+          <li>20+ creators / quarter</li>
+          <li>Ambassador programme</li>
+          <li>Full legal + rights ops</li>
+          <li>Quarterly strategy off-site</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Talk to us</span><span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SEO + AEO -->
+<section class="price-block alt">
+  <div class="wrap">
+    <div class="price-block-head">
+      <div class="l">
+        <span class="num">/04</span>
+        <h2>Full AI-SEO + <em>AEO</em></h2>
+      </div>
+      <p class="sub">Forensic audit and 90-day roadmap. Search + answer-engine optimization for the LLM era.</p>
+    </div>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> One-shot</div>
+        <div class="pc-name">Audit Sprint</div>
+        <div class="pc-price"><span class="amt">$4.8k</span><span class="per">/ one-time</span></div>
+        <div class="pc-desc">A single, deep audit. Perfect pre-launch or before a content push. You ship from the roadmap.</div>
+        <ul>
+          <li>Full technical crawl</li>
+          <li>Keyword + AEO opportunity map</li>
+          <li>Content gap analysis</li>
+          <li>90-day roadmap doc</li>
+          <li>1 live readout</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Book audit</span><span>→</span></a>
+      </div>
+
+      <div class="price-card feature">
+        <div class="pc-tag popular"><span class="dot"></span> Most chosen</div>
+        <div class="pc-name">Quarterly Roadmap</div>
+        <div class="pc-price"><span class="amt">$3.2k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">A rolling audit cadence with async support between cycles. For brands actively scaling SEO + AEO.</div>
+        <ul>
+          <li>Quarterly audit refresh</li>
+          <li>2 live readouts / quarter</li>
+          <li>Async Slack support</li>
+          <li>KPI review cadence</li>
+          <li>LLM citation tracking</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Start the cadence</span><span>→</span></a>
+      </div>
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Partnership</div>
+        <div class="pc-name">Continuous SEO</div>
+        <div class="pc-price"><span class="amt">$9.5k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">We become your SEO team. Strategy, content, technical, AEO — fully owned and shipping weekly.</div>
+        <ul>
+          <li>Always-on SEO team</li>
+          <li>Weekly delivery</li>
+          <li>Content + technical ownership</li>
+          <li>Monthly board read</li>
+          <li>Quarterly strategy</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Talk to us</span><span>→</span></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOMIZE -->
+<section class="customize" id="contact">
+  <div class="wrap">
+    <div class="customize-grid">
+      <div>
+        <div class="sec-eyebrow" style="color: rgba(255,255,255,.7);">Custom build</div>
+        <h2>Build your own<br/><em>package.</em></h2>
+        <p>Most engagements stack two or three engines. We'll mix services across SMM, UGC, Influencer, and SEO + AEO, knock the bundle price, and shape the SOW to your actual roadmap. Reply in a day, scope in a week.</p>
+        <a class="customize-cta" href="/cdn-cgi/l/email-protection#e088858c8c8fa08e9887858ece93949584898f" data-cursor>
+          <span>Connect with team</span>
+          <span class="arr">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </span>
+        </a>
+      </div>
+      <div class="customize-list">
+        <div class="ck">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <strong>Bundle discount</strong>
+            <p>Stack 2 services → 10% off. Stack 3+ → 18% off. Applied automatically on the SOW.</p>
+          </div>
+        </div>
+        <div class="ck">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>
+          </div>
+          <div>
+            <strong>Mix &amp; match volumes</strong>
+            <p>Need only half a UGC engine and full social? Tell us. We'll right-size the volume and the price.</p>
+          </div>
+        </div>
+        <div class="ck">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>
+          </div>
+          <div>
+            <strong>Quarterly resets</strong>
+            <p>Every 90 days we rebalance services based on what's working. Scale up wins, retire what isn't.</p>
+          </div>
+        </div>
+        <div class="ck">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <strong>No long contracts</strong>
+            <p>Monthly retainers, 30 days notice. No 12-month lock-ins to make the price look smaller.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a href="Marketing Agency.html" class="brand" data-cursor>
+        <span class="mark"></span> NXGEN<sup>/STUDIO</sup>
+      </a>
+      <p>Next-gen AI marketing for brands that refuse to look like everyone else.</p>
+    </div>
+    <div class="foot-col">
+      <h6>Services</h6>
+      <ul>
+        <li><a href="services/ai-seo-audit.html" data-cursor>AI-SEO + AEO</a></li>
+        <li><a href="services/thumbnail-creator.html" data-cursor>Thumbnails</a></li>
+        <li><a href="services/ugc-reels.html" data-cursor>UGC &amp; Reels</a></li>
+        <li><a href="services/social-media-marketing.html" data-cursor>Social Media</a></li>
+        <li><a href="services/influencer-marketing.html" data-cursor>Influencer</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h6>Studio</h6>
+      <ul>
+        <li><a href="pricing.html" data-cursor>Pricing</a></li>
+        <li><a href="Marketing Agency.html#process" data-cursor>Process</a></li>
+        <li><a href="Marketing Agency.html#work" data-cursor>Work</a></li>
+        <li><a href="#contact" data-cursor>Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h6>Connect</h6>
+      <ul>
+        <li><a href="/cdn-cgi/l/email-protection#3b535e5757547b55435c5e5515484f4e5f5254" data-cursor><span class="__cf_email__" data-cfemail="f59d9099999ab59b8d92909bdb868180919c9a">[email&#160;protected]</span></a></li>
+        <li><a href="#" data-cursor>Instagram ↗</a></li>
+        <li><a href="#" data-cursor>X / Twitter ↗</a></li>
+        <li><a href="#" data-cursor>LinkedIn ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-mark" aria-hidden="true">PRICING / 2026</div>
+  <div class="foot-bottom">
+    <span>© 2026 NXGEN STUDIO. All rights reserved.</span>
+    <span>Prices in USD · ex tax</span>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="image-slot.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
