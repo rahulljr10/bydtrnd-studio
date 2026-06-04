@@ -11,112 +11,72 @@
 <link rel="stylesheet" href="nxgen-v3.css" />
 <style>
 :root{ --pad-x:5vw; }
-
-/* ── Dark base override (contact is fully dark) ── */
 body{ background:var(--k); color:var(--w); }
-
-/* ── Hero ── */
-.ct-hero{
-  min-height:60vh; display:flex; align-items:center;
-  padding:160px var(--pad-x) 80px;
-  border-bottom:1px solid rgba(250,250,248,.07);
-  position:relative; overflow:hidden;
-  background:
-    radial-gradient(ellipse 65% 70% at 75% 0%, rgba(139,30,60,.2) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 60% at 15% 90%, rgba(29,4,189,.15) 0%, transparent 55%);
-}
+.ct-hero{ min-height:62vh; display:flex; align-items:center; padding:160px var(--pad-x) 80px; border-bottom:1px solid rgba(250,250,248,.07); position:relative; overflow:hidden; background: radial-gradient(ellipse 65% 70% at 75% 0%, rgba(139,30,60,.22) 0%, transparent 60%), radial-gradient(ellipse 50% 60% at 15% 90%, rgba(29,4,189,.18) 0%, transparent 55%); }
 .ct-hero-inner{ max-width:1280px; margin:0 auto; width:100%; display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
-@media(max-width:860px){ .ct-hero-inner{ grid-template-columns:1fr; gap:40px; } }
-.ct-eyebrow{
-  font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase;
-  color:var(--wine); margin-bottom:1.4rem; display:flex; align-items:center; gap:10px;
-}
+@media(max-width:860px){ .ct-hero-inner{ grid-template-columns:1fr; gap:48px; } }
+.ct-eyebrow{ font-family:'JetBrains Mono',monospace; font-size:.7rem; letter-spacing:.2em; text-transform:uppercase; color:var(--wine); margin-bottom:1.4rem; display:flex; align-items:center; gap:10px; }
 .ct-eyebrow::before{ content:''; width:24px; height:1px; background:var(--wine); }
-.ct-title{
-  font-family:'Syne',sans-serif; font-weight:800;
-  font-size:clamp(2.8rem,6vw,5.5rem); line-height:.92; letter-spacing:-.03em;
-  margin-bottom:1.4rem;
-}
+.ct-title{ font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(2.8rem,6vw,5.5rem); line-height:.92; letter-spacing:-.03em; margin-bottom:1.4rem; color:#FFF; }
 .ct-title em{ font-family:'Playfair Display',serif; font-style:italic; font-weight:400; }
 .ct-sub{ color:rgba(250,250,248,.5); font-size:1rem; line-height:1.75; max-width:380px; }
-
-/* status badge */
-.ct-status{
-  display:inline-flex; align-items:center; gap:8px;
-  padding:9px 18px; border-radius:50px; margin-top:2rem;
-  border:1px solid rgba(74,222,128,.25); background:rgba(74,222,128,.06);
-  font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.1em; color:rgba(250,250,248,.6);
-}
+.ct-status{ display:inline-flex; align-items:center; gap:8px; padding:9px 18px; border-radius:50px; margin-top:2rem; border:1px solid rgba(74,222,128,.25); background:rgba(74,222,128,.06); font-family:'JetBrains Mono',monospace; font-size:.68rem; letter-spacing:.1em; color:rgba(250,250,248,.6); }
 .ct-status-dot{ width:7px; height:7px; border-radius:50%; background:#4ade80; animation:pgreen 2s infinite; }
 @keyframes pgreen{ 0%,100%{box-shadow:0 0 0 0 rgba(74,222,128,.4);} 50%{box-shadow:0 0 0 6px rgba(74,222,128,0);} }
 
-/* hero right — contact details */
-.ct-details{ display:flex; flex-direction:column; gap:1px; background:rgba(250,250,248,.06); border-radius:20px; overflow:hidden; border:1px solid rgba(250,250,248,.07); }
-.ct-detail-item{
-  display:flex; align-items:center; gap:20px; padding:22px 28px;
-  background:rgba(250,250,248,.02); transition:background .2s;
-  text-decoration:none; color:inherit;
-}
-.ct-detail-item:hover{ background:rgba(250,250,248,.05); }
-.ct-detail-icon{
-  width:44px; height:44px; border-radius:12px; flex-shrink:0;
-  background:rgba(139,30,60,.12); border:1px solid rgba(139,30,60,.2);
-  display:flex; align-items:center; justify-content:center;
-  color:var(--wine); transition:background .2s;
-}
-.ct-detail-item:hover .ct-detail-icon{ background:rgba(139,30,60,.2); }
-.ct-detail-label{ font-family:'JetBrains Mono',monospace; font-size:.62rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(250,250,248,.35); margin-bottom:3px; }
-.ct-detail-val{ font-size:.95rem; color:var(--w); }
+/* PREMIUM 2x2 ANIMATED CARDS */
+.ct-cards{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+@media(max-width:500px){ .ct-cards{ grid-template-columns:1fr; } }
 
-/* ── Form section ── */
+@keyframes cardIn{ from{ opacity:0; transform:translateY(28px) scale(.97); } to{ opacity:1; transform:translateY(0) scale(1); } }
+
+.ct-card{ position:relative; overflow:hidden; padding:28px 24px 24px; background:rgba(250,250,248,.04); border:1px solid rgba(250,250,248,.08); border-radius:20px; text-decoration:none; color:inherit; display:flex; flex-direction:column; gap:14px; transition:transform .4s cubic-bezier(.77,0,.18,1), border-color .4s, background .4s, box-shadow .4s; animation:cardIn .55s both; }
+.ct-card:nth-child(1){ animation-delay:.15s; }
+.ct-card:nth-child(2){ animation-delay:.25s; }
+.ct-card:nth-child(3){ animation-delay:.35s; }
+.ct-card:nth-child(4){ animation-delay:.45s; }
+
+.ct-card::before{ content:''; position:absolute; top:0; left:-100%; width:60%; height:100%; background:linear-gradient(90deg, transparent, rgba(250,250,248,.05), transparent); transition:left .7s ease; pointer-events:none; }
+.ct-card:hover::before{ left:160%; }
+
+.ct-card::after{ content:''; position:absolute; bottom:0; left:0; right:0; height:2px; background:linear-gradient(90deg, var(--wine), var(--indigo)); transform:scaleX(0); transform-origin:left; transition:transform .45s cubic-bezier(.77,0,.18,1); }
+.ct-card:hover::after{ transform:scaleX(1); }
+
+.ct-card:hover{ transform:translateY(-5px); border-color:rgba(250,250,248,.16); background:rgba(250,250,248,.07); box-shadow:0 20px 50px rgba(0,0,0,.4); }
+
+.ct-card-icon{ width:46px; height:46px; border-radius:14px; flex-shrink:0; background:rgba(139,30,60,.14); border:1px solid rgba(139,30,60,.28); display:flex; align-items:center; justify-content:center; color:var(--wine); transition:transform .45s cubic-bezier(.77,0,.18,1), background .3s, box-shadow .3s; }
+.ct-card:hover .ct-card-icon{ transform:rotate(-10deg) scale(1.12); background:rgba(139,30,60,.28); box-shadow:0 0 20px rgba(139,30,60,.35); }
+
+.ct-card-label{ font-family:'JetBrains Mono',monospace; font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:rgba(250,250,248,.3); }
+.ct-card-val{ font-family:'Syne',sans-serif; font-size:.95rem; font-weight:700; color:#FFF; line-height:1.3; margin-top:2px; }
+.ct-card-val small{ display:block; font-family:'Space Grotesk',sans-serif; font-weight:400; font-size:.8rem; color:rgba(250,250,248,.45); margin-top:3px; }
+
+.ct-card-arr{ position:absolute; top:20px; right:20px; width:28px; height:28px; border-radius:50%; background:rgba(250,250,248,.05); border:1px solid rgba(250,250,248,.08); display:flex; align-items:center; justify-content:center; color:rgba(250,250,248,.25); transition:background .3s, color .3s, transform .4s cubic-bezier(.77,0,.18,1); font-size:.75rem; }
+.ct-card:hover .ct-card-arr{ background:var(--wine); border-color:var(--wine); color:#FFF; transform:rotate(-45deg); }
+
+.ct-card-live{ display:inline-flex; align-items:center; gap:6px; font-family:'JetBrains Mono',monospace; font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:rgba(74,222,128,.8); margin-top:2px; }
+.ct-card-live-dot{ width:6px; height:6px; border-radius:50%; background:#4ade80; animation:pgreen 2s infinite; }
+
 .ct-form-wrap{ max-width:1280px; margin:0 auto; padding:80px var(--pad-x); display:grid; grid-template-columns:1fr 1fr; gap:80px; }
 @media(max-width:860px){ .ct-form-wrap{ grid-template-columns:1fr; gap:48px; } }
-
-.ct-form-head h2{
-  font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:800; letter-spacing:-.03em;
-  margin-bottom:.5rem;
-}
+.ct-form-head h2{ font-family:'Syne',sans-serif; font-size:clamp(1.8rem,3vw,2.6rem); font-weight:800; letter-spacing:-.03em; margin-bottom:.5rem; color:#FFF; }
 .ct-form-head p{ color:rgba(250,250,248,.4); font-size:.9rem; margin-bottom:2.5rem; line-height:1.7; }
-
 .ct-label{ font-family:'JetBrains Mono',monospace; font-size:.63rem; letter-spacing:.16em; text-transform:uppercase; color:rgba(250,250,248,.35); display:block; margin-bottom:8px; }
-.ct-field{
-  width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08);
-  color:var(--w); font-family:'Space Grotesk',sans-serif; font-size:.95rem;
-  padding:14px 18px; border-radius:10px; margin-bottom:20px; outline:none;
-  transition:border-color .2s, background .2s; -webkit-appearance:none;
-}
+.ct-field{ width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); color:var(--w); font-family:'Space Grotesk',sans-serif; font-size:.95rem; padding:14px 18px; border-radius:10px; margin-bottom:20px; outline:none; transition:border-color .2s, background .2s; -webkit-appearance:none; }
 .ct-field:focus{ border-color:var(--wine); background:rgba(139,30,60,.06); }
 .ct-field::placeholder{ color:rgba(250,250,248,.2); }
 textarea.ct-field{ min-height:140px; resize:vertical; }
 .ct-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 @media(max-width:500px){ .ct-row{ grid-template-columns:1fr; } }
-
-.ct-submit{
-  display:inline-flex; align-items:center; gap:12px;
-  background:var(--wine); color:#fff; border:none;
-  padding:16px 40px; border-radius:50px;
-  font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; letter-spacing:.06em;
-  cursor:pointer; transition:all .25s; box-shadow:0 0 0 0 rgba(139,30,60,.4);
-}
+.ct-submit{ display:inline-flex; align-items:center; gap:12px; background:var(--wine); color:#fff; border:none; padding:16px 40px; border-radius:50px; font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; letter-spacing:.06em; cursor:pointer; transition:all .25s; }
 .ct-submit:hover{ background:var(--wine-2); transform:translateY(-2px); box-shadow:0 16px 40px rgba(139,30,60,.35); }
-
-/* right column — what to expect */
 .ct-expect{ padding-top:16px; }
-.ct-expect h3{ font-family:'Syne',sans-serif; font-size:1.25rem; font-weight:800; margin-bottom:2rem; }
+.ct-expect h3{ font-family:'Syne',sans-serif; font-size:1.25rem; font-weight:800; margin-bottom:2rem; color:#FFF; }
 .ct-step{ display:flex; gap:20px; margin-bottom:2rem; }
-.ct-step-num{
-  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.1em;
-  color:var(--wine); flex-shrink:0; padding-top:3px;
-}
-.ct-step-body h4{ font-family:'Syne',sans-serif; font-size:.95rem; font-weight:700; margin-bottom:4px; }
+.ct-step-num{ font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.1em; color:var(--wine); flex-shrink:0; padding-top:3px; }
+.ct-step-body h4{ font-family:'Syne',sans-serif; font-size:.95rem; font-weight:700; margin-bottom:4px; color:#FFF; }
 .ct-step-body p{ color:rgba(250,250,248,.45); font-size:.85rem; line-height:1.6; }
-.ct-step-divider{ width:1px; background:rgba(250,250,248,.07); margin:0 0 0 10px; height:20px; }
-
-/* ── Footer ── */
-.ct-foot{
-  padding:40px var(--pad-x); border-top:1px solid rgba(250,250,248,.07);
-  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
-}
+.ct-foot{ padding:40px var(--pad-x); border-top:1px solid rgba(250,250,248,.07); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
 </style>
 </head>
 <body class="no-js">
@@ -124,8 +84,6 @@ textarea.ct-field{ min-height:140px; resize:vertical; }
 <div class="cursor-ring" aria-hidden="true" style="opacity:0"></div>
 <div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
 <div class="scrollbar" aria-hidden="true"><div></div></div>
-
-<!-- NAV -->
 <nav class="nav">
   <a href="index.html" class="brand" data-cursor>
     <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
@@ -145,65 +103,40 @@ textarea.ct-field{ min-height:140px; resize:vertical; }
     <a href="pricing.html" data-cursor>Pricing</a>
     <a href="contact.html" data-cursor>Contact</a>
   </div>
-  <a href="mailto:hello@bydtrnd.studio" class="nav-cta" data-cursor>
-    <span class="dot"></span> hello@bydtrnd.studio
+  <a href="contact.html" class="nav-cta" data-cursor>
+    <span class="dot"></span> Let's Go Beyond
   </a>
 </nav>
-
-<!-- HERO -->
 <section class="ct-hero">
   <div class="ct-hero-inner">
     <div>
       <div class="ct-eyebrow rv">Contact</div>
       <h1 class="ct-title rv d1">Let's build<br/><em>something</em><br/>unforgettable.</h1>
       <p class="ct-sub rv d2">One call. No pitch deck. We'll scope out exactly what you need and what it costs — then move the following week.</p>
-      <div class="ct-status rv d3">
-        <span class="ct-status-dot"></span>
-        Taking new clients for Q3 2026
-      </div>
+      <div class="ct-status rv d3"><span class="ct-status-dot"></span>Taking new clients for Q3 2026</div>
     </div>
-    <div class="ct-details rv d2">
-      <a class="ct-detail-item" href="mailto:hello@bydtrnd.studio" data-cursor>
-        <div class="ct-detail-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-        </div>
-        <div>
-          <div class="ct-detail-label">Email</div>
-          <div class="ct-detail-val">hello@bydtrnd.studio</div>
-        </div>
+    <div class="ct-cards rv d2">
+      <a class="ct-card" href="mailto:hello@bydtrnd.studio" data-cursor>
+        <div class="ct-card-arr">&#8599;</div>
+        <div class="ct-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+        <div><div class="ct-card-label">Drop us a line</div><div class="ct-card-val">hello@bydtrnd<small>.studio</small></div></div>
       </a>
-      <div class="ct-detail-item">
-        <div class="ct-detail-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2z"/><path d="M12 6v6l4 2"/></svg>
-        </div>
-        <div>
-          <div class="ct-detail-label">Response time</div>
-          <div class="ct-detail-val">Within 24 hours</div>
-        </div>
+      <div class="ct-card">
+        <div class="ct-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <div><div class="ct-card-label">Response time</div><div class="ct-card-val">Within 24h<div class="ct-card-live"><span class="ct-card-live-dot"></span>Always on</div></div></div>
       </div>
-      <div class="ct-detail-item">
-        <div class="ct-detail-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        </div>
-        <div>
-          <div class="ct-detail-label">Studio</div>
-          <div class="ct-detail-val">Async-first · Fully remote</div>
-        </div>
+      <div class="ct-card">
+        <div class="ct-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div><div class="ct-card-label">Studio</div><div class="ct-card-val">Async-first<small>Fully remote · Week-one delivery</small></div></div>
       </div>
-      <a class="ct-detail-item" href="https://instagram.com" target="_blank" rel="noopener" data-cursor>
-        <div class="ct-detail-icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        </div>
-        <div>
-          <div class="ct-detail-label">Follow</div>
-          <div class="ct-detail-val">Instagram · X · LinkedIn</div>
-        </div>
+      <a class="ct-card" href="https://instagram.com" target="_blank" rel="noopener" data-cursor>
+        <div class="ct-card-arr">&#8599;</div>
+        <div class="ct-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></div>
+        <div><div class="ct-card-label">Follow</div><div class="ct-card-val">Instagram<small>X · LinkedIn · TikTok</small></div></div>
       </a>
     </div>
   </div>
 </section>
-
-<!-- FORM -->
 <div class="ct-form-wrap">
   <div>
     <div class="ct-form-head">
@@ -212,14 +145,8 @@ textarea.ct-field{ min-height:140px; resize:vertical; }
     </div>
     <form onsubmit="return submitForm(event)">
       <div class="ct-row">
-        <div>
-          <label class="ct-label">First name</label>
-          <input class="ct-field" type="text" name="first" placeholder="Alex" required />
-        </div>
-        <div>
-          <label class="ct-label">Last name</label>
-          <input class="ct-field" type="text" name="last" placeholder="Morgan" required />
-        </div>
+        <div><label class="ct-label">First name</label><input class="ct-field" type="text" name="first" placeholder="Alex" required /></div>
+        <div><label class="ct-label">Last name</label><input class="ct-field" type="text" name="last" placeholder="Morgan" required /></div>
       </div>
       <label class="ct-label">Email address</label>
       <input class="ct-field" type="email" name="email" placeholder="you@brand.com" required />
@@ -227,66 +154,32 @@ textarea.ct-field{ min-height:140px; resize:vertical; }
       <input class="ct-field" type="text" name="subject" placeholder="New project · Collab · General inquiry" required />
       <label class="ct-label">Tell us about your brand</label>
       <textarea class="ct-field" name="message" placeholder="Goals, timeline, budget range — the more context the better..." required></textarea>
-      <button class="ct-submit" type="submit">
-        <span>Send message</span>
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
-      </button>
+      <button class="ct-submit" type="submit"><span>Send message</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></button>
     </form>
   </div>
-
-  <!-- What to expect -->
   <div class="ct-expect rv d2">
     <h3>What happens next.</h3>
-    <div class="ct-step">
-      <div class="ct-step-num">01</div>
-      <div class="ct-step-body">
-        <h4>You send the brief</h4>
-        <p>Fill in the form — scope, goals, budget range. No need for a polished deck.</p>
-      </div>
-    </div>
-    <div class="ct-step">
-      <div class="ct-step-num">02</div>
-      <div class="ct-step-body">
-        <h4>We reply within 24h</h4>
-        <p>A real response — not an auto-reply. We'll confirm fit and propose a call time.</p>
-      </div>
-    </div>
-    <div class="ct-step">
-      <div class="ct-step-num">03</div>
-      <div class="ct-step-body">
-        <h4>One scoping call</h4>
-        <p>30 minutes. No pitch deck. We scope the work and give you real numbers on the call.</p>
-      </div>
-    </div>
-    <div class="ct-step">
-      <div class="ct-step-num">04</div>
-      <div class="ct-step-body">
-        <h4>We ship week one</h4>
-        <p>Once scoped and agreed, we start delivery within five working days. Zero fluff in between.</p>
-      </div>
-    </div>
+    <div class="ct-step"><div class="ct-step-num">01</div><div class="ct-step-body"><h4>You send the brief</h4><p>Fill in the form — scope, goals, budget range. No need for a polished deck.</p></div></div>
+    <div class="ct-step"><div class="ct-step-num">02</div><div class="ct-step-body"><h4>We reply within 24h</h4><p>A real response — not an auto-reply. We'll confirm fit and propose a call time.</p></div></div>
+    <div class="ct-step"><div class="ct-step-num">03</div><div class="ct-step-body"><h4>One scoping call</h4><p>30 minutes. No pitch deck. We scope the work and give you real numbers on the call.</p></div></div>
+    <div class="ct-step"><div class="ct-step-num">04</div><div class="ct-step-body"><h4>We ship week one</h4><p>Once scoped and agreed, we start delivery within five working days. Zero fluff in between.</p></div></div>
   </div>
 </div>
-
-<!-- FOOTER -->
 <footer class="ct-foot">
-  <a href="index.html" class="brand" data-cursor style="text-decoration:none;">
-    <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
-  </a>
-  <span style="color:rgba(250,250,248,.25);font-size:.8rem;">© 2026 BYDTRND.studio · All rights reserved.</span>
-  <a href="mailto:hello@bydtrnd.studio" style="color:rgba(250,250,248,.35);font-size:.85rem;text-decoration:none;transition:color .2s;" data-cursor>hello@bydtrnd.studio</a>
+  <a href="index.html" class="brand" data-cursor style="text-decoration:none;"><span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span></a>
+  <span style="color:rgba(250,250,248,.25);font-size:.8rem;">2026 BYDTRND.studio All rights reserved.</span>
+  <a href="mailto:hello@bydtrnd.studio" style="color:rgba(250,250,248,.35);font-size:.85rem;text-decoration:none;" data-cursor>hello@bydtrnd.studio</a>
 </footer>
-
 <script>
 function submitForm(e){
   e.preventDefault();
-  const btn = e.target.querySelector('.ct-submit');
-  btn.innerHTML = '<span>Sent — talk soon.</span> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><polyline points="20 6 9 17 4 12"/></svg>';
+  const btn=e.target.querySelector('.ct-submit');
+  btn.innerHTML='<span>Sent, talk soon.</span>';
   btn.style.background='#4ade80'; btn.style.color='#000';
-  setTimeout(()=>{ btn.innerHTML='<span>Send message</span><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>'; btn.style.background=''; btn.style.color=''; e.target.reset(); }, 3500);
+  setTimeout(()=>{btn.innerHTML='<span>Send message</span>';btn.style.background='';btn.style.color='';e.target.reset();},3500);
   return false;
 }
 </script>
 <script src="nxgen-v3.js"></script>
 </body>
-</html>
+  </html>
