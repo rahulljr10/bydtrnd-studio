@@ -4,194 +4,68 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Pricing — BYDTRND.studio · Beyond Trend</title>
-<meta name="description" content="Transparent pricing for AI-first marketing. No retainers that hide behind 'contact us'. Real numbers for real work." />
+<meta name="description" content="Transparent pricing for AI-first marketing. No retainers that hide behind contact us. Real numbers for real work." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" />
 <link rel="stylesheet" href="nxgen-v3.css" />
 <style>
-/* ── Pricing page extras ── */
-:root{ --pad-x: 5vw; }
-
-.pr-hero{
-  padding: 160px var(--pad-x) 80px;
-  border-bottom: 1px solid rgba(10,10,11,.08);
-  background: radial-gradient(ellipse 70% 60% at 60% 0%, rgba(139,30,60,.14) 0%, transparent 65%),
-              radial-gradient(ellipse 50% 50% at 10% 80%, rgba(29,4,189,.08) 0%, transparent 60%);
-  position: relative; overflow: hidden;
-}
-.pr-hero-inner{ max-width: 1280px; margin: 0 auto; }
-.pr-eyebrow{
-  font-family: 'JetBrains Mono',monospace; font-size: .7rem; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--wine); margin-bottom: 1.4rem;
-  display: flex; align-items: center; gap: 10px;
-}
-.pr-eyebrow::before{ content:''; width:24px; height:1px; background:var(--wine); }
-.pr-hero-title{
-  font-family: 'Syne',sans-serif; font-weight: 800;
-  font-size: clamp(3rem,7vw,6.5rem); line-height: .92; letter-spacing: -.03em;
-  margin-bottom: 1.4rem;
-}
-.pr-hero-title em{ font-family:'Playfair Display',serif; font-style:italic; font-weight:400; }
-.pr-hero-sub{
-  max-width: 520px; color: rgba(10,10,11,.55); font-size: 1.05rem; line-height: 1.7;
-}
-
-/* ── Section ── */
-.pr-section{ padding: 80px var(--pad-x); border-bottom: 1px solid rgba(10,10,11,.08); }
-.pr-section:last-of-type{ border-bottom: 0; }
-.pr-section-inner{ max-width: 1280px; margin: 0 auto; }
-.pr-sec-label{
-  display: flex; align-items: center; gap: 12px; margin-bottom: 48px;
-}
-.pr-sec-num{
-  font-family: 'JetBrains Mono',monospace; font-size: .68rem; letter-spacing: .18em;
-  color: rgba(10,10,11,.3); text-transform: uppercase;
-}
-.pr-sec-title{
-  font-family: 'Syne',sans-serif; font-size: clamp(1.5rem,2.5vw,2rem); font-weight: 800;
-  letter-spacing: -.02em;
-}
-.pr-sec-line{ flex:1; height:1px; background:rgba(10,10,11,.08); }
-
-/* ── Cards grid ── */
-.pr-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(10,10,11,.08); border:1px solid rgba(10,10,11,.08); border-radius:16px; overflow:hidden; }
-@media(max-width:860px){ .pr-grid{ grid-template-columns:1fr; } }
-
-.pr-card{
-  background: #FAFAF8; padding: 36px 32px 40px;
-  display:flex; flex-direction:column; gap:0;
-  transition: background .25s;
-  position: relative;
-}
-.pr-card:hover{ background: #F5F2EE; }
-
-/* Featured card */
-.pr-card.feat{
-  background: var(--wine);
-  color: #fff;
-}
-.pr-card.feat:hover{ background: var(--wine-2); }
-.pr-card.feat .pr-card-tag{ background:rgba(255,255,255,.15); color:#fff; }
-.pr-card.feat .pr-card-name{ color:#fff; }
-.pr-card.feat .pr-card-price{ color:#fff; }
-.pr-card.feat .pr-card-per{ color:rgba(255,255,255,.6); }
-.pr-card.feat .pr-card-desc{ color:rgba(255,255,255,.7); }
-.pr-card.feat .pr-card-divider{ background:rgba(255,255,255,.15); }
-.pr-card.feat .pr-feat li{ color:rgba(255,255,255,.85); }
-.pr-card.feat .pr-feat li::before{ background:#fff; }
-.pr-card.feat .pr-card-cta{ background:#fff; color:var(--wine); }
-.pr-card.feat .pr-card-cta:hover{ background:rgba(255,255,255,.9); }
-
-.pr-card-tag{
-  display:inline-flex; align-items:center; gap:6px;
-  font-family:'JetBrains Mono',monospace; font-size:.63rem; letter-spacing:.14em; text-transform:uppercase;
-  background:rgba(139,30,60,.08); color:var(--wine); padding:5px 10px; border-radius:50px;
-  margin-bottom:20px; width:fit-content;
-}
-.pr-card-tag-dot{ width:5px; height:5px; border-radius:50%; background:currentColor; }
-
-.pr-card-name{
-  font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800;
-  letter-spacing:-.02em; margin-bottom:6px;
-}
-.pr-card-price{
-  display:flex; align-items:baseline; gap:4px; margin-bottom:4px;
-}
-.pr-card-amount{
-  font-family:'Syne',sans-serif; font-size:2.4rem; font-weight:800;
-  letter-spacing:-.03em; line-height:1;
-}
-.pr-card-per{
-  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em;
-  color:rgba(10,10,11,.4); text-transform:uppercase;
-}
-.pr-card-desc{
-  font-size:.88rem; line-height:1.6; color:rgba(10,10,11,.55);
-  margin-bottom:24px; margin-top:8px;
-}
-.pr-card-divider{ height:1px; background:rgba(10,10,11,.08); margin-bottom:20px; }
-
-.pr-feat{ list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:32px; flex:1; }
-.pr-feat li{
-  display:flex; align-items:center; gap:10px;
-  font-size:.85rem; color:rgba(10,10,11,.7); line-height:1.4;
-}
-.pr-feat li::before{
-  content:''; width:5px; height:5px; border-radius:50%;
-  background:var(--wine); flex-shrink:0;
-}
-
-.pr-card-cta{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 20px; border-radius:10px; text-decoration:none;
-  font-family:'Syne',sans-serif; font-size:.82rem; font-weight:700; letter-spacing:.04em;
-  background:rgba(10,10,11,.06); color:rgba(10,10,11,.85);
-  transition:background .2s, transform .2s;
-  margin-top:auto;
-}
-.pr-card-cta:hover{ background:rgba(10,10,11,.1); transform:translateY(-1px); }
-.pr-card-cta-arr{ font-size:1rem; transition:transform .2s; }
-.pr-card-cta:hover .pr-card-cta-arr{ transform:translateX(4px); }
-
-/* ── Custom builder ── */
-.pr-custom{
-  margin-top:80px; padding:56px 48px;
-  border:1px solid rgba(10,10,11,.1); border-radius:20px;
-  display:flex; align-items:center; justify-content:space-between; gap:40px;
-  flex-wrap:wrap;
-  background: linear-gradient(135deg, rgba(139,30,60,.04) 0%, rgba(29,4,189,.04) 100%);
-}
-.pr-custom-text h3{
-  font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.4rem,2.5vw,1.9rem);
-  letter-spacing:-.02em; margin-bottom:.5rem;
-}
-.pr-custom-text p{ color:rgba(10,10,11,.5); max-width:420px; font-size:.92rem; line-height:1.65; }
-.pr-custom-cta{
-  display:inline-flex; align-items:center; gap:12px;
-  background:var(--wine); color:#fff;
-  padding:16px 36px; border-radius:50px;
-  font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; letter-spacing:.04em;
-  text-decoration:none; white-space:nowrap;
-  transition:background .2s, transform .2s, box-shadow .2s;
-}
-.pr-custom-cta:hover{ background:var(--wine-2); transform:translateY(-2px); box-shadow:0 16px 40px rgba(139,30,60,.3); }
-
-/* ── Dark process/CTA strip at bottom ── */
-.pr-strip{
-  background:var(--indigo); color:var(--w);
-  padding:100px var(--pad-x); text-align:center;
-  background-image: radial-gradient(ellipse 80% 80% at 50% 0%, rgba(255,255,255,.06) 0%, transparent 60%);
-}
-.pr-strip h2{
-  font-family:'Syne',sans-serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:800;
-  line-height:1.0; margin-bottom:1.2rem;
-}
-.pr-strip h2 em{ font-family:'Playfair Display',serif; font-style:italic; font-weight:400; }
-.pr-strip p{ color:rgba(250,250,248,.6); max-width:480px; margin:0 auto 2.5rem; font-size:1rem; line-height:1.7; }
-.pr-strip-cta{
-  display:inline-flex; align-items:center; gap:12px;
-  background:#fff; color:var(--indigo);
-  padding:18px 44px; border-radius:50px;
-  font-family:'Syne',sans-serif; font-weight:800; font-size:1rem; letter-spacing:.04em;
-  text-decoration:none;
-  transition:transform .2s, box-shadow .2s;
-}
-.pr-strip-cta:hover{ transform:translateY(-3px); box-shadow:0 24px 60px rgba(0,0,0,.3); }
-
-/* ── Footer ── */
-.pr-foot{
-  padding:40px var(--pad-x); border-top:1px solid rgba(10,10,11,.08);
-  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
-}
-
-/* ── scrolled nav on light bg ── */
-.nav{ background:rgba(250,250,248,.95) !important; }
-.nav .brand{ color:var(--ink) !important; }
-.nav .brand .logo .studio{ color:rgba(10,10,11,.5) !important; }
-.nav-links a, .nav-links a:hover{ color:var(--ink) !important; }
-.nav-cta{ background:var(--wine) !important; color:#fff !important; border-color:var(--wine) !important; }
-.nav-cta .dot{ background:#fff !important; }
+body { background: var(--indigo) !important; color: #FFF; }
+.nav, .nav:not(.scrolled) { background: transparent; }
+.pr-hero { background: var(--indigo); min-height: 52vh; display: flex; align-items: center; padding: 160px var(--pad) 90px; position: relative; overflow: hidden; border-bottom: 1px solid rgba(250,250,248,.12); }
+.pr-hero::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse 60% 70% at 80% 10%, rgba(139,30,60,.35) 0%, transparent 60%), radial-gradient(ellipse 40% 50% at 10% 80%, rgba(250,250,248,.05) 0%, transparent 55%); }
+.pr-hero-inner { max-width: var(--maxw); margin: 0 auto; width: 100%; position: relative; z-index: 1; }
+.pr-eyebrow { font-family: var(--mono); font-size: .68rem; letter-spacing: .22em; text-transform: uppercase; color: rgba(250,250,248,.6); display: inline-flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+.pr-eyebrow::before { content: ''; width: 24px; height: 1px; background: rgba(250,250,248,.4); }
+.pr-hero-title { font-family: var(--syne); font-weight: 800; font-size: clamp(3.2rem, 9vw, 8rem); line-height: .9; letter-spacing: -.04em; color: #FFF; margin-bottom: 1.5rem; }
+.pr-hero-title em { font-family: var(--serif); font-style: italic; font-weight: 400; color: #FFF; }
+.pr-hero-sub { max-width: 480px; color: rgba(250,250,248,.65); font-size: 1rem; line-height: 1.7; }
+.pr-section { padding: clamp(70px, 10vh, 120px) var(--pad); border-bottom: 1px solid rgba(250,250,248,.10); }
+.pr-section:nth-child(odd) { background: var(--indigo); }
+.pr-section:nth-child(even) { background: var(--wine); }
+.pr-section-inner { max-width: var(--maxw); margin: 0 auto; }
+.pr-sec-label { display: flex; align-items: center; gap: 16px; margin-bottom: 52px; }
+.pr-sec-num { font-family: var(--mono); font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(250,250,248,.4); }
+.pr-sec-title { font-family: var(--syne); font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.4rem); letter-spacing: -.025em; color: #FFF; }
+.pr-sec-line { flex: 1; height: 1px; background: rgba(250,250,248,.12); }
+.pr-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(250,250,248,.08); border: 1px solid rgba(250,250,248,.08); border-radius: 16px; overflow: hidden; }
+@media (max-width: 860px) { .pr-grid { grid-template-columns: 1fr; } }
+.pr-card { background: rgba(250,250,248,.04); padding: 36px 32px 40px; display: flex; flex-direction: column; transition: background .25s; }
+.pr-card:hover { background: rgba(250,250,248,.08); }
+.pr-card.feat { background: rgba(250,250,248,.14); border-left: 2px solid rgba(250,250,248,.4); }
+.pr-card.feat:hover { background: rgba(250,250,248,.20); }
+.pr-card-tag { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: .62rem; letter-spacing: .14em; text-transform: uppercase; color: rgba(250,250,248,.5); background: rgba(250,250,248,.07); padding: 5px 10px; border-radius: 50px; margin-bottom: 22px; width: fit-content; }
+.pr-card.feat .pr-card-tag { background: rgba(250,250,248,.18); color: #FFF; }
+.pr-card-tag-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+.pr-card-name { font-family: var(--syne); font-size: 1.25rem; font-weight: 800; letter-spacing: -.02em; color: #FFF; margin-bottom: 6px; }
+.pr-card-price { display: flex; align-items: baseline; gap: 4px; margin-bottom: 4px; }
+.pr-card-amount { font-family: var(--syne); font-size: 2.6rem; font-weight: 800; letter-spacing: -.035em; line-height: 1; color: #FFF; }
+.pr-card-per { font-family: var(--mono); font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: rgba(250,250,248,.4); }
+.pr-card-desc { font-size: .88rem; line-height: 1.65; color: rgba(250,250,248,.55); margin-bottom: 24px; margin-top: 10px; }
+.pr-card-divider { height: 1px; background: rgba(250,250,248,.10); margin-bottom: 22px; }
+.pr-feat { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; flex: 1; }
+.pr-feat li { display: flex; align-items: center; gap: 10px; font-size: .84rem; color: rgba(250,250,248,.72); line-height: 1.4; }
+.pr-feat li::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: rgba(250,250,248,.5); flex-shrink: 0; }
+.pr-card.feat .pr-feat li::before { background: #FFF; }
+.pr-card-cta { display: flex; align-items: center; justify-content: space-between; padding: 13px 20px; border-radius: 10px; text-decoration: none; font-family: var(--syne); font-size: .8rem; font-weight: 700; letter-spacing: .04em; color: #FFF; background: rgba(250,250,248,.10); border: 1px solid rgba(250,250,248,.14); transition: background .2s, transform .2s; margin-top: auto; }
+.pr-card-cta:hover { background: rgba(250,250,248,.18); transform: translateY(-1px); }
+.pr-card.feat .pr-card-cta { background: rgba(250,250,248,.22); border-color: rgba(250,250,248,.35); }
+.pr-card.feat .pr-card-cta:hover { background: rgba(250,250,248,.32); }
+.pr-card-cta-arr { font-size: 1rem; transition: transform .2s; }
+.pr-card-cta:hover .pr-card-cta-arr { transform: translateX(4px); }
+.pr-custom { margin-top: 72px; padding: 52px 48px; border: 1px solid rgba(250,250,248,.14); border-radius: 20px; display: flex; align-items: center; justify-content: space-between; gap: 40px; flex-wrap: wrap; background: rgba(250,250,248,.05); }
+.pr-custom-text h3 { font-family: var(--syne); font-weight: 800; font-size: clamp(1.4rem, 2.5vw, 2rem); letter-spacing: -.025em; color: #FFF; margin-bottom: .5rem; }
+.pr-custom-text p { color: rgba(250,250,248,.5); max-width: 400px; font-size: .92rem; line-height: 1.65; }
+.pr-custom-cta { display: inline-flex; align-items: center; gap: 12px; background: #FFF; color: var(--indigo); padding: 16px 36px; border-radius: 50px; font-family: var(--syne); font-weight: 700; font-size: .88rem; letter-spacing: .04em; text-decoration: none; white-space: nowrap; transition: background .2s, transform .2s, box-shadow .2s; }
+.pr-custom-cta:hover { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(0,0,0,.3); }
+.pr-section:nth-child(even) .pr-custom-cta { color: var(--wine); }
+.pr-strip { background: var(--wine); padding: 100px var(--pad); text-align: center; background-image: radial-gradient(ellipse 80% 80% at 50% 0%, rgba(250,250,248,.07) 0%, transparent 60%); }
+.pr-strip h2 { font-family: var(--syne); font-weight: 800; font-size: clamp(2.2rem, 5vw, 4rem); line-height: .95; color: #FFF; margin-bottom: 1.2rem; }
+.pr-strip h2 em { font-family: var(--serif); font-style: italic; font-weight: 400; }
+.pr-strip p { color: rgba(250,250,248,.62); max-width: 460px; margin: 0 auto 2.5rem; font-size: .98rem; line-height: 1.7; }
+.pr-strip-cta { display: inline-flex; align-items: center; gap: 12px; background: #FFF; color: var(--wine); padding: 18px 44px; border-radius: 50px; font-family: var(--syne); font-weight: 800; font-size: 1rem; letter-spacing: .04em; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+.pr-strip-cta:hover { transform: translateY(-3px); box-shadow: 0 24px 60px rgba(0,0,0,.3); }
+.pr-foot { padding: 40px var(--pad); background: var(--wine); border-top: 1px solid rgba(250,250,248,.18); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
 </style>
 </head>
 <body class="no-js">
@@ -199,12 +73,8 @@
 <div class="cursor-ring" aria-hidden="true" style="opacity:0"></div>
 <div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
 <div class="scrollbar" aria-hidden="true"><div></div></div>
-
-<!-- NAV -->
 <nav class="nav">
-  <a href="index.html" class="brand" data-cursor>
-    <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
-  </a>
+  <a href="index.html" class="brand" data-cursor><span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span></a>
   <div class="nav-links">
     <div class="nav-drop-wrap">
       <a href="services.html" data-cursor class="nav-drop-toggle">Services <span class="nav-arr"></span></a>
@@ -220,12 +90,8 @@
     <a href="pricing.html" data-cursor>Pricing</a>
     <a href="contact.html" data-cursor>Contact</a>
   </div>
-  <a href="contact.html" class="nav-cta" data-cursor>
-    <span class="dot"></span> Book a call &rarr;
-  </a>
+  <a href="contact.html" class="nav-cta" data-cursor><span class="dot"></span> Book a call &rarr;</a>
 </nav>
-
-<!-- HERO -->
 <section class="pr-hero">
   <div class="pr-hero-inner">
     <div class="pr-eyebrow rv">Pricing</div>
@@ -233,197 +99,57 @@
     <p class="pr-hero-sub rv d2">Every number is real. No hidden retainers, no surprise scope creep. Pick a plan, book the call, ship the work.</p>
   </div>
 </section>
-
-<!-- SOCIAL MEDIA -->
 <section class="pr-section">
   <div class="pr-section-inner">
-    <div class="pr-sec-label rv">
-      <span class="pr-sec-num">01</span>
-      <h2 class="pr-sec-title">Social Media Marketing</h2>
-      <span class="pr-sec-line"></span>
-    </div>
+    <div class="pr-sec-label rv"><span class="pr-sec-num">01</span><h2 class="pr-sec-title">Social Media Marketing</h2><span class="pr-sec-line"></span></div>
     <div class="pr-grid">
-      <div class="pr-card rv">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Strategy</div>
-        <div class="pr-card-name">Strategy Sprint</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$3.5k</span><span class="pr-card-per">/ one-time</span></div>
-        <p class="pr-card-desc">A focused intensive: channel strategy, voice guide, hook bank, and a 30-day starter calendar.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Channel-by-channel strategy</li><li>Voice + tone guide</li><li>30-day starter calendar</li><li>50 hook concepts</li><li>1 live readout</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Book the sprint</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-      <div class="pr-card feat rv d1">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div>
-        <div class="pr-card-name">Full Social Engine</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$5.8k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Daily posting, rolling calendar, community ops, and a monthly performance review. Zero to always-on.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Daily posting · 3 channels</li><li>Rolling 30-day calendar</li><li>Community + DM ops</li><li>Weekly hook refresh</li><li>Monthly board read</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Start the engine</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-      <div class="pr-card rv d2">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Partnership</div>
-        <div class="pr-card-name">Brand Partnership</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$12.5k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Embedded team across every channel. Full creative + community ownership with a dedicated lead.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Multi-channel coverage</li><li>Creator + influencer ops</li><li>Dedicated community lead</li><li>Quarterly strategy off-site</li><li>Custom dashboards</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
+      <div class="pr-card rv"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Strategy</div><div class="pr-card-name">Strategy Sprint</div><div class="pr-card-price"><span class="pr-card-amount">$3.5k</span><span class="pr-card-per">/ one-time</span></div><p class="pr-card-desc">A focused intensive: channel strategy, voice guide, hook bank, and a 30-day starter calendar.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>Channel-by-channel strategy</li><li>Voice + tone guide</li><li>30-day starter calendar</li><li>50 hook concepts</li><li>1 live readout</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Book the sprint</span><span class="pr-card-cta-arr">→</span></a></div>
+      <div class="pr-card feat rv d1"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div><div class="pr-card-name">Full Social Engine</div><div class="pr-card-price"><span class="pr-card-amount">$5.8k</span><span class="pr-card-per">/ month</span></div><p class="pr-card-desc">Daily posting, rolling calendar, community ops, and a monthly performance review.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>Daily posting · 3 channels</li><li>Rolling 30-day calendar</li><li>Community + DM ops</li><li>Weekly hook refresh</li><li>Monthly board read</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Start the engine</span><span class="pr-card-cta-arr">→</span></a></div>
+      <div class="pr-card rv d2"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Partnership</div><div class="pr-card-name">Brand Partnership</div><div class="pr-card-price"><span class="pr-card-amount">$12.5k</span><span class="pr-card-per">/ month</span></div><p class="pr-card-desc">Embedded team across every channel. Full creative + community ownership.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>Multi-channel coverage</li><li>Creator + influencer ops</li><li>Dedicated community lead</li><li>Quarterly strategy off-site</li><li>Custom dashboards</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a></div>
     </div>
   </div>
 </section>
-
-<!-- UGC -->
 <section class="pr-section">
   <div class="pr-section-inner">
-    <div class="pr-sec-label rv">
-      <span class="pr-sec-num">02</span>
-      <h2 class="pr-sec-title">AI UGC Videos &amp; Ads</h2>
-      <span class="pr-sec-line"></span>
-    </div>
+    <div class="pr-sec-label rv"><span class="pr-sec-num">02</span><h2 class="pr-sec-title">AI UGC Videos &amp; Ads</h2><span class="pr-sec-line"></span></div>
     <div class="pr-grid">
-      <div class="pr-card rv">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Pilot</div>
-        <div class="pr-card-name">Pilot Sprint</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$4.2k</span><span class="pr-card-per">/ one-time</span></div>
-        <p class="pr-card-desc">A 4-week pilot to prove the engine on your offer. Walk away with a system that works.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>20 hooks scripted</li><li>16 cuts delivered</li><li>4 weeks of production</li><li>Performance readout</li><li>Scale-up roadmap</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Run the pilot</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-      <div class="pr-card feat rv d1">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div>
-        <div class="pr-card-name">Always-on Engine</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$6.5k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Weekly hook + cut delivery for brands running paid media year-round.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Up to 8 cuts / week</li><li>Hook bank refresh</li><li>AI avatar + UGC mix</li><li>Platform-native variants</li><li>Monthly performance audit</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Start the engine</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-      <div class="pr-card rv d2">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Partnership</div>
-        <div class="pr-card-name">Performance Partnership</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$14k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Full creative OS. Scripts, production, paid integration, and iterative optimisation — all in.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Unlimited hooks + cuts</li><li>Paid media integration</li><li>Creator network access</li><li>Dedicated creative lead</li><li>Weekly strategy calls</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
+      <div class="pr-card rv"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Pilot</div><div class="pr-card-name">Pilot Sprint</div><div class="pr-card-price"><span class="pr-card-amount">$4.2k</span><span class="pr-card-per">/ one-time</span></div><p class="pr-card-desc">A 4-week pilot to prove the engine on your offer.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>20 hooks scripted</li><li>16 cuts delivered</li><li>4 weeks of production</li><li>Performance readout</li><li>Scale-up roadmap</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Run the pilot</span><span class="pr-card-cta-arr">→</span></a></div>
+      <div class="pr-card feat rv d1"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div><div class="pr-card-name">Always-on Engine</div><div class="pr-card-price"><span class="pr-card-amount">$6.5k</span><span class="pr-card-per">/ month</span></div><p class="pr-card-desc">Weekly hook + cut delivery for brands running paid media year-round.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>Up to 8 cuts / week</li><li>Hook bank refresh</li><li>AI avatar + UGC mix</li><li>Platform-native variants</li><li>Monthly performance audit</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Start the engine</span><span class="pr-card-cta-arr">→</span></a></div>
+      <div class="pr-card rv d2"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Partnership</div><div class="pr-card-name">Performance Partnership</div><div class="pr-card-price"><span class="pr-card-amount">$14k</span><span class="pr-card-per">/ month</span></div><p class="pr-card-desc">Full creative OS. Scripts, production, paid integration, and iterative optimisation.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>Unlimited hooks + cuts</li><li>Paid media integration</li><li>Creator network access</li><li>Dedicated creative lead</li><li>Weekly strategy calls</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a></div>
     </div>
   </div>
 </section>
-
-<!-- INFLUENCER -->
 <section class="pr-section">
   <div class="pr-section-inner">
-    <div class="pr-sec-label rv">
-      <span class="pr-sec-num">03</span>
-      <h2 class="pr-sec-title">Influencer Marketing</h2>
-      <span class="pr-sec-line"></span>
-    </div>
+    <div class="pr-sec-label rv"><span class="pr-sec-num">03</span><h2 class="pr-sec-title">Influencer Marketing</h2><span class="pr-sec-line"></span></div>
     <div class="pr-grid">
-      <div class="pr-card rv">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Single drop</div>
-        <div class="pr-card-name">Single Campaign</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$5k</span><span class="pr-card-per">/ one-time</span></div>
-        <p class="pr-card-desc">One campaign, fully managed. Creator sourcing, briefs, contracts, activation and reporting.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>10–15 creators sourced</li><li>3–5 booked &amp; activated</li><li>Briefs + contracts + rights</li><li>Post-campaign report</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Book the campaign</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-      <div class="pr-card feat rv d1">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div>
-        <div class="pr-card-name">Quarterly Engine</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$8.5k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Always-on influencer operation. Monthly activations, creator relationships managed end-to-end.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Monthly activations</li><li>Creator roster management</li><li>Content rights &amp; licensing</li><li>Performance tracking</li><li>Quarterly strategy review</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Start the engine</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-      <div class="pr-card rv d2">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Always-on</div>
-        <div class="pr-card-name">Always-on Network</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$18k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Your own creator network, fully managed. Brand ambassadors, ongoing activations, full IP strategy.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Dedicated creator network</li><li>Brand ambassador program</li><li>Cross-platform strategy</li><li>IP + content licensing</li><li>Executive reporting</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
+      <div class="pr-card rv"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Single drop</div><div class="pr-card-name">Single Campaign</div><div class="pr-card-price"><span class="pr-card-amount">$5k</span><span class="pr-card-per">/ one-time</span></div><p class="pr-card-desc">One campaign, fully managed. Creator sourcing, briefs, contracts, activation and reporting.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>10-15 creators sourced</li><li>3-5 booked and activated</li><li>Briefs + contracts + rights</li><li>Post-campaign report</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Book the campaign</span><span class="pr-card-cta-arr">→</span></a></div>
+      <div class="pr-card feat rv d1"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div><div class="pr-card-name">Quarterly Engine</div><div class="pr-card-price"><span class="pr-card-amount">$8.5k</span><span class="pr-card-per">/ month</span></div><p class="pr-card-desc">Always-on influencer operation. Monthly activations, creator relationships managed end-to-end.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>Monthly activations</li><li>Creator roster management</li><li>Content rights and licensing</li><li>Performance tracking</li><li>Quarterly strategy review</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Start the engine</span><span class="pr-card-cta-arr">→</span></a></div>
+      <div class="pr-card rv d2"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Always-on</div><div class="pr-card-name">Always-on Network</div><div class="pr-card-price"><span class="pr-card-amount">$18k</span><span class="pr-card-per">/ month</span></div><p class="pr-card-desc">Your own creator network, fully managed. Brand ambassadors, ongoing activations.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>Dedicated creator network</li><li>Brand ambassador program</li><li>Cross-platform strategy</li><li>IP + content licensing</li><li>Executive reporting</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a></div>
     </div>
   </div>
 </section>
-
-<!-- SEO -->
 <section class="pr-section">
   <div class="pr-section-inner">
-    <div class="pr-sec-label rv">
-      <span class="pr-sec-num">04</span>
-      <h2 class="pr-sec-title">Full AI-SEO + AEO</h2>
-      <span class="pr-sec-line"></span>
-    </div>
+    <div class="pr-sec-label rv"><span class="pr-sec-num">04</span><h2 class="pr-sec-title">Full AI-SEO + AEO</h2><span class="pr-sec-line"></span></div>
     <div class="pr-grid">
-      <div class="pr-card rv">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Audit</div>
-        <div class="pr-card-name">Audit Sprint</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$2.8k</span><span class="pr-card-per">/ one-time</span></div>
-        <p class="pr-card-desc">A forensic audit of your entire search surface — technical, content, and competitor gaps.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Full technical crawl</li><li>Keyword + AEO opportunity map</li><li>Content gap analysis</li><li>90-day priority roadmap</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Book the audit</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-      <div class="pr-card feat rv d1">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div>
-        <div class="pr-card-name">Quarterly Roadmap</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$4.5k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Ongoing SEO + AEO execution. Content, technical fixes, and entity coverage — compounding month on month.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Monthly content execution</li><li>Technical SEO fixes</li><li>AEO entity coverage</li><li>Backlink strategy</li><li>Monthly performance report</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Start compounding</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-      <div class="pr-card rv d2">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Full service</div>
-        <div class="pr-card-name">Continuous SEO</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$9k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Dedicated SEO team. Strategy, content, technical, links, and AI-answer-engine optimisation — fully owned.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Full content production</li><li>Technical SEO ownership</li><li>PR + digital PR outreach</li><li>AI search coverage</li><li>Weekly strategy calls</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
+      <div class="pr-card rv"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Audit</div><div class="pr-card-name">Audit Sprint</div><div class="pr-card-price"><span class="pr-card-amount">$2.8k</span><span class="pr-card-per">/ one-time</span></div><p class="pr-card-desc">A forensic audit of your entire search surface.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>Full technical crawl</li><li>Keyword + AEO opportunity map</li><li>Content gap analysis</li><li>90-day priority roadmap</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Book the audit</span><span class="pr-card-cta-arr">→</span></a></div>
+      <div class="pr-card feat rv d1"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div><div class="pr-card-name">Quarterly Roadmap</div><div class="pr-card-price"><span class="pr-card-amount">$4.5k</span><span class="pr-card-per">/ month</span></div><p class="pr-card-desc">Ongoing SEO + AEO execution. Compounding month on month.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>Monthly content execution</li><li>Technical SEO fixes</li><li>AEO entity coverage</li><li>Backlink strategy</li><li>Monthly performance report</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Start compounding</span><span class="pr-card-cta-arr">→</span></a></div>
+      <div class="pr-card rv d2"><div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Full service</div><div class="pr-card-name">Continuous SEO</div><div class="pr-card-price"><span class="pr-card-amount">$9k</span><span class="pr-card-per">/ month</span></div><p class="pr-card-desc">Dedicated SEO team. Strategy, content, technical, links, and AI-answer-engine optimisation.</p><div class="pr-card-divider"></div><ul class="pr-feat"><li>Full content production</li><li>Technical SEO ownership</li><li>PR + digital PR outreach</li><li>AI search coverage</li><li>Weekly strategy calls</li></ul><a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a></div>
     </div>
-
-    <!-- Custom builder -->
-    <div class="pr-custom rv">
-      <div class="pr-custom-text">
-        <h3>Build your own package.</h3>
-        <p>Mix and match services across channels. We'll scope it out in one call — no slides, no pitch deck, just numbers.</p>
-      </div>
-      <a href="contact.html" class="pr-custom-cta" data-cursor>
-        Book a scoping call →
-      </a>
-    </div>
+    <div class="pr-custom rv"><div class="pr-custom-text"><h3>Build your own package.</h3><p>Mix and match services. We will scope it out in one call, no slides, no pitch deck, just numbers.</p></div><a href="contact.html" class="pr-custom-cta" data-cursor>Book a scoping call</a></div>
   </div>
 </section>
-
-<!-- CTA STRIP -->
 <section class="pr-strip">
   <h2 class="rv">Ready to go<br/><em>beyond trend?</em></h2>
-  <p class="rv d1">One call. No deck. Real numbers for real work — and we move the week after.</p>
-  <a href="contact.html" class="pr-strip-cta rv d2" data-cursor>
-    <span>Book a call</span>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-  </a>
+  <p class="rv d1">One call. No deck. Real numbers for real work and we move the week after.</p>
+  <a href="contact.html" class="pr-strip-cta rv d2" data-cursor><span>Book a call</span></a>
 </section>
-
-<!-- FOOTER -->
-<footer class="pr-foot">
-  <a href="index.html" class="brand" data-cursor style="text-decoration:none;">
-    <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
-  </a>
-  <span style="color:rgba(10,10,11,.35);font-size:.8rem;">© 2026 BYDTRND.studio · All rights reserved.</span>
-  <a href="mailto:hello@bydtrnd.studio" style="color:rgba(10,10,11,.45);font-size:.85rem;text-decoration:none;" data-cursor>hello@bydtrnd.studio</a>
-</footer>
-
+<div class="pr-foot">
+  <a href="index.html" class="brand" data-cursor style="text-decoration:none;"><span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span></a>
+  <span style="color:rgba(250,250,248,.35);font-size:.8rem;">2026 BYDTRND.studio All rights reserved.</span>
+  <a href="mailto:hello@bydtrnd.studio" style="color:rgba(250,250,248,.5);font-size:.85rem;text-decoration:none;" data-cursor>hello@bydtrnd.studio</a>
+</div>
 <script src="nxgen-v3.js"></script>
 </body>
-</html>
+      </html>
