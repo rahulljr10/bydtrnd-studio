@@ -2266,3 +2266,44 @@ textarea.cp-field{ min-height: 140px; resize: vertical; }
 .cp-orb:nth-child(3){ width:150px;height:150px; top:30%;right:5%; background:radial-gradient(circle,rgba(139,30,60,.15),transparent 70%); animation-delay:-6s; }
 @keyframes orbFloat{ 0%,100%{transform:translateY(0) scale(1);} 50%{transform:translateY(-30px) scale(1.05);} }
 
+
+
+/* ============================================================
+   NAV LINKS — always white in all states
+   ============================================================ */
+.nav-links a,
+body.home .nav:not(.scrolled) .nav-links a,
+body.home .nav.scrolled .nav-links a,
+.nav.scrolled .nav-links a,
+body:not(.home) .nav:not(.scrolled) .nav-links a,
+body:not(.home) .nav.scrolled .nav-links a {
+  color: #FAFAF8 !important;
+}
+.nav-links a:hover,
+body.home .nav:not(.scrolled) .nav-links a:hover,
+.nav.scrolled .nav-links a:hover {
+  color: #FFFFFF !important;
+}
+
+/* ── DROPDOWN: hardcoded wine background ── */
+.nav-dropdown {
+  background: #8B1E3C !important;
+  border-color: rgba(255,255,255,.18) !important;
+  box-shadow: 0 32px 80px rgba(139,30,60,.45), 0 0 0 1px rgba(255,255,255,.1) inset !important;
+}
+.nav-dropdown::before {
+  background: #8B1E3C !important;
+  border-color: rgba(255,255,255,.18) !important;
+}
+.nd-name { color: #FFFFFF !important; }
+.nd-desc { color: rgba(255,255,255,.65) !important; }
+.nd-num  { color: rgba(255,255,255,.45) !important; }
+.nd-go   { color: rgba(255,255,255,.3) !important; }
+.nd-all  { color: rgba(255,255,255,.6) !important; border-top-color: rgba(255,255,255,.15) !important; }
+.nd-item { border-top-color: rgba(255,255,255,.1) !important; }
+.nd-item:hover { background: rgba(255,255,255,.12) !important; border-left-color: rgba(255,255,255,.7) !important; }
+.nd-item:hover .nd-num  { color: #fff !important; }
+.nd-item:hover .nd-name { color: #fff !important; }
+.nd-item:hover .nd-desc { color: rgba(255,255,255,.9) !important; }
+.nd-item:hover .nd-go   { color: #fff !important; opacity: 1 !important; transform: translateX(0) !important; }
+.nd-all:hover { color: #fff !important; background: rgba(255,255,255,.1) !important; }
