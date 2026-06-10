@@ -934,16 +934,16 @@ section{ position: relative; }
 .proc-num{
   font-family: var(--serif); font-style: italic; font-weight: 400;
   font-size: clamp(80px, 8vw, 130px); line-height: .8;
-  color: rgba(250,250,248,.1);
+  color: rgba(250,250,248,.65);
   position: absolute; top: 12px; right: 14px;
   transition: color 1s ease;
   z-index: 0 !important; pointer-events: none; user-select: none;
 }
-.process.in .proc:nth-child(1) .proc-num{ color: rgba(250,250,248,.18); transition-delay: 0s; }
-.process.in .proc:nth-child(2) .proc-num{ color: rgba(250,250,248,.18); transition-delay: .25s; }
-.process.in .proc:nth-child(3) .proc-num{ color: rgba(250,250,248,.18); transition-delay: .5s; }
-.process.in .proc:nth-child(4) .proc-num{ color: rgba(250,250,248,.18); transition-delay: .75s; }
-.process.in .proc:nth-child(5) .proc-num{ color: rgba(250,250,248,.18); transition-delay: 1s; }
+.process.in .proc:nth-child(1) .proc-num{ color: rgba(250,250,248,.75); transition-delay: 0s; }
+.process.in .proc:nth-child(2) .proc-num{ color: rgba(250,250,248,.75); transition-delay: .25s; }
+.process.in .proc:nth-child(3) .proc-num{ color: rgba(250,250,248,.75); transition-delay: .5s; }
+.process.in .proc:nth-child(4) .proc-num{ color: rgba(250,250,248,.75); transition-delay: .75s; }
+.process.in .proc:nth-child(5) .proc-num{ color: rgba(250,250,248,.75); transition-delay: 1s; }
 .proc-tag{
   font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
   color: rgba(250,250,248,.7); position: relative; z-index: 2 !important;
@@ -951,7 +951,7 @@ section{ position: relative; }
 .proc-h{
   font-family: var(--syne); font-weight: 700;
   font-size: clamp(22px, 1.8vw, 30px); line-height: 1.05; letter-spacing: -.015em;
-  margin-top: 36px; position: relative; z-index: 2 !important;
+  margin-top: clamp(52px, 8vw, 90px); position: relative; z-index: 2 !important;
 }
 .proc-h em{
   font-family: var(--serif); font-style: italic; font-weight: 400; color: var(--w);
