@@ -3,427 +3,441 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Pricing — BYDTRND.studio · Beyond Trend</title>
-<meta name="description" content="Transparent pricing for AI-first marketing. No retainers that hide behind 'contact us'. Real numbers for real work." />
+<title>Pricing — NXGEN STUDIO</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" />
-<link rel="stylesheet" href="nxgen-v3.css" />
-<style>
-/* ── Pricing page extras ── */
-:root{ --pad-x: 5vw; }
-
-.pr-hero{
-  padding: 160px var(--pad-x) 80px;
-  border-bottom: 1px solid rgba(10,10,11,.08);
-  background: radial-gradient(ellipse 70% 60% at 60% 0%, rgba(139,30,60,.14) 0%, transparent 65%),
-              radial-gradient(ellipse 50% 50% at 10% 80%, rgba(29,4,189,.08) 0%, transparent 60%);
-  position: relative; overflow: hidden;
-}
-.pr-hero-inner{ max-width: 1280px; margin: 0 auto; }
-.pr-eyebrow{
-  font-family: 'JetBrains Mono',monospace; font-size: .7rem; letter-spacing: .2em;
-  text-transform: uppercase; color: var(--wine); margin-bottom: 1.4rem;
-  display: flex; align-items: center; gap: 10px;
-}
-.pr-eyebrow::before{ content:''; width:24px; height:1px; background:var(--wine); }
-.pr-hero-title{
-  font-family: 'Syne',sans-serif; font-weight: 800;
-  font-size: clamp(3rem,7vw,6.5rem); line-height: .92; letter-spacing: -.03em;
-  margin-bottom: 1.4rem;
-}
-.pr-hero-title em{ font-family:'Playfair Display',serif; font-style:italic; font-weight:400; }
-.pr-hero-sub{
-  max-width: 520px; color: rgba(10,10,11,.55); font-size: 1.05rem; line-height: 1.7;
-}
-
-/* ── Section ── */
-.pr-section{ padding: 80px var(--pad-x); border-bottom: 1px solid rgba(10,10,11,.08); }
-.pr-section:last-of-type{ border-bottom: 0; }
-.pr-section-inner{ max-width: 1280px; margin: 0 auto; }
-.pr-sec-label{
-  display: flex; align-items: center; gap: 12px; margin-bottom: 48px;
-}
-.pr-sec-num{
-  font-family: 'JetBrains Mono',monospace; font-size: .68rem; letter-spacing: .18em;
-  color: rgba(10,10,11,.3); text-transform: uppercase;
-}
-.pr-sec-title{
-  font-family: 'Syne',sans-serif; font-size: clamp(1.5rem,2.5vw,2rem); font-weight: 800;
-  letter-spacing: -.02em;
-}
-.pr-sec-line{ flex:1; height:1px; background:rgba(10,10,11,.08); }
-
-/* ── Cards grid ── */
-.pr-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(10,10,11,.08); border:1px solid rgba(10,10,11,.08); border-radius:16px; overflow:hidden; }
-@media(max-width:860px){ .pr-grid{ grid-template-columns:1fr; } }
-
-.pr-card{
-  background: #FAFAF8; padding: 36px 32px 40px;
-  display:flex; flex-direction:column; gap:0;
-  transition: background .25s;
-  position: relative;
-}
-.pr-card:hover{ background: #F5F2EE; }
-
-/* Featured card */
-.pr-card.feat{
-  background: var(--wine);
-  color: #fff;
-}
-.pr-card.feat:hover{ background: var(--wine-2); }
-.pr-card.feat .pr-card-tag{ background:rgba(255,255,255,.15); color:#fff; }
-.pr-card.feat .pr-card-name{ color:#fff; }
-.pr-card.feat .pr-card-price{ color:#fff; }
-.pr-card.feat .pr-card-per{ color:rgba(255,255,255,.6); }
-.pr-card.feat .pr-card-desc{ color:rgba(255,255,255,.7); }
-.pr-card.feat .pr-card-divider{ background:rgba(255,255,255,.15); }
-.pr-card.feat .pr-feat li{ color:rgba(255,255,255,.85); }
-.pr-card.feat .pr-feat li::before{ background:#fff; }
-.pr-card.feat .pr-card-cta{ background:#fff; color:var(--wine); }
-.pr-card.feat .pr-card-cta:hover{ background:rgba(255,255,255,.9); }
-
-.pr-card-tag{
-  display:inline-flex; align-items:center; gap:6px;
-  font-family:'JetBrains Mono',monospace; font-size:.63rem; letter-spacing:.14em; text-transform:uppercase;
-  background:rgba(139,30,60,.08); color:var(--wine); padding:5px 10px; border-radius:50px;
-  margin-bottom:20px; width:fit-content;
-}
-.pr-card-tag-dot{ width:5px; height:5px; border-radius:50%; background:currentColor; }
-
-.pr-card-name{
-  font-family:'Syne',sans-serif; font-size:1.35rem; font-weight:800;
-  letter-spacing:-.02em; margin-bottom:6px;
-}
-.pr-card-price{
-  display:flex; align-items:baseline; gap:4px; margin-bottom:4px;
-}
-.pr-card-amount{
-  font-family:'Syne',sans-serif; font-size:2.4rem; font-weight:800;
-  letter-spacing:-.03em; line-height:1;
-}
-.pr-card-per{
-  font-family:'JetBrains Mono',monospace; font-size:.72rem; letter-spacing:.08em;
-  color:rgba(10,10,11,.4); text-transform:uppercase;
-}
-.pr-card-desc{
-  font-size:.88rem; line-height:1.6; color:rgba(10,10,11,.55);
-  margin-bottom:24px; margin-top:8px;
-}
-.pr-card-divider{ height:1px; background:rgba(10,10,11,.08); margin-bottom:20px; }
-
-.pr-feat{ list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:32px; flex:1; }
-.pr-feat li{
-  display:flex; align-items:center; gap:10px;
-  font-size:.85rem; color:rgba(10,10,11,.7); line-height:1.4;
-}
-.pr-feat li::before{
-  content:''; width:5px; height:5px; border-radius:50%;
-  background:var(--wine); flex-shrink:0;
-}
-
-.pr-card-cta{
-  display:flex; align-items:center; justify-content:space-between;
-  padding:14px 20px; border-radius:10px; text-decoration:none;
-  font-family:'Syne',sans-serif; font-size:.82rem; font-weight:700; letter-spacing:.04em;
-  background:rgba(10,10,11,.06); color:rgba(10,10,11,.85);
-  transition:background .2s, transform .2s;
-  margin-top:auto;
-}
-.pr-card-cta:hover{ background:rgba(10,10,11,.1); transform:translateY(-1px); }
-.pr-card-cta-arr{ font-size:1rem; transition:transform .2s; }
-.pr-card-cta:hover .pr-card-cta-arr{ transform:translateX(4px); }
-
-/* ── Custom builder ── */
-.pr-custom{
-  margin-top:80px; padding:56px 48px;
-  border:1px solid rgba(10,10,11,.1); border-radius:20px;
-  display:flex; align-items:center; justify-content:space-between; gap:40px;
-  flex-wrap:wrap;
-  background: linear-gradient(135deg, rgba(139,30,60,.04) 0%, rgba(29,4,189,.04) 100%);
-}
-.pr-custom-text h3{
-  font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.4rem,2.5vw,1.9rem);
-  letter-spacing:-.02em; margin-bottom:.5rem;
-}
-.pr-custom-text p{ color:rgba(10,10,11,.5); max-width:420px; font-size:.92rem; line-height:1.65; }
-.pr-custom-cta{
-  display:inline-flex; align-items:center; gap:12px;
-  background:var(--wine); color:#fff;
-  padding:16px 36px; border-radius:50px;
-  font-family:'Syne',sans-serif; font-weight:700; font-size:.9rem; letter-spacing:.04em;
-  text-decoration:none; white-space:nowrap;
-  transition:background .2s, transform .2s, box-shadow .2s;
-}
-.pr-custom-cta:hover{ background:var(--wine-2); transform:translateY(-2px); box-shadow:0 16px 40px rgba(139,30,60,.3); }
-
-/* ── Dark process/CTA strip at bottom ── */
-.pr-strip{
-  background:var(--indigo); color:var(--w);
-  padding:100px var(--pad-x); text-align:center;
-  background-image: radial-gradient(ellipse 80% 80% at 50% 0%, rgba(255,255,255,.06) 0%, transparent 60%);
-}
-.pr-strip h2{
-  font-family:'Syne',sans-serif; font-size:clamp(2rem,5vw,3.5rem); font-weight:800;
-  line-height:1.0; margin-bottom:1.2rem;
-}
-.pr-strip h2 em{ font-family:'Playfair Display',serif; font-style:italic; font-weight:400; }
-.pr-strip p{ color:rgba(250,250,248,.6); max-width:480px; margin:0 auto 2.5rem; font-size:1rem; line-height:1.7; }
-.pr-strip-cta{
-  display:inline-flex; align-items:center; gap:12px;
-  background:#fff; color:var(--indigo);
-  padding:18px 44px; border-radius:50px;
-  font-family:'Syne',sans-serif; font-weight:800; font-size:1rem; letter-spacing:.04em;
-  text-decoration:none;
-  transition:transform .2s, box-shadow .2s;
-}
-.pr-strip-cta:hover{ transform:translateY(-3px); box-shadow:0 24px 60px rgba(0,0,0,.3); }
-
-/* ── Footer ── */
-.pr-foot{
-  padding:40px var(--pad-x); border-top:1px solid rgba(10,10,11,.08);
-  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;
-}
-
-/* ── scrolled nav on light bg ── */
-.nav{ background:rgba(250,250,248,.95) !important; }
-.nav .brand{ color:var(--ink) !important; }
-.nav .brand .logo .studio{ color:rgba(10,10,11,.5) !important; }
-.nav-links a, .nav-links a:hover{ color:var(--ink) !important; }
-.nav-cta{ background:var(--wine) !important; color:#fff !important; border-color:var(--wine) !important; }
-.nav-cta .dot{ background:#fff !important; }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+<link rel="stylesheet" href="styles.css" />
 </head>
 <body class="no-js">
-<div class="grain" aria-hidden="true"></div>
-<div class="cursor-ring" aria-hidden="true" style="opacity:0"></div>
-<div class="cursor-dot" aria-hidden="true" style="opacity:0"></div>
-<div class="scrollbar" aria-hidden="true"><div></div></div>
 
-<!-- NAV -->
-<nav class="nav">
-  <a href="index.html" class="brand" data-cursor>
-    <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
+<div class="grain" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-dot" aria-hidden="true"></div>
+
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="curtain left"></div>
+  <div class="curtain right"></div>
+  <div class="preload-stage">
+    <div class="preload-count"><span id="count">000</span><em>%</em></div>
+    <div class="preload-bar"></div>
+    <div class="preload-label">Loading pricing</div>
+  </div>
+</div>
+
+<!-- NAV (matches home) -->
+<nav class="nav" id="nav">
+  <a href="Marketing Agency.html" class="brand" data-cursor>
+    <span class="mark"></span> NXGEN<sup>/STUDIO</sup>
   </a>
   <div class="nav-links">
-    <div class="nav-drop-wrap">
-      <a href="services.html" data-cursor class="nav-drop-toggle">Services <span class="nav-arr"></span></a>
-      <div class="nav-dropdown">
-        <a href="services/seo-audit.html" data-cursor class="nd-item"><span class="nd-num">01</span><span class="nd-body"><span class="nd-name">AI-SEO Audit</span><span class="nd-desc">Rankings that compound with AEO</span></span><span class="nd-go">&#8594;</span></a>
-        <a href="services/ugc-ads.html" data-cursor class="nd-item"><span class="nd-num">02</span><span class="nd-body"><span class="nd-name">UGC &amp; Reels</span><span class="nd-desc">Hook-first content at scale</span></span><span class="nd-go">&#8594;</span></a>
-        <a href="services/social-media.html" data-cursor class="nd-item"><span class="nd-num">03</span><span class="nd-body"><span class="nd-name">Social Media</span><span class="nd-desc">Native, not produced</span></span><span class="nd-go">&#8594;</span></a>
-        <a href="services/influencer.html" data-cursor class="nd-item"><span class="nd-num">04</span><span class="nd-body"><span class="nd-name">Influencer</span><span class="nd-desc">Trust at scale, creators that convert</span></span><span class="nd-go">&#8594;</span></a>
-        <a href="services/thumbnails.html" data-cursor class="nd-item"><span class="nd-num">05</span><span class="nd-body"><span class="nd-name">Thumbnails</span><span class="nd-desc">CTR engineered, not designed</span></span><span class="nd-go">&#8594;</span></a>
-        <a href="services.html" data-cursor class="nd-all">View all services &#8594;</a>
+    <div class="nav-has-dropdown" id="services-dd">
+      <a href="Marketing Agency.html#services" data-cursor>
+        Services
+        <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-dropdown" role="menu">
+        <a class="nav-dd-item" href="services/ai-seo-audit.html" data-cursor>
+          <span class="nd-num">01</span>
+          <span class="nd-name">AI-SEO &amp; AEO Audit<small>Search + answer-engine optimization.</small></span>
+          <svg class="nd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+        </a>
+        <a class="nav-dd-item" href="services/thumbnail-creator.html" data-cursor>
+          <span class="nd-num">02</span>
+          <span class="nd-name">Thumbnail Creator<small>CTR-engineered cover art.</small></span>
+          <svg class="nd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+        </a>
+        <a class="nav-dd-item" href="services/ugc-reels.html" data-cursor>
+          <span class="nd-num">03</span>
+          <span class="nd-name">AI UGC Ads &amp; Reels<small>Native UGC at scale.</small></span>
+          <svg class="nd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+        </a>
+        <a class="nav-dd-item" href="services/social-media-marketing.html" data-cursor>
+          <span class="nd-num">04</span>
+          <span class="nd-name">Social Media Marketing<small>Calendar, posting &amp; community.</small></span>
+          <svg class="nd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+        </a>
+        <a class="nav-dd-item" href="services/influencer-marketing.html" data-cursor>
+          <span class="nd-num">05</span>
+          <span class="nd-name">Influencer Marketing<small>Casting, briefs, contracts, perf.</small></span>
+          <svg class="nd-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg>
+        </a>
+        <div class="nav-dd-foot">
+          <span>All services</span>
+          <a href="Marketing Agency.html#services" data-cursor>View all →</a>
+        </div>
       </div>
     </div>
     <a href="pricing.html" data-cursor>Pricing</a>
-    <a href="contact.html" data-cursor>Contact</a>
+    <a href="Marketing Agency.html#work" data-cursor>Work</a>
   </div>
-  <a href="contact.html" class="nav-cta" data-cursor>
-    <span class="dot"></span> Book a call &rarr;
+  <a href="#contact" class="nav-cta" data-cursor>
+    <span class="dot"></span> Connect with team
   </a>
 </nav>
 
 <!-- HERO -->
-<section class="pr-hero">
-  <div class="pr-hero-inner">
-    <div class="pr-eyebrow rv">Pricing</div>
-    <h1 class="pr-hero-title rv d1">Real prices.<br/><em>No "contact us".</em></h1>
-    <p class="pr-hero-sub rv d2">Every number is real. No hidden retainers, no surprise scope creep. Pick a plan, book the call, ship the work.</p>
+<section class="pricing-hero">
+  <div class="wrap">
+    <div class="svc-breadcrumb">
+      <a href="Marketing Agency.html" data-cursor>Home</a>
+      <span class="sep"></span>
+      <span>Pricing</span>
+    </div>
+    <div class="svc-hero-eyebrow">Pricing · 2026</div>
+    <h1 class="pricing-hero-title">Real prices.<br/><em>No “contact us”.</em></h1>
+    <p class="pricing-hero-lead">
+      Plain pricing across our four monthly engines — <strong>SMM, AI UGC, Influencer, SEO + AEO</strong>. Pick a tier or stack a few and we'll discount the bundle. <strong>Thumbnails</strong> are priced per drop on the <a href="services/thumbnail-creator.html" style="text-decoration:underline; text-underline-offset: 3px;" data-cursor>thumbnail page</a> — instant quote, no calls.
+    </p>
   </div>
 </section>
 
-<!-- SOCIAL MEDIA -->
-<section class="pr-section">
-  <div class="pr-section-inner">
-    <div class="pr-sec-label rv">
-      <span class="pr-sec-num">01</span>
-      <h2 class="pr-sec-title">Social Media Marketing</h2>
-      <span class="pr-sec-line"></span>
+<!-- SMM -->
+<section class="price-block">
+  <div class="wrap">
+    <div class="price-block-head">
+      <div class="l">
+        <span class="num">/01</span>
+        <h2>Social Media <em>Marketing</em></h2>
+      </div>
+      <p class="sub">Strategy, viral content engine, calendar, posting and community. The whole social product.</p>
     </div>
-    <div class="pr-grid">
-      <div class="pr-card rv">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Strategy</div>
-        <div class="pr-card-name">Strategy Sprint</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$3.5k</span><span class="pr-card-per">/ one-time</span></div>
-        <p class="pr-card-desc">A focused intensive: channel strategy, voice guide, hook bank, and a 30-day starter calendar.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Channel-by-channel strategy</li><li>Voice + tone guide</li><li>30-day starter calendar</li><li>50 hook concepts</li><li>1 live readout</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Book the sprint</span><span class="pr-card-cta-arr">→</span></a>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Strategy</div>
+        <div class="pc-name">Strategy Sprint</div>
+        <div class="pc-price"><span class="amt">$3.5k</span><span class="per">/ one-time</span></div>
+        <div class="pc-desc">A focused intensive: channel strategy, voice guide, hook bank, and a 30-day starter calendar.</div>
+        <ul>
+          <li>Channel-by-channel strategy</li>
+          <li>Voice + tone guide</li>
+          <li>30-day starter calendar</li>
+          <li>50 hook concepts</li>
+          <li>1 live readout</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Book the sprint</span><span>→</span></a>
       </div>
-      <div class="pr-card feat rv d1">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div>
-        <div class="pr-card-name">Full Social Engine</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$5.8k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Daily posting, rolling calendar, community ops, and a monthly performance review. Zero to always-on.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Daily posting · 3 channels</li><li>Rolling 30-day calendar</li><li>Community + DM ops</li><li>Weekly hook refresh</li><li>Monthly board read</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Start the engine</span><span class="pr-card-cta-arr">→</span></a>
+
+      <div class="price-card feature">
+        <div class="pc-tag popular"><span class="dot"></span> Most chosen</div>
+        <div class="pc-name">Full Social Engine</div>
+        <div class="pc-price"><span class="amt">$5.8k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">Daily posting, rolling calendar, community ops, and a monthly performance review. From zero to always-on.</div>
+        <ul>
+          <li>Daily posting · 3 channels</li>
+          <li>Rolling 30-day calendar</li>
+          <li>Community + DM ops</li>
+          <li>Weekly hook refresh</li>
+          <li>Monthly board read</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Start the engine</span><span>→</span></a>
       </div>
-      <div class="pr-card rv d2">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Partnership</div>
-        <div class="pr-card-name">Brand Partnership</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$12.5k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Embedded team across every channel. Full creative + community ownership with a dedicated lead.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Multi-channel coverage</li><li>Creator + influencer ops</li><li>Dedicated community lead</li><li>Quarterly strategy off-site</li><li>Custom dashboards</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a>
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Partnership</div>
+        <div class="pc-name">Brand Partnership</div>
+        <div class="pc-price"><span class="amt">$12.5k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">Embedded team across every channel. Full creative + community ownership with a dedicated lead.</div>
+        <ul>
+          <li>Multi-channel coverage</li>
+          <li>Creator + influencer ops</li>
+          <li>Dedicated community lead</li>
+          <li>Quarterly strategy off-site</li>
+          <li>Custom dashboards</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Talk to us</span><span>→</span></a>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- UGC -->
-<section class="pr-section">
-  <div class="pr-section-inner">
-    <div class="pr-sec-label rv">
-      <span class="pr-sec-num">02</span>
-      <h2 class="pr-sec-title">AI UGC Videos &amp; Ads</h2>
-      <span class="pr-sec-line"></span>
+<section class="price-block alt">
+  <div class="wrap">
+    <div class="price-block-head">
+      <div class="l">
+        <span class="num">/02</span>
+        <h2>AI UGC <em>Videos &amp; Ads</em></h2>
+      </div>
+      <p class="sub">Native-feel UGC at scale. AI avatars, real-creator hooks, weekly platform-tuned cuts.</p>
     </div>
-    <div class="pr-grid">
-      <div class="pr-card rv">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Pilot</div>
-        <div class="pr-card-name">Pilot Sprint</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$4.2k</span><span class="pr-card-per">/ one-time</span></div>
-        <p class="pr-card-desc">A 4-week pilot to prove the engine on your offer. Walk away with a system that works.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>20 hooks scripted</li><li>16 cuts delivered</li><li>4 weeks of production</li><li>Performance readout</li><li>Scale-up roadmap</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Run the pilot</span><span class="pr-card-cta-arr">→</span></a>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Pilot</div>
+        <div class="pc-name">Pilot Sprint</div>
+        <div class="pc-price"><span class="amt">$4.2k</span><span class="per">/ one-time</span></div>
+        <div class="pc-desc">A 4-week pilot to prove the engine on your offer. Walk away with a system that works.</div>
+        <ul>
+          <li>20 hooks scripted</li>
+          <li>16 cuts delivered</li>
+          <li>4 weeks of production</li>
+          <li>Performance readout</li>
+          <li>Scale-up roadmap</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Run the pilot</span><span>→</span></a>
       </div>
-      <div class="pr-card feat rv d1">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div>
-        <div class="pr-card-name">Always-on Engine</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$6.5k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Weekly hook + cut delivery for brands running paid media year-round.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Up to 8 cuts / week</li><li>Hook bank refresh</li><li>AI avatar + UGC mix</li><li>Platform-native variants</li><li>Monthly performance audit</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Start the engine</span><span class="pr-card-cta-arr">→</span></a>
+
+      <div class="price-card feature">
+        <div class="pc-tag popular"><span class="dot"></span> Most chosen</div>
+        <div class="pc-name">Always-on Engine</div>
+        <div class="pc-price"><span class="amt">$6.5k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">Weekly hook + cut delivery for brands running paid media year-round.</div>
+        <ul>
+          <li>Up to 8 cuts / week</li>
+          <li>Hook bank refresh</li>
+          <li>AI avatar + UGC mix</li>
+          <li>Slack + Loom reviews</li>
+          <li>Monthly retro</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Start the engine</span><span>→</span></a>
       </div>
-      <div class="pr-card rv d2">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Partnership</div>
-        <div class="pr-card-name">Performance Partnership</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$14k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Full creative OS. Scripts, production, paid integration, and iterative optimisation — all in.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Unlimited hooks + cuts</li><li>Paid media integration</li><li>Creator network access</li><li>Dedicated creative lead</li><li>Weekly strategy calls</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a>
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Partnership</div>
+        <div class="pc-name">Performance Partnership</div>
+        <div class="pc-price"><span class="amt">$14k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">We own the creative half of your performance team. Fully aligned to CAC and ROAS.</div>
+        <ul>
+          <li>Co-owned creative roadmap</li>
+          <li>Performance dashboard</li>
+          <li>Quarterly strategy</li>
+          <li>Dedicated team</li>
+          <li>Ad-platform integrations</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Talk to us</span><span>→</span></a>
       </div>
+
     </div>
   </div>
 </section>
 
 <!-- INFLUENCER -->
-<section class="pr-section">
-  <div class="pr-section-inner">
-    <div class="pr-sec-label rv">
-      <span class="pr-sec-num">03</span>
-      <h2 class="pr-sec-title">Influencer Marketing</h2>
-      <span class="pr-sec-line"></span>
+<section class="price-block">
+  <div class="wrap">
+    <div class="price-block-head">
+      <div class="l">
+        <span class="num">/03</span>
+        <h2>Influencer <em>Marketing</em></h2>
+      </div>
+      <p class="sub">Casting, briefs, contracts, content rights, performance reads. End-to-end. Talent fees billed at cost.</p>
     </div>
-    <div class="pr-grid">
-      <div class="pr-card rv">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Single drop</div>
-        <div class="pr-card-name">Single Campaign</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$5k</span><span class="pr-card-per">/ one-time</span></div>
-        <p class="pr-card-desc">One campaign, fully managed. Creator sourcing, briefs, contracts, activation and reporting.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>10–15 creators sourced</li><li>3–5 booked &amp; activated</li><li>Briefs + contracts + rights</li><li>Post-campaign report</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Book the campaign</span><span class="pr-card-cta-arr">→</span></a>
+    <div class="price-grid">
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Single drop</div>
+        <div class="pc-name">Single Campaign</div>
+        <div class="pc-price"><span class="amt">$5.5k</span><span class="per">/ campaign</span></div>
+        <div class="pc-desc">One bounded campaign — research, cast, ship, report. Talent fees billed at cost on top.</div>
+        <ul>
+          <li>10–15 creators sourced</li>
+          <li>3–5 booked &amp; activated</li>
+          <li>Briefs + contracts + rights</li>
+          <li>Asset QC + approvals</li>
+          <li>Post-campaign report</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Run a campaign</span><span>→</span></a>
       </div>
-      <div class="pr-card feat rv d1">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div>
-        <div class="pr-card-name">Quarterly Engine</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$8.5k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Always-on influencer operation. Monthly activations, creator relationships managed end-to-end.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Monthly activations</li><li>Creator roster management</li><li>Content rights &amp; licensing</li><li>Performance tracking</li><li>Quarterly strategy review</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Start the engine</span><span class="pr-card-cta-arr">→</span></a>
+
+      <div class="price-card feature">
+        <div class="pc-tag popular"><span class="dot"></span> Most chosen</div>
+        <div class="pc-name">Quarterly Engine</div>
+        <div class="pc-price"><span class="amt">$8.5k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">Always-sourcing creator pipeline. 8–12 creators per quarter, fully managed.</div>
+        <ul>
+          <li>Rolling sourcing &amp; outreach</li>
+          <li>8–12 creators / quarter</li>
+          <li>Whitelisting + paid usage</li>
+          <li>Performance dashboard</li>
+          <li>Quarterly strategy</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Start sourcing</span><span>→</span></a>
       </div>
-      <div class="pr-card rv d2">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Always-on</div>
-        <div class="pr-card-name">Always-on Network</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$18k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Your own creator network, fully managed. Brand ambassadors, ongoing activations, full IP strategy.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Dedicated creator network</li><li>Brand ambassador program</li><li>Cross-platform strategy</li><li>IP + content licensing</li><li>Executive reporting</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a>
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Always-on</div>
+        <div class="pc-name">Always-on Network</div>
+        <div class="pc-price"><span class="amt">$15k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">A live creator network built for your brand. Continuous casting, weekly drops, full rights pipeline.</div>
+        <ul>
+          <li>Dedicated talent team</li>
+          <li>20+ creators / quarter</li>
+          <li>Ambassador programme</li>
+          <li>Full legal + rights ops</li>
+          <li>Quarterly strategy off-site</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Talk to us</span><span>→</span></a>
       </div>
+
     </div>
   </div>
 </section>
 
-<!-- SEO -->
-<section class="pr-section">
-  <div class="pr-section-inner">
-    <div class="pr-sec-label rv">
-      <span class="pr-sec-num">04</span>
-      <h2 class="pr-sec-title">Full AI-SEO + AEO</h2>
-      <span class="pr-sec-line"></span>
+<!-- SEO + AEO -->
+<section class="price-block alt">
+  <div class="wrap">
+    <div class="price-block-head">
+      <div class="l">
+        <span class="num">/04</span>
+        <h2>Full AI-SEO + <em>AEO</em></h2>
+      </div>
+      <p class="sub">Forensic audit and 90-day roadmap. Search + answer-engine optimization for the LLM era.</p>
     </div>
-    <div class="pr-grid">
-      <div class="pr-card rv">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Audit</div>
-        <div class="pr-card-name">Audit Sprint</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$2.8k</span><span class="pr-card-per">/ one-time</span></div>
-        <p class="pr-card-desc">A forensic audit of your entire search surface — technical, content, and competitor gaps.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Full technical crawl</li><li>Keyword + AEO opportunity map</li><li>Content gap analysis</li><li>90-day priority roadmap</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Book the audit</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-      <div class="pr-card feat rv d1">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Most chosen</div>
-        <div class="pr-card-name">Quarterly Roadmap</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$4.5k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Ongoing SEO + AEO execution. Content, technical fixes, and entity coverage — compounding month on month.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Monthly content execution</li><li>Technical SEO fixes</li><li>AEO entity coverage</li><li>Backlink strategy</li><li>Monthly performance report</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Start compounding</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-      <div class="pr-card rv d2">
-        <div class="pr-card-tag"><span class="pr-card-tag-dot"></span>Full service</div>
-        <div class="pr-card-name">Continuous SEO</div>
-        <div class="pr-card-price"><span class="pr-card-amount">$9k</span><span class="pr-card-per">/ month</span></div>
-        <p class="pr-card-desc">Dedicated SEO team. Strategy, content, technical, links, and AI-answer-engine optimisation — fully owned.</p>
-        <div class="pr-card-divider"></div>
-        <ul class="pr-feat"><li>Full content production</li><li>Technical SEO ownership</li><li>PR + digital PR outreach</li><li>AI search coverage</li><li>Weekly strategy calls</li></ul>
-        <a class="pr-card-cta" href="contact.html" data-cursor><span>Talk to us</span><span class="pr-card-cta-arr">→</span></a>
-      </div>
-    </div>
+    <div class="price-grid">
 
-    <!-- Custom builder -->
-    <div class="pr-custom rv">
-      <div class="pr-custom-text">
-        <h3>Build your own package.</h3>
-        <p>Mix and match services across channels. We'll scope it out in one call — no slides, no pitch deck, just numbers.</p>
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> One-shot</div>
+        <div class="pc-name">Audit Sprint</div>
+        <div class="pc-price"><span class="amt">$4.8k</span><span class="per">/ one-time</span></div>
+        <div class="pc-desc">A single, deep audit. Perfect pre-launch or before a content push. You ship from the roadmap.</div>
+        <ul>
+          <li>Full technical crawl</li>
+          <li>Keyword + AEO opportunity map</li>
+          <li>Content gap analysis</li>
+          <li>90-day roadmap doc</li>
+          <li>1 live readout</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Book audit</span><span>→</span></a>
       </div>
-      <a href="contact.html" class="pr-custom-cta" data-cursor>
-        Book a scoping call →
-      </a>
+
+      <div class="price-card feature">
+        <div class="pc-tag popular"><span class="dot"></span> Most chosen</div>
+        <div class="pc-name">Quarterly Roadmap</div>
+        <div class="pc-price"><span class="amt">$3.2k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">A rolling audit cadence with async support between cycles. For brands actively scaling SEO + AEO.</div>
+        <ul>
+          <li>Quarterly audit refresh</li>
+          <li>2 live readouts / quarter</li>
+          <li>Async Slack support</li>
+          <li>KPI review cadence</li>
+          <li>LLM citation tracking</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Start the cadence</span><span>→</span></a>
+      </div>
+
+      <div class="price-card">
+        <div class="pc-tag"><span class="dot"></span> Partnership</div>
+        <div class="pc-name">Continuous SEO</div>
+        <div class="pc-price"><span class="amt">$9.5k</span><span class="per">/ month</span></div>
+        <div class="pc-desc">We become your SEO team. Strategy, content, technical, AEO — fully owned and shipping weekly.</div>
+        <ul>
+          <li>Always-on SEO team</li>
+          <li>Weekly delivery</li>
+          <li>Content + technical ownership</li>
+          <li>Monthly board read</li>
+          <li>Quarterly strategy</li>
+        </ul>
+        <a class="pc-cta" href="#contact" data-cursor><span>Talk to us</span><span>→</span></a>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- CTA STRIP -->
-<section class="pr-strip">
-  <h2 class="rv">Ready to go<br/><em>beyond trend?</em></h2>
-  <p class="rv d1">One call. No deck. Real numbers for real work — and we move the week after.</p>
-  <a href="contact.html" class="pr-strip-cta rv d2" data-cursor>
-    <span>Book a call</span>
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
-  </a>
+<!-- CUSTOMIZE -->
+<section class="customize" id="contact">
+  <div class="wrap">
+    <div class="customize-grid">
+      <div>
+        <div class="sec-eyebrow" style="color: rgba(255,255,255,.7);">Custom build</div>
+        <h2>Build your own<br/><em>package.</em></h2>
+        <p>Most engagements stack two or three engines. We'll mix services across SMM, UGC, Influencer, and SEO + AEO, knock the bundle price, and shape the SOW to your actual roadmap. Reply in a day, scope in a week.</p>
+        <a class="customize-cta" href="mailto:hello@bydtrnd.studio" data-cursor>
+          <span>Connect with team</span>
+          <span class="arr">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+          </span>
+        </a>
+      </div>
+      <div class="customize-list">
+        <div class="ck">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <strong>Bundle discount</strong>
+            <p>Stack 2 services → 10% off. Stack 3+ → 18% off. Applied automatically on the SOW.</p>
+          </div>
+        </div>
+        <div class="ck">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg>
+          </div>
+          <div>
+            <strong>Mix &amp; match volumes</strong>
+            <p>Need only half a UGC engine and full social? Tell us. We'll right-size the volume and the price.</p>
+          </div>
+        </div>
+        <div class="ck">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg>
+          </div>
+          <div>
+            <strong>Quarterly resets</strong>
+            <p>Every 90 days we rebalance services based on what's working. Scale up wins, retire what isn't.</p>
+          </div>
+        </div>
+        <div class="ck">
+          <div class="ico">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div>
+            <strong>No long contracts</strong>
+            <p>Monthly retainers, 30 days notice. No 12-month lock-ins to make the price look smaller.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="pr-foot">
-  <a href="index.html" class="brand" data-cursor style="text-decoration:none;">
-    <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
-  </a>
-  <span style="color:rgba(10,10,11,.35);font-size:.8rem;">© 2026 BYDTRND.studio · All rights reserved.</span>
-  <a href="mailto:hello@bydtrnd.studio" style="color:rgba(10,10,11,.45);font-size:.85rem;text-decoration:none;" data-cursor>hello@bydtrnd.studio</a>
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <a href="Marketing Agency.html" class="brand" data-cursor>
+        <span class="mark"></span> NXGEN<sup>/STUDIO</sup>
+      </a>
+      <p>Next-gen AI marketing for brands that refuse to look like everyone else.</p>
+    </div>
+    <div class="foot-col">
+      <h6>Services</h6>
+      <ul>
+        <li><a href="services/ai-seo-audit.html" data-cursor>AI-SEO + AEO</a></li>
+        <li><a href="services/thumbnail-creator.html" data-cursor>Thumbnails</a></li>
+        <li><a href="services/ugc-reels.html" data-cursor>UGC &amp; Reels</a></li>
+        <li><a href="services/social-media-marketing.html" data-cursor>Social Media</a></li>
+        <li><a href="services/influencer-marketing.html" data-cursor>Influencer</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h6>Studio</h6>
+      <ul>
+        <li><a href="pricing.html" data-cursor>Pricing</a></li>
+        <li><a href="Marketing Agency.html#process" data-cursor>Process</a></li>
+        <li><a href="Marketing Agency.html#work" data-cursor>Work</a></li>
+        <li><a href="#contact" data-cursor>Contact</a></li>
+      </ul>
+    </div>
+    <div class="foot-col">
+      <h6>Connect</h6>
+      <ul>
+        <li><a href="mailto:hello@bydtrnd.studio" data-cursor>hello@bydtrnd.studio</a></li>
+        <li><a href="#" data-cursor>Instagram ↗</a></li>
+        <li><a href="#" data-cursor>X / Twitter ↗</a></li>
+        <li><a href="#" data-cursor>LinkedIn ↗</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot-mark" aria-hidden="true">PRICING / 2026</div>
+  <div class="foot-bottom">
+    <span>© 2026 NXGEN STUDIO. All rights reserved.</span>
+    <span>Prices in USD · ex tax</span>
+  </div>
 </footer>
 
-<script src="nxgen-v3.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
