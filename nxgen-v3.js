@@ -2,7 +2,7 @@
    NXGEN v3 — Behaviors
    - Preloader counter + curtains
    - Lenis smooth scroll (lerp 0.08)
-   - Custom cursor with RAF lerp
+   - Custom cursor with RAF lerp (star shape, mix-blend-mode:difference)
    - Scroll progress
    - Reveals (IntersectionObserver, .rv)
    - Magnetic buttons
@@ -77,29 +77,24 @@ document.documentElement.classList.remove('no-js');
   }
 })();
 
-/* ---------- Cursor ---------- */
+/* ---------- Cursor — 4-pointed star with mix-blend-mode:difference ---------- */
 (function(){
   if (matchMedia('(max-width: 760px)').matches) return;
-  const dot = document.querySelector('.cursor-dot');
-  const ring = document.querySelector('.cursor-ring');
-  if (!dot || !ring) return;
+  const star = document.querySelector('.cursor-star');
+  if (!star) return;
   let mx = innerWidth/2, my = innerHeight/2;
-  let rx = mx, ry = my;
   addEventListener('mousemove', e => {
     mx = e.clientX; my = e.clientY;
-    dot.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%,-50%)`;
+    star.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%,-50%)`;
   });
-  function loop(){
-    rx += (mx - rx) * .18;
-    ry += (my - ry) * .18;
-    ring.style.transform = `translate3d(${rx}px, ${ry}px, 0) translate(-50%,-50%)`;
-    requestAnimationFrame(loop);
-  }
-  loop();
+  // hover state
   document.querySelectorAll('a, button, .svc-head, .svc-card, .price-card, .faq-q, [data-cursor]').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('hover'));
   });
+  // click flash
+  addEventListener('mousedown', () => document.body.classList.add('clicking'));
+  addEventListener('mouseup', () => document.body.classList.remove('clicking'));
 })();
 
 /* ---------- Scroll progress ---------- */
