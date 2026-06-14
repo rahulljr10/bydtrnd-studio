@@ -1,523 +1,1038 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BYDTRND.studio — Beyond Trend · AI marketing studio</title>
-<meta name="description" content="BYDTRND.studio (Beyond Trend) is an AI-first marketing studio. SEO + AEO that compounds, UGC at scale, thumbnails engineered for CTR, social and influencer ops — async by design, week-one delivery." />
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" />
-<link rel="stylesheet" href="nxgen-v3.css" />
-</head>
-<body class="no-js home">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>NXGEN — AI Marketing Agency</title>
+<meta name="description" content="Next-Gen AI marketing. Full SEO Audits, Viral Thumbnails, UGC Ads & Reels. Built to make your brand impossible to ignore."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+/* ═══════════════════════════════════════════
+   NXGEN — LIGHT MODE
+   #0A0A0B  Near Black  (text / UI)
+   #FF3800  Electric Tangerine  (accent)
+   #FAFAF8  Warm White  (background)
+═══════════════════════════════════════════ */
+:root{
+  --k:#0A0A0B; --o:#FF3800; --w:#FAFAF8;
+  --dim:rgba(10,10,11,.44);
+  --bd:rgba(10,10,11,.08);
+  --e:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--w);color:var(--k);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
 
-<!-- GRAIN -->
-<div class="grain" aria-hidden="true"></div>
+/* Grain */
+body::after{content:'';position:fixed;inset:-50%;width:200%;height:200%;pointer-events:none;z-index:1000;opacity:.015;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");animation:grain 7s steps(8) infinite}
+@keyframes grain{0%{transform:translate(0,0)}13%{transform:translate(-5%,-10%)}25%{transform:translate(-13%,5%)}38%{transform:translate(7%,-22%)}50%{transform:translate(-4%,24%)}63%{transform:translate(-14%,8%)}75%{transform:translate(12%,2%)}88%{transform:translate(-8%,14%)}}
+
+/* ─── Symbol helper ───────────────────── */
+.sym svg{display:block;fill:currentColor}
+
+/* ─── Scroll progress bar ─────────────── */
+#pgbar{position:fixed;top:0;left:0;z-index:9001;height:2px;width:0;background:var(--o);pointer-events:none;transition:width .06s linear}
+
+/* ─── Curtain preloader ───────────────── */
+#curtain{position:fixed;inset:0;z-index:9000;overflow:hidden;pointer-events:all}
+#cl,#cr{position:absolute;top:0;bottom:0;width:50%;background:var(--k);transition:transform 1.15s cubic-bezier(.76,0,.24,1)}
+#cl{left:0}#cr{right:0}
+#curtain.open #cl{transform:translateX(-100%)}
+#curtain.open #cr{transform:translateX(100%)}
+#cinfo{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;pointer-events:none}
+#cstar{width:clamp(88px,11vw,136px);height:clamp(88px,11vw,136px);color:var(--w);opacity:0;transform:scale(.3) rotate(-15deg);transition:opacity .8s var(--e),transform 1s var(--e)}
+#cstar.vis{opacity:1;transform:scale(1) rotate(0deg)}
+#cstar.exit{opacity:0;transform:scale(2.8) rotate(25deg);transition:opacity .55s ease,transform .7s var(--e)}
+#cstar-spin{animation:spin 8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#cnum-block{display:flex;flex-direction:column;align-items:center;gap:14px;opacity:0;transform:translateY(10px);transition:opacity .5s ease .4s,transform .6s var(--e) .4s}
+#cnum-block.vis{opacity:1;transform:translateY(0)}
+#cnum{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(64px,11vw,128px);letter-spacing:-5px;line-height:.9;color:var(--w);font-variant-numeric:tabular-nums}
+#cbar{width:130px;height:1px;background:rgba(250,250,248,.1);position:relative;overflow:hidden}
+#cfill{position:absolute;inset:0 auto 0 0;width:0;background:var(--o);transition:width .06s linear}
+#clabel{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:rgba(250,250,248,.22)}
+
+/* ─── Cursor ──────────────────────────── */
+#cdot{width:8px;height:8px;border-radius:50%;background:var(--o);position:fixed;pointer-events:none;z-index:8000;transform:translate(-50%,-50%);transition:transform .12s ease,opacity .3s}
+#cring{width:32px;height:32px;border-radius:50%;border:1.5px solid rgba(255,56,0,.28);position:fixed;pointer-events:none;z-index:7999;transform:translate(-50%,-50%);transition:width .4s var(--e),height .4s var(--e),border-color .3s,background .3s}
+#curlbl{position:fixed;z-index:8001;pointer-events:none;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--w);transform:translate(-50%,-50%) scale(0);opacity:0;transition:transform .4s var(--e),opacity .3s;white-space:nowrap}
+body.hov #cdot{transform:translate(-50%,-50%) scale(3)}
+body.hov #cring{width:50px;height:50px;border-color:rgba(255,56,0,.5)}
+body.view #cdot{opacity:0}
+body.view #cring{width:86px;height:86px;background:rgba(255,56,0,.9);border-color:transparent}
+body.view #curlbl{transform:translate(-50%,-50%) scale(1);opacity:1}
+
+/* ─── Nav ─────────────────────────────── */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;padding:28px 64px;display:flex;align-items:center;justify-content:space-between;transition:padding .4s var(--e),background .4s,backdrop-filter .4s,border .4s}
+nav.stuck{padding:14px 64px;background:rgba(250,250,248,.88);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);border-bottom:1px solid var(--bd)}
+.nlogo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.5px;display:inline-flex;align-items:center;gap:9px}
+.nlogo-sym{width:16px;height:16px;color:var(--o)}
+.nlogo b{color:var(--o)}
+.nlinks{display:flex;gap:36px;list-style:none}
+.nlinks a{font-size:13px;font-weight:500;color:var(--dim);transition:color .25s}
+.nlinks a:hover{color:var(--k)}
+.npill{display:inline-flex;align-items:center;gap:6px;background:var(--k);color:var(--w);padding:10px 22px;border-radius:100px;font-weight:700;font-size:13px;transition:all .3s var(--e)}
+.npill:hover{background:var(--o);color:var(--k);transform:scale(1.04)}
+
+/* ─── Hero ────────────────────────────── */
+#hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 64px 88px;position:relative;overflow:hidden}
+#hero::before{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(10,10,11,.04) 1px,transparent 1px);background-size:44px 44px;pointer-events:none;mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,#000 0%,transparent 100%)}
+.orb{position:absolute;border-radius:50%;pointer-events:none;opacity:0;transition:opacity 1.4s ease}
+.o1{width:700px;height:700px;background:radial-gradient(circle,rgba(255,56,0,.09) 0%,transparent 68%);top:-220px;right:-180px;animation:oA 12s ease-in-out infinite}
+.o2{width:450px;height:450px;background:radial-gradient(circle,rgba(255,56,0,.06) 0%,transparent 68%);bottom:-100px;left:-80px;animation:oB 15s ease-in-out infinite}
+.o3{width:260px;height:260px;background:radial-gradient(circle,rgba(255,56,0,.04) 0%,transparent 68%);top:40%;left:42%;animation:oC 9s ease-in-out infinite}
+@keyframes oA{0%,100%{transform:translate(0,0)}50%{transform:translate(-30px,44px)}}
+@keyframes oB{0%,100%{transform:translate(0,0)}50%{transform:translate(36px,-28px)}}
+@keyframes oC{0%,100%{transform:translate(0,0)}50%{transform:translate(-20px,20px)}}
+#mouseglow{width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(255,56,0,.05) 0%,transparent 65%);position:absolute;pointer-events:none;transform:translate(-50%,-50%);transition:left .8s var(--e),top .8s var(--e)}
+
+/* Hero bg symbol */
+.hero-sym-bg{position:absolute;top:50%;right:5%;transform:translateY(-50%);opacity:0;pointer-events:none;transition:opacity 1.8s ease}
+.hero-sym-bg svg{width:clamp(200px,32vw,420px);height:clamp(200px,32vw,420px);color:rgba(10,10,11,.045)}
+.hero-sym-bg.on{opacity:1}
+
+.hbadge{display:inline-flex;align-items:center;gap:9px;border:1px solid rgba(255,56,0,.22);background:rgba(255,56,0,.06);padding:8px 18px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:.4px;color:var(--o);margin-bottom:40px;width:fit-content;position:relative;z-index:1;opacity:0;transform:translateY(20px)}
+.bdot{width:7px;height:7px;border-radius:50%;background:var(--o);animation:blink 2s ease-in-out infinite;flex-shrink:0}
+.typed-cur{display:inline-block;width:1.5px;height:13px;background:var(--o);margin-left:1px;vertical-align:middle;animation:blink .9s step-end infinite}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.8)}}
+
+.hhead{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(60px,10.5vw,152px);line-height:.86;letter-spacing:-5px;position:relative;z-index:1}
+.hw{display:inline-block;overflow:hidden}
+.hwi{display:inline-block;transform:translateY(110%);opacity:0}
+.hhead br+.hw{display:block}
+.orange{color:var(--o)}
+.hfoot{display:flex;align-items:flex-end;justify-content:space-between;gap:44px;margin-top:56px;position:relative;z-index:1;opacity:0;transform:translateY(28px)}
+.hdesc{max-width:340px;font-size:15px;color:var(--dim);line-height:1.7}
+.hctas{display:flex;align-items:center;gap:16px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:100px;font-weight:700;font-size:14px;border:none;cursor:none;transition:all .35s var(--e)}
+.btn-f{background:var(--k);color:var(--w);box-shadow:0 6px 28px rgba(10,10,11,.14)}
+.btn-f:hover{background:var(--o);color:var(--k);transform:scale(1.05);box-shadow:0 10px 38px rgba(255,56,0,.28)}
+.btn-g{background:transparent;border:1.5px solid var(--bd);color:var(--dim)}
+.btn-g:hover{border-color:var(--k);color:var(--k)}
+.sbar{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:7px;opacity:.18;z-index:1}
+.sbar span{font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--dim)}
+.sline{width:1px;height:54px;background:linear-gradient(to bottom,var(--k),transparent);animation:sl 2.2s ease-in-out infinite}
+@keyframes sl{0%{transform:scaleY(0);transform-origin:top}49%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ─── Marquee ─────────────────────────── */
+.mqwrap{border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);overflow:hidden}
+.mqrow{display:flex;white-space:nowrap;padding:14px 0}
+.mqrow.f{animation:mL 22s linear infinite}
+.mqrow.r{animation:mR 28s linear infinite;border-top:1px solid var(--bd)}
+.mqrow:hover{animation-play-state:paused}
+@keyframes mL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes mR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.mqi{display:inline-flex;align-items:center;gap:18px;padding:0 18px;font-family:'Syne',sans-serif;font-weight:700;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(10,10,11,.2)}
+.mqs{color:var(--o);display:flex;align-items:center;justify-content:center}
+.mqs svg{width:12px;height:12px}
+
+/* ─── Horizontal image strip ──────────── */
+.hstrip{overflow:hidden;height:220px;border-bottom:1px solid var(--bd)}
+.hstrip-inner{display:flex;height:100%;gap:10px;width:max-content;animation:hscroll 32s linear infinite}
+.hstrip-inner:hover{animation-play-state:paused}
+@keyframes hscroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hstrip-img{width:320px;height:100%;object-fit:cover;filter:grayscale(55%) brightness(1.05);transition:filter .5s ease,transform .5s var(--e);flex-shrink:0;border-radius:6px;cursor:none}
+.hstrip-img:hover{filter:grayscale(0%) brightness(1.05);transform:scale(1.02)}
+
+/* ─── Section base ────────────────────── */
+section{padding:130px 64px}
+.lbl{display:inline-flex;align-items:center;gap:10px;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--o);font-weight:600;margin-bottom:28px}
+.lbl-sym{width:14px;height:14px;flex-shrink:0}
+.head{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(40px,5.8vw,82px);letter-spacing:-2.5px;line-height:.92}
+.head .o{color:var(--o)}
+.rv{opacity:0;transform:translateY(48px);transition:opacity .9s var(--e),transform .9s var(--e)}
+.rv.on{opacity:1;transform:none}
+.rv.d1{transition-delay:.1s}.rv.d2{transition-delay:.22s}.rv.d3{transition-delay:.36s}.rv.d4{transition-delay:.5s}
+
+/* ─── Who We Are ──────────────────────── */
+#who{padding:120px 64px;border-bottom:1px solid var(--bd)}
+.who-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.who-tag{display:inline-flex;align-items:center;gap:9px;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--o);margin-bottom:32px}
+.who-tag-sym{width:12px;height:12px}
+.who-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(38px,5vw,70px);letter-spacing:-2.5px;line-height:.94}
+.who-right{display:flex;flex-direction:column;gap:32px;padding-top:48px;border-top:1px solid var(--bd)}
+.who-p{font-size:16px;color:var(--dim);line-height:1.75}
+.who-p b{color:var(--k);font-weight:600}
+.who-cta{display:inline-flex;align-items:center;gap:10px;font-size:14px;font-weight:600;color:var(--o);transition:gap .3s var(--e)}
+.who-cta:hover{gap:16px}
+
+/* ─── Services accordion ──────────────── */
+#svc{padding:130px 64px;border-top:1px solid var(--bd)}
+.svch{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px;gap:40px}
+.svch-r{max-width:300px;font-size:14px;color:var(--dim);line-height:1.72}
+.slist{border-top:1px solid var(--bd)}
+.sitem{border-bottom:1px solid var(--bd);overflow:hidden;transition:background .3s ease}
+.sitem:hover{background:rgba(10,10,11,.02)}
+.sitem.open{background:rgba(255,56,0,.025)}
+.srow{display:flex;align-items:center;gap:32px;padding:28px 0;cursor:none}
+.sn{font-family:'Syne',sans-serif;font-weight:700;font-size:12px;color:rgba(10,10,11,.18);letter-spacing:1px;min-width:32px}
+.stitle{font-family:'Syne',sans-serif;font-weight:700;font-size:clamp(20px,2.5vw,28px);letter-spacing:-.5px;flex:1;transition:color .3s}
+.sitem:hover .stitle,.sitem.open .stitle{color:var(--o)}
+.sico{width:44px;height:44px;flex-shrink:0;border:1px solid var(--bd);border-radius:11px;display:flex;align-items:center;justify-content:center;color:var(--dim);transition:all .35s var(--e)}
+.sico svg{width:20px;height:20px}
+.sitem:hover .sico,.sitem.open .sico{border-color:rgba(255,56,0,.3);color:var(--o);background:rgba(255,56,0,.06)}
+.sarr{font-size:18px;color:var(--dim);transition:all .4s var(--e);flex-shrink:0}
+.sitem.open .sarr{transform:rotate(45deg);color:var(--o)}
+.sbody{max-height:0;overflow:hidden;transition:max-height .65s var(--e)}
+.sitem.open .sbody{max-height:300px}
+.sbody-inner{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding:0 0 44px 64px}
+.sdesc{font-size:14px;color:var(--dim);line-height:1.78}
+.sdels{display:flex;flex-direction:column;gap:10px;margin-top:4px}
+.sdel{display:flex;align-items:center;gap:11px;font-size:13px;color:rgba(10,10,11,.55)}
+.sdel-sym{width:10px;height:10px;flex-shrink:0;color:var(--o)}
+
+/* ─── Outcomes ────────────────────────── */
+#deliver{background:rgba(10,10,11,.02);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd);padding:100px 64px}
+.del-head{text-align:center;margin-bottom:80px}
+.del-head .lbl{justify-content:center}
+.del-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.del-card{padding:52px 44px;position:relative;overflow:hidden;transition:background .4s ease}
+.del-card:hover{background:rgba(255,56,0,.04)}
+.del-card::after{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--o);transition:height .5s var(--e)}
+.del-card:hover::after{height:100%}
+.del-ico{width:52px;height:52px;border:1px solid var(--bd);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--o);margin-bottom:28px;transition:all .35s var(--e)}
+.del-ico svg{width:22px;height:22px}
+.del-card:hover .del-ico{border-color:rgba(255,56,0,.35);background:rgba(255,56,0,.07)}
+.del-title{font-family:'Syne',sans-serif;font-weight:700;font-size:20px;letter-spacing:-.4px;margin-bottom:12px}
+.del-desc{font-size:13px;color:var(--dim);line-height:1.75}
+
+/* ─── Packages ────────────────────────── */
+#plans{padding:130px 64px;border-top:1px solid var(--bd)}
+.plans-top{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:72px;gap:40px}
+.plans-sub{max-width:280px;font-size:14px;color:var(--dim);line-height:1.72}
+.plans-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.plan{padding:52px 44px;position:relative;border:1px solid var(--bd);display:flex;flex-direction:column;transition:border-color .4s ease,background .4s ease}
+.plan:hover{border-color:rgba(255,56,0,.22);background:rgba(255,56,0,.02)}
+.plan.feat{border-color:rgba(255,56,0,.32);background:rgba(255,56,0,.04)}
+.plan-badge{position:absolute;top:-1px;left:44px;background:var(--o);color:var(--k);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 14px;border-radius:0 0 8px 8px}
+.plan-type{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--o);margin-bottom:14px;font-weight:600}
+.plan-name{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(22px,2.4vw,28px);letter-spacing:-.6px;line-height:1.1;margin-bottom:32px}
+.plan-div{width:100%;height:1px;background:var(--bd);margin-bottom:32px}
+.plan-list{list-style:none;display:flex;flex-direction:column;gap:15px;flex:1;margin-bottom:44px}
+.plan-list li{font-size:13px;color:var(--dim);display:flex;align-items:flex-start;gap:10px;line-height:1.55}
+.pl-sym{width:10px;height:10px;flex-shrink:0;margin-top:3px;color:var(--o)}
+.plan-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;color:var(--o);transition:gap .3s var(--e)}
+.plan-link:hover{gap:14px}
+.plan.feat .plan-link{background:var(--o);color:var(--k);padding:13px 24px;border-radius:100px;justify-content:center;transition:all .35s var(--e)}
+.plan.feat .plan-link:hover{transform:scale(1.05);filter:brightness(1.08)}
+
+/* ─── Process ─────────────────────────── */
+#proc{padding:130px 64px}
+.proc-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:80px}
+.proc-sub{max-width:280px;font-size:14px;color:var(--dim);line-height:1.72}
+.proc-steps{display:grid;grid-template-columns:repeat(3,1fr);position:relative}
+.proc-steps::before{content:'';position:absolute;top:30px;left:calc(16.66% + 20px);right:calc(16.66% + 20px);height:1px;background:var(--bd);z-index:0}
+.proc-line{position:absolute;top:30px;left:calc(16.66% + 20px);right:calc(16.66% + 20px);height:1px;background:var(--o);z-index:1;transform:scaleX(0);transform-origin:left;transition:transform 1.2s var(--e)}
+.proc-steps.drawn .proc-line{transform:scaleX(1)}
+.pstep{padding:0 44px;position:relative;z-index:2}
+.pnum{width:60px;height:60px;border-radius:50%;border:1px solid var(--bd);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-weight:700;font-size:14px;letter-spacing:1px;color:var(--dim);margin-bottom:36px;background:var(--w);transition:all .4s var(--e)}
+.pstep.lit .pnum{border-color:var(--o);color:var(--o);background:rgba(255,56,0,.06)}
+.ptitle{font-family:'Syne',sans-serif;font-weight:700;font-size:22px;margin-bottom:14px}
+.pdesc{font-size:13px;color:var(--dim);line-height:1.75}
+
+/* ─── Work ────────────────────────────── */
+#work{padding:130px 64px;border-top:1px solid var(--bd)}
+.work-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px}
+.work-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr;grid-template-rows:280px 280px;gap:12px}
+.witem{border-radius:16px;overflow:hidden;position:relative}
+.witem:first-child{grid-row:1/3}
+.witem img{width:100%;height:100%;object-fit:cover;filter:grayscale(40%) brightness(1.05);transition:transform .75s var(--e),filter .5s ease}
+.witem:hover img{transform:scale(1.06);filter:grayscale(0%) brightness(1.05)}
+.wover{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,11,.9) 0%,rgba(10,10,11,.2) 50%,transparent 100%);padding:24px;display:flex;flex-direction:column;justify-content:flex-end;opacity:0;transition:opacity .4s ease}
+.witem:hover .wover{opacity:1}
+.wcat{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--o);margin-bottom:6px;font-weight:600}
+.wtype{font-family:'Syne',sans-serif;font-weight:700;font-size:16px;color:#fff}
+
+/* ─── Manifesto ───────────────────────── */
+.mfesto{overflow:hidden;padding:90px 0;border-top:1px solid var(--bd)}
+.mfesto-row{display:flex;white-space:nowrap;gap:0;user-select:none}
+.mfesto-row.fa{animation:mL 20s linear infinite}
+.mfesto-row.fb{animation:mR 26s linear infinite;opacity:.18;margin-top:16px}
+.mword{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(56px,8.5vw,118px);letter-spacing:-4px;padding:0 28px;display:inline-block;color:transparent;-webkit-text-stroke:1.5px rgba(10,10,11,.08);transition:color .3s ease,-webkit-text-stroke .3s ease;cursor:default}
+.mword:hover{color:var(--k);-webkit-text-stroke:1.5px transparent}
+.mword.o{-webkit-text-stroke:1.5px rgba(255,56,0,.2)}
+.mword.o:hover{color:var(--o);-webkit-text-stroke:1.5px transparent}
+
+/* ─── Contact Form ────────────────────── */
+#cta{padding:130px 64px;border-top:1px solid var(--bd);position:relative;overflow:hidden}
+.cta-sym-bg{position:absolute;top:50%;right:-4%;transform:translateY(-50%);opacity:.04;pointer-events:none}
+.cta-sym-bg svg{width:520px;height:520px;color:var(--k)}
+.contact-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:108px;align-items:start;position:relative;z-index:1}
+.contact-left{position:sticky;top:120px}
+.ctag{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--o);margin-bottom:32px}
+.ctag-sym{width:12px;height:12px}
+.ctitle{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(44px,5.5vw,78px);letter-spacing:-3.5px;line-height:.9;margin-bottom:36px}
+.cnote2{font-size:14px;color:var(--dim);line-height:1.78;max-width:360px}
+.cinfo2{margin-top:48px;display:flex;flex-direction:column;gap:16px}
+.ci-row{display:flex;align-items:center;gap:16px;font-size:13px;color:rgba(10,10,11,.45)}
+.ci-ico{width:38px;height:38px;border:1px solid var(--bd);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--o);flex-shrink:0}
+.ci-ico svg{width:15px;height:15px}
+.cform{display:flex;flex-direction:column;gap:20px}
+.fgroup{position:relative}
+.fgroup label{position:absolute;left:20px;top:19px;font-size:13px;color:rgba(10,10,11,.28);pointer-events:none;transition:all .22s var(--e);font-weight:500;z-index:1}
+.fgroup.active label,.fgroup.filled label{top:9px;font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:var(--o)}
+.fgroup input,.fgroup select,.fgroup textarea{width:100%;background:rgba(10,10,11,.025);border:1.5px solid var(--bd);border-radius:14px;padding:28px 20px 12px;font-family:'Space Grotesk',sans-serif;font-size:14px;color:var(--k);outline:none;resize:none;transition:border-color .3s;-webkit-appearance:none;appearance:none}
+.fgroup select{cursor:none}
+.fgroup textarea{min-height:126px}
+.fgroup input:focus,.fgroup select:focus,.fgroup textarea:focus{border-color:rgba(255,56,0,.4)}
+.fgroup select option{background:#fff;color:var(--k)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fnote{font-size:11px;color:rgba(10,10,11,.2);text-align:center;margin-top:2px}
+.sbtn{width:100%;background:var(--k);color:var(--w);border:none;border-radius:14px;padding:20px;font-family:'Syne',sans-serif;font-weight:800;font-size:16px;letter-spacing:.5px;cursor:none;transition:all .35s var(--e);position:relative;overflow:hidden}
+.sbtn:hover{background:var(--o);color:var(--k);box-shadow:0 12px 40px rgba(255,56,0,.3)}
+.smsg{display:none;text-align:center;padding:52px 32px;border:1px solid rgba(255,56,0,.18);border-radius:20px;background:rgba(255,56,0,.03)}
+.smsg.show{display:block}
+.smsg-ico{width:56px;height:56px;border:1px solid rgba(255,56,0,.22);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--o)}
+.smsg-ico svg{width:22px;height:22px}
+.smsg h4{font-family:'Syne',sans-serif;font-weight:800;font-size:24px;letter-spacing:-.5px;margin-bottom:10px}
+.smsg p{font-size:13px;color:var(--dim);line-height:1.72}
+
+/* ─── Footer ──────────────────────────── */
+footer{border-top:1px solid var(--bd);padding:64px 64px 48px;background:rgba(10,10,11,.018)}
+.ft{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:72px}
+.flogo{font-family:'Syne',sans-serif;font-weight:800;font-size:28px;display:inline-flex;align-items:center;gap:10px}
+.flogo-sym{width:20px;height:20px;color:var(--o)}
+.flogo b{color:var(--o)}
+.ftag{font-size:12px;color:var(--dim);margin-top:8px}
+.fcols{display:flex;gap:72px}
+.fcol h5{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(10,10,11,.25);margin-bottom:20px;font-weight:600}
+.fcol ul{list-style:none;display:flex;flex-direction:column;gap:13px}
+.fcol a{font-size:13px;color:var(--dim);transition:color .25s}
+.fcol a:hover{color:var(--o)}
+.fbot{display:flex;justify-content:space-between;align-items:center;padding-top:40px;border-top:1px solid var(--bd)}
+.fcopy{font-size:12px;color:rgba(10,10,11,.22)}
+.fsoc{display:flex;gap:28px}
+.fsoc a{font-size:12px;color:rgba(10,10,11,.28);transition:color .25s}
+.fsoc a:hover{color:var(--o)}
+
+/* ─── Float pill ──────────────────────── */
+.fpill{position:fixed;bottom:32px;right:32px;z-index:400;display:inline-flex;align-items:center;gap:10px;background:var(--k);color:var(--w);padding:13px 22px;border-radius:100px;font-weight:700;font-size:13px;box-shadow:0 8px 32px rgba(10,10,11,.16);transition:all .4s var(--e);opacity:0;transform:translateY(20px)}
+.fpill.on{opacity:1;transform:translateY(0)}
+.fpill:hover{background:var(--o);color:var(--k);transform:scale(1.05) translateY(-2px);box-shadow:0 14px 44px rgba(255,56,0,.3)}
+.fpdot{width:7px;height:7px;background:var(--w);border-radius:50%;animation:blink 1.8s ease-in-out infinite}
+.fpill:hover .fpdot{background:var(--k)}
+
+/* ─── Responsive ──────────────────────── */
+@media(max-width:900px){
+  .contact-grid{grid-template-columns:1fr;gap:60px}
+  .contact-left{position:static}
+  .frow{grid-template-columns:1fr}
+  .mword{font-size:clamp(40px,8.5vw,72px)}
+  nav{padding:18px 24px}nav.stuck{padding:12px 24px}.nlinks{display:none}
+  #hero,section,#who,#deliver,#plans,#proc,#work,#cta{padding-left:24px;padding-right:24px}
+  #hero{padding-bottom:64px}.hfoot{flex-direction:column;align-items:flex-start}
+  .who-inner,.del-grid,.plans-grid{grid-template-columns:1fr}
+  .svch{flex-direction:column;gap:20px}.sbody-inner{grid-template-columns:1fr}
+  .work-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto}.witem:first-child{grid-row:auto}
+  .proc-steps{grid-template-columns:1fr;gap:48px}.proc-steps::before,.proc-line{display:none}.pstep{padding:0}
+  .ft{flex-direction:column;gap:40px}.fcols{flex-wrap:wrap;gap:40px}.fbot{flex-direction:column;gap:16px;text-align:center}
+  .fpill{bottom:20px;right:20px}.work-head,.proc-head,.plans-top,.svch{flex-direction:column;gap:20px}
+  .hero-sym-bg,.cta-sym-bg{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- PROGRESS BAR -->
+<div id="pgbar"></div>
+
+<!-- CURTAIN PRELOADER -->
+<div id="curtain">
+  <div id="cl"></div><div id="cr"></div>
+  <div id="cinfo">
+    <div id="cstar">
+      <div id="cstar-spin">
+        <svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg>
+      </div>
+    </div>
+    <div id="cnum-block">
+      <div id="cnum">000</div>
+      <div id="cbar"><div id="cfill"></div></div>
+      <div id="clabel">Loading Experience</div>
+    </div>
+  </div>
+</div>
 
 <!-- CURSOR -->
-<div class="cursor-star" aria-hidden="true"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z"/></svg></div>
+<div id="cdot"></div>
+<div id="cring"></div>
+<div id="curlbl">VIEW →</div>
 
-<!-- SCROLL PROGRESS -->
-<div class="scrollbar" aria-hidden="true"><div></div></div>
+<!-- FLOAT PILL -->
+<a href="#cta" class="fpill" id="fpill"><span class="fpdot"></span>Let's Work Together</a>
 
-<!-- PRELOADER -->
-<div class="preload" id="preload" aria-hidden="true">
-  <div class="curtain l"></div>
-  <div class="curtain r"></div>
-  <div class="preload-stage">
-    <span class="cstar light" aria-hidden="true">
-      <svg class="base" viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#2A0E1C"/></svg>
-      <span class="layer r"><svg viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#8B1E3C"/></svg></span>
-      <span class="layer i"><svg viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#1D04BD"/></svg></span>
-    </span>
-    <div class="preload-count"><span>000</span><em>%</em></div>
-    <div class="preload-bar"><div></div></div>
-    <div class="preload-label">Loading BYDTRND.studio</div>
-  </div>
-</div>
-
-<!-- NAV -->
-<nav class="nav">
-  <a href="#hero" class="brand" data-cursor>
-    <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
+<!-- ════ NAV ════ -->
+<nav id="nav">
+  <a href="#hero" class="nlogo">
+    <span class="nlogo-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>
+    NX<b>GEN</b>
   </a>
-  <div class="nav-links">
-    <a href="services.html" data-cursor>Services</a>
-    <a href="#process" data-cursor>Process</a>
-  </div>
-  <a href="pricing.html" class="nav-cta" data-cursor>
-    <span class="dot"></span> What&apos;s the damage? &rarr;
-  </a>
+  <ul class="nlinks">
+    <li><a href="#svc">Services</a></li>
+    <li><a href="#plans">Pricing</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#proc">Process</a></li>
+    <li><a href="#cta">Contact</a></li>
+  </ul>
+  <a href="#cta" class="npill">Get Started →</a>
 </nav>
 
-<!-- HERO -->
-<header class="hero" id="hero">
-  <div class="hero-bgs" aria-hidden="true"></div>
+<!-- ════ HERO ════ -->
+<section id="hero">
+  <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+  <div id="mouseglow"></div>
 
-  <div class="hero-star">
-    <span class="cstar" aria-hidden="true">
-      <svg class="base" viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#120407"/></svg>
-      <span class="layer r"><svg viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#8B1E3C"/></svg></span>
-      <span class="layer i"><svg viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#1D04BD"/></svg></span>
-    </span>
+  <!-- Large decorative symbol background -->
+  <div class="hero-sym-bg" id="heroSym">
+    <svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg>
   </div>
 
-  <div class="hero-badge">
-    <span class="live"></span>
-    <span class="b-rotate" data-phrases='["AI-first studio","SEO that compounds","UGC at scale","Answer-engine ready","Async by design"]'>
-      <span>AI-first studio</span>
-    </span>
+  <div class="hbadge" id="hbadge">
+    <span class="bdot"></span>
+    <span id="typedtxt"></span><span class="typed-cur"></span>
   </div>
 
-  <h1 class="hero-h1">
-    <span class="line"><span>Marketing that&apos;s</span></span>
-    <span class="line"><span><em class="scramble" data-words="impossible|unforgettable|undeniable|irresistible">impossible</em></span></span>
-    <span class="line"><span>to scroll past.</span></span>
+  <h1 class="hhead" id="hhead">
+    <span class="hw"><span class="hwi">Make Them</span></span><br/>
+    <span class="hw"><span class="hwi">Stop</span></span><br/>
+    <span class="hw"><span class="hwi orange" id="scramword">Scrolling.</span></span>
   </h1>
 
-  <p class="hero-sub">
-    <strong>BYDTRND.studio</strong> &mdash; Beyond Trend &mdash; is an <strong>AI-first marketing studio</strong> for founders who refuse to look like everyone else. <strong>SEO + AEO</strong> that compounds. Creative that converts. No status meetings, no slide decks &mdash; just output.
-  </p>
-
-  <div class="hero-ctas">
-    <a href="contact.html" class="btn primary" data-cursor>
-      <span>Book a call</span>
-      <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </a>
-    <a href="services.html" class="btn secondary" data-cursor>
-      <span>See services</span>
-      <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-    </a>
+  <div class="hfoot" id="hfoot">
+    <p class="hdesc">We're an AI-powered marketing agency that builds strategies your audience can't ignore — and your competitors can't copy.</p>
+    <div class="hctas">
+      <a href="#cta" class="btn btn-f">Book a Free Call →</a>
+      <a href="#svc" class="btn btn-g">Explore Services</a>
+    </div>
   </div>
 
-  <div class="scroll-ind">
-    <span>Scroll</span>
-    <span class="line"></span>
-  </div>
-</header>
+  <div class="sbar"><span>Scroll</span><div class="sline"></div></div>
+</section>
 
-<!-- MARQUEE -->
-<div class="marquee" aria-hidden="true">
-  <div class="mq-row r1">
-    <span class="grp">
-      <span class="txt">AI-SEO + AEO</span><span class="dot"></span>
-      <span class="txt">Thumbnails</span><span class="dot"></span>
-      <span class="txt">UGC Reels</span><span class="dot"></span>
-      <span class="txt">Social Media</span><span class="dot"></span>
-      <span class="txt">Influencer</span><span class="dot"></span>
-    </span>
-    <span class="grp">
-      <span class="txt">AI-SEO + AEO</span><span class="dot"></span>
-      <span class="txt">Thumbnails</span><span class="dot"></span>
-      <span class="txt">UGC Reels</span><span class="dot"></span>
-      <span class="txt">Social Media</span><span class="dot"></span>
-      <span class="txt">Influencer</span><span class="dot"></span>
-    </span>
+<!-- ════ MARQUEE ════ -->
+<div class="mqwrap">
+  <div class="mqrow f">
+    <span class="mqi">AI SEO AUDIT <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">THUMBNAIL CREATION <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">UGC ADS &amp; REELS <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">NEXT-GEN AI MARKETING <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">VIRAL GROWTH <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">BRAND STRATEGY <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">AI SEO AUDIT <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">THUMBNAIL CREATION <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">UGC ADS &amp; REELS <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">NEXT-GEN AI MARKETING <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
   </div>
-</div>
-<div class="marquee" aria-hidden="true">
-  <div class="mq-row r2">
-    <span class="grp">
-      <span class="txt">Hooks that convert</span><span class="dot"></span>
-      <span class="txt">CTR engineered</span><span class="dot"></span>
-      <span class="txt">Async first</span><span class="dot"></span>
-      <span class="txt">Receipts not vibes</span><span class="dot"></span>
-    </span>
-    <span class="grp">
-      <span class="txt">Hooks that convert</span><span class="dot"></span>
-      <span class="txt">CTR engineered</span><span class="dot"></span>
-      <span class="txt">Async first</span><span class="dot"></span>
-      <span class="txt">Receipts not vibes</span><span class="dot"></span>
-    </span>
+  <div class="mqrow r">
+    <span class="mqi">SCROLL-STOPPING CREATIVES <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">DATA-DRIVEN GROWTH <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">AI-POWERED STRATEGY <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">CONTENT THAT CONVERTS <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">SCROLL-STOPPING CREATIVES <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">DATA-DRIVEN GROWTH <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">AI-POWERED STRATEGY <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
+    <span class="mqi">CONTENT THAT CONVERTS <span class="mqs"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span></span>
   </div>
 </div>
 
-<!-- SERVICES ACCORDION -->
-<section class="svcs sec-pad" id="services">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <div class="sec-eyebrow rv">(02) Services</div>
-        <h2 class="sec-title rv d1">Four engines.<br/><em>One outcome.</em></h2>
-      </div>
-      <p class="sec-sub rv d2">Pick one, stack a few, or run the whole engine. Each service is ownable solo and compounds harder when paired. Click a row to expand.</p>
-    </div>
-
-    <div class="svc-acc">
-      <div class="svc-row open">
-        <button class="svc-head" type="button" data-cursor>
-          <span class="svc-num">01</span>
-          <span class="svc-name">Full AI-SEO <em>Audit</em></span>
-          <span class="svc-toggle" aria-hidden="true"></span>
-        </button>
-        <div class="svc-body">
-          <div class="svc-body-in">
-            <div></div>
-            <p>A forensic teardown of your search surface. We map technical SEO, find content gaps, build a keyword map by intent, audit competitors and backlinks, then hand you a <strong>90-day roadmap</strong> ranked by revenue impact &mdash; not vanity. AEO entity coverage included for ChatGPT, Perplexity and AI Overviews.</p>
-            <ul class="svc-deliv">
-              <li>Technical audit (crawls, schema, CWV)</li>
-              <li>Content gap + keyword map</li>
-              <li>Competitor &amp; backlink analysis</li>
-              <li>AEO entity sweep</li>
-              <li>90-day revenue-ranked roadmap</li>
-            </ul>
-            <a href="services/seo-audit.html" class="svc-go" data-cursor>
-              <span>Read the full service</span>
-              <span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="svc-row">
-        <button class="svc-head" type="button" data-cursor>
-          <span class="svc-num">02</span>
-          <span class="svc-name">AI UGC Ads &amp; <em>Reels</em></span>
-          <span class="svc-toggle" aria-hidden="true"></span>
-        </button>
-        <div class="svc-body">
-          <div class="svc-body-in">
-            <div></div>
-            <p>Native-feel UGC at scale. AI avatar production where it serves volume, hand-picked human creators where trust matters. <strong>Hook-first scripts</strong> tested before full production. Multi-format export and weekly iteration on what's actually winning in the feed.</p>
-            <ul class="svc-deliv">
-              <li>AI avatar &amp; voice production</li>
-              <li>Hook-first performance scripts</li>
-              <li>Multi-format export (9:16, 4:5, 1:1)</li>
-              <li>Hook A/B testing protocol</li>
-              <li>Weekly creative drops</li>
-            </ul>
-            <a href="services/ugc-ads.html" class="svc-go" data-cursor>
-              <span>Read the full service</span>
-              <span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="svc-row">
-        <button class="svc-head" type="button" data-cursor>
-          <span class="svc-num">03</span>
-          <span class="svc-name">Social Media <em>Marketing</em></span>
-          <span class="svc-toggle" aria-hidden="true"></span>
-        </button>
-        <div class="svc-body">
-          <div class="svc-body-in">
-            <div></div>
-            <p>Strategy, calendar, posting and community ops &mdash; run end-to-end. AI content calendar that triangulates trends, your brand voice and intent. Growth hacking with <strong>real engagement</strong>, not bot pumps. Monthly analytics that explain what moved.</p>
-            <ul class="svc-deliv">
-              <li>AI-powered content calendar</li>
-              <li>Community management</li>
-              <li>Growth experiments &amp; loops</li>
-              <li>Full platform management</li>
-              <li>Outcome-only analytics</li>
-            </ul>
-            <a href="services/social-media.html" class="svc-go" data-cursor>
-              <span>Read the full service</span>
-              <span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="svc-row">
-        <button class="svc-head" type="button" data-cursor>
-          <span class="svc-num">04</span>
-          <span class="svc-name">Influencer <em>Marketing</em></span>
-          <span class="svc-toggle" aria-hidden="true"></span>
-        </button>
-        <div class="svc-body">
-          <div class="svc-body-in">
-            <div></div>
-            <p>End-to-end influencer ops. AI-assisted discovery and vetting (audience quality, brand fit, performance history), campaign strategy, contract support, execution monitoring, and <strong>real ROI tracking</strong> &mdash; not influencer-grade vanity stats.</p>
-            <ul class="svc-deliv">
-              <li>AI discovery + vetting</li>
-              <li>Campaign strategy &amp; briefs</li>
-              <li>Contract &amp; rights support</li>
-              <li>Execution monitoring</li>
-              <li>True ROI attribution</li>
-            </ul>
-            <a href="services/influencer.html" class="svc-go" data-cursor>
-              <span>Read the full service</span>
-              <span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CAPABILITIES -->
-<section class="caps" id="caps">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <div class="sec-eyebrow rv">(03) Capabilities</div>
-        <h2 class="sec-title rv d1">Built different,<br/><em>on purpose.</em></h2>
-      </div>
-      <p class="sec-sub rv d2">Four principles that shape every engagement. No vanity metrics, no padded promises &mdash; just how we actually work.</p>
-    </div>
-    <div class="caps-grid">
-      <div class="cap rv">
-        <div class="cap-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2 L13.5 8.5 L20 10 L13.5 11.5 L12 18 L10.5 11.5 L4 10 L10.5 8.5 Z"/>
-            <circle cx="19" cy="19" r="1.3" fill="currentColor"/>
-            <circle cx="5" cy="19" r="1.3" fill="currentColor"/>
-          </svg>
-        </div>
-        <div class="cap-l">/01</div>
-        <h3 class="cap-h">AI-First Everything</h3>
-        <p class="cap-p">Every workflow is built on AI &mdash; not bolted on. From strategy to execution, we run on tools your competitors are still discovering.</p>
-      </div>
-      <div class="cap rv d1">
-        <div class="cap-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <polyline points="12 7 12 12 15 14"/>
-            <path d="M3.5 9 A 9 9 0 0 1 12 3" stroke="currentColor" stroke-width="2.4"/>
-          </svg>
-        </div>
-        <div class="cap-l">/02</div>
-        <h3 class="cap-h">Week 1 Delivery</h3>
-        <p class="cap-p">Your first deliverable hits within 7 days of onboarding. No months-long warmup, no onboarding friction.</p>
-      </div>
-      <div class="cap rv d2">
-        <div class="cap-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="3" width="7" height="7" rx="1.5"/>
-            <rect x="14" y="3" width="7" height="7" rx="1.5"/>
-            <rect x="3" y="14" width="7" height="7" rx="1.5"/>
-            <rect x="14" y="14" width="7" height="7" rx="1.5"/>
-            <circle cx="6.5" cy="6.5" r="1" fill="currentColor"/>
-          </svg>
-        </div>
-        <div class="cap-l">/03</div>
-        <h3 class="cap-h">5 Focused Engines</h3>
-        <p class="cap-p">Five standalone services, each deep &mdash; not spread thin. Pick one or stack all five.</p>
-      </div>
-      <div class="cap rv d3">
-        <div class="cap-icon">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="9"/>
-            <path d="M3 12h18"/>
-            <path d="M12 3a14 14 0 0 1 0 18"/>
-            <path d="M12 3a14 14 0 0 0 0 18"/>
-          </svg>
-        </div>
-        <div class="cap-l">/04</div>
-        <h3 class="cap-h">Async by Design</h3>
-        <p class="cap-p">Timezone-free collaboration. Brief us, we execute, you review. Built for busy founders.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- THUMBNAIL SPOTLIGHT -->
-<section class="thumb-spot" id="thumb-spot">
-  <div class="wrap">
-    <div class="thumb-grid">
-      <div class="thumb-left">
-        <div class="ts-eyebrow rv">(&#8212;) Standalone product</div>
-        <h2 class="rv d1">Thumbnail Creator<br/><em>Pro.</em></h2>
-        <p class="ts-lead rv d2">CTR-engineered cover art for YouTube, Shorts, Reels and TikTok. <strong>Built on visual psychology</strong> &mdash; face contrast, eye direction, big-text rules, color theory. Every pack ships with A/B variants and a competitor audit baked in.</p>
-        <ul class="ts-list rv d3">
-          <li>5 thumbnails per pack</li>
-          <li>A/B variants included</li>
-          <li>Competitor audit baked in</li>
-          <li>72-hour turnaround</li>
-        </ul>
-        <a href="services/thumbnails.html" class="ts-cta rv d3" data-cursor>
-          <span>Get Thumbnails</span>
-          <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-        </a>
-      </div>
-      <div class="thumb-right rv d1">
-        <span class="tr-tag">Cover art &middot; CTR-engineered</span>
-        <img src="https://images.unsplash.com/photo-1535303311164-664fc9ec6532?w=700&q=85&auto=format&fit=crop" alt="Thumbnail Creator preview" />
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HORIZONTAL IMAGE STRIP -->
-<section class="hstrip" aria-hidden="true">
-  <div class="hstrip-track">
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1611162616475-46b635cb6868?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-    <div class="hstrip-item"><img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?w=560&h=360&q=80&auto=format&fit=crop" alt="" /></div>
-  </div>
-</section>
-
-<!-- PROCESS -->
-<section class="process sec-pad" id="process">
-  <div class="wrap">
-    <div class="sec-head">
-      <div>
-        <div class="sec-eyebrow rv">(04) Process</div>
-        <h2 class="sec-title rv d1">Five rounds.<br/><em>No slides.</em></h2>
-      </div>
-      <p class="sec-sub rv d2">Async-first. Output-only. We move at the speed of your roadmap, not a Gantt chart. No status meetings, no decks pretending to be work.</p>
-    </div>
-
-    <div class="proc-grid">
-      <div class="proc rv">
-        <div class="proc-num">01</div>
-        <div class="proc-tag">Discovery</div>
-        <h3 class="proc-h">Vibe <em>Check</em>.</h3>
-        <p class="proc-p">We get inside your brand&apos;s head. Goals, audience, what success actually means. Zero assumptions.</p>
-      </div>
-      <div class="proc rv d1">
-        <div class="proc-num">02</div>
-        <div class="proc-tag">Strategy</div>
-        <h3 class="proc-h">The <em>Blueprint</em>.</h3>
-        <p class="proc-p">90-day execution roadmap. Every channel, content format, timeline, and budget mapped before a single pixel moves.</p>
-      </div>
-      <div class="proc rv d2">
-        <div class="proc-num">03</div>
-        <div class="proc-tag">Production</div>
-        <h3 class="proc-h">Build <em>Mode</em>.</h3>
-        <p class="proc-p">Assets built in parallel: reels, SEO reports, content calendars, influencer shortlists, ad scripts. All ready before launch.</p>
-      </div>
-      <div class="proc rv d3">
-        <div class="proc-num">04</div>
-        <div class="proc-tag">Launch</div>
-        <h3 class="proc-h">Ship <em>It</em>.</h3>
-        <p class="proc-p">Full deployment. Posts live, ads activated, campaigns firing. Everything goes at once.</p>
-      </div>
-      <div class="proc rv d4">
-        <div class="proc-num">05</div>
-        <div class="proc-tag">Growth</div>
-        <h3 class="proc-h">Level <em>Up</em>.</h3>
-        <p class="proc-p">Track. Tweak. Repeat. We optimize until your goals are hit &mdash; then raise the bar.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- MANIFESTO -->
-<div class="manifesto" aria-hidden="true">
-  <div class="mq-row r1">
-    <span class="grp">
-      <span class="txt a">No status meetings</span><span class="dot"></span>
-      <span class="txt b">Output not decks</span><span class="dot"></span>
-      <span class="txt a">Receipts not vibes</span><span class="dot"></span>
-      <span class="txt b">Async first</span><span class="dot"></span>
-    </span>
-    <span class="grp">
-      <span class="txt a">No status meetings</span><span class="dot"></span>
-      <span class="txt b">Output not decks</span><span class="dot"></span>
-      <span class="txt a">Receipts not vibes</span><span class="dot"></span>
-      <span class="txt b">Async first</span><span class="dot"></span>
-    </span>
-  </div>
-</div>
-<div class="manifesto" aria-hidden="true" style="border-top:0;">
-  <div class="mq-row r2">
-    <span class="grp">
-      <span class="txt b">Kill what&apos;s flat</span><span class="dot"></span>
-      <span class="txt a">Double down on winners</span><span class="dot"></span>
-      <span class="txt b">Native, not produced</span><span class="dot"></span>
-      <span class="txt a">Engineered for CTR</span><span class="dot"></span>
-    </span>
-    <span class="grp">
-      <span class="txt b">Kill what&apos;s flat</span><span class="dot"></span>
-      <span class="txt a">Double down on winners</span><span class="dot"></span>
-      <span class="txt b">Native, not produced</span><span class="dot"></span>
-      <span class="txt a">Engineered for CTR</span><span class="dot"></span>
-    </span>
+<!-- ════ IMAGE STRIP ════ -->
+<div class="hstrip">
+  <div class="hstrip-inner">
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1633613286991-611fe299c4be?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1633613286991-611fe299c4be?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1614850523459-c2f4c699c52e?w=380&q=80&auto=format&fit=crop" alt=""/>
+    <img class="hstrip-img" src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?w=380&q=80&auto=format&fit=crop" alt=""/>
   </div>
 </div>
 
-<!-- CTA -->
-<section class="cta">
-  <div class="cta-orb" aria-hidden="true"></div>
-  <div class="cta-eyebrow rv">(05) &mdash; Let&apos;s build</div>
-  <h2 class="cta-title rv d1">Make your brand<br/><em>impossible</em> to scroll past.</h2>
-  <div class="cta-actions rv d2">
-    <a href="contact.html" class="btn primary" data-cursor>
-      <span>Book a call</span>
-      <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </a>
-    <a href="services.html" class="btn secondary" data-cursor>
-      <span>See all services</span>
-      <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-    </a>
+<!-- ════ WHO WE ARE ════ -->
+<div id="who">
+  <div class="who-inner">
+    <div class="rv">
+      <div class="who-tag">
+        <span class="who-tag-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>
+        The Agency
+      </div>
+      <h2 class="who-title">Not your<br/>average<br/><span style="color:var(--o)">agency.</span></h2>
+    </div>
+    <div class="who-right rv d2">
+      <p class="who-p">We're a <b>next-generation AI marketing agency</b> built for brands that are done blending in. Every strategy, every creative, every decision runs on the latest AI — not as a gimmick, but as the engine.</p>
+      <p class="who-p">We don't do slow. We don't do average. We move at startup speed and build marketing that <b>actually hits</b> — measurable, scalable, impossible to ignore.</p>
+      <a href="#cta" class="who-cta">Start a conversation <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ════ SERVICES ════ -->
+<section id="svc">
+  <div class="svch rv">
+    <div>
+      <div class="lbl"><span class="lbl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>What We Do</div>
+      <h2 class="head">Services That<br/><span class="o">Hit Different</span></h2>
+    </div>
+    <p class="svch-r">Four core services. Every one AI-powered, built to deliver results your analytics will actually care about.</p>
+  </div>
+  <div class="slist" id="slist">
+
+    <div class="sitem rv d1">
+      <div class="srow">
+        <span class="sn">01</span>
+        <h3 class="stitle">Full AI-SEO Audit</h3>
+        <div class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.35-4.35"/><path d="M11 8v6M8 11h6"/></svg></div>
+        <span class="sarr">+</span>
+      </div>
+      <div class="sbody"><div class="sbody-inner">
+        <p class="sdesc">Deep AI-powered analysis of your entire online presence — technical health, keyword gaps, competitor positioning, content opportunities, and backlink profile. We don't hand you a report. We hand you a roadmap.</p>
+        <div class="sdels">
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Complete technical SEO crawl</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Keyword gap + opportunity mapping</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Competitor positioning analysis</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Content audit &amp; gap identification</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Prioritised action roadmap</span>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="sitem rv d2">
+      <div class="srow">
+        <span class="sn">02</span>
+        <h3 class="stitle">Thumbnail Creator Like a Pro</h3>
+        <div class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2.5"/><path d="m9.5 9 5 3-5 3V9z" fill="currentColor" stroke="none"/><path d="M8 21h8"/></svg></div>
+        <span class="sarr">+</span>
+      </div>
+      <div class="sbody"><div class="sbody-inner">
+        <p class="sdesc">AI-designed thumbnails engineered to stop the scroll and drive clicks. We combine visual psychology, trend analysis, and your brand identity to create frames that demand attention. Every pixel intentional.</p>
+        <div class="sdels">
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>AI-generated design concepts</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Click-psychology frameworks</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Platform-specific optimisation</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>A/B variant sets for testing</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Brand guideline alignment</span>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="sitem rv d3">
+      <div class="srow">
+        <span class="sn">03</span>
+        <h3 class="stitle">AI UGC Ads &amp; Reels</h3>
+        <div class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 10l4.553-2.276A1 1 0 0121 8.723v6.554a1 1 0 01-1.447.894L15 14"/><rect x="3" y="7" width="12" height="10" rx="2"/><circle cx="9" cy="12" r="1.5" fill="currentColor" stroke="none"/></svg></div>
+        <span class="sarr">+</span>
+      </div>
+      <div class="sbody"><div class="sbody-inner">
+        <p class="sdesc">AI-powered UGC that looks authentic, converts like crazy, and scales without a content army. We script, generate, and deliver ads and reels that native audiences trust — because they feel real.</p>
+        <div class="sdels">
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>AI video &amp; UGC generation</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Conversion-optimised scripting</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Platform-native formatting</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Multi-variant ad creative sets</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Hook testing &amp; optimisation</span>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="sitem rv d4">
+      <div class="srow">
+        <span class="sn">04</span>
+        <h3 class="stitle">Next-Gen AI Marketing</h3>
+        <div class="sico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <span class="sarr">+</span>
+      </div>
+      <div class="sbody"><div class="sbody-inner">
+        <p class="sdesc">Full-stack marketing strategy powered entirely by AI. From content calendars and organic growth to paid ads and automation. One team, one engine, end-to-end execution. You grow. We handle it.</p>
+        <div class="sdels">
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Full-funnel growth strategy</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>AI content calendar &amp; execution</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Paid ad management &amp; scaling</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Marketing automation setup</span>
+          <span class="sdel"><span class="sdel-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Monthly performance reporting</span>
+        </div>
+      </div></div>
+    </div>
+
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ════ OUTCOMES ════ -->
+<div id="deliver">
+  <div class="del-head rv">
+    <div class="lbl"><span class="lbl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Outcomes</div>
+    <h2 class="head" style="text-align:center">What You Actually<br/><span class="o">Walk Away With</span></h2>
+  </div>
+  <div class="del-grid">
+    <div class="del-card rv d1">
+      <div class="del-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+      <div class="del-title">Search Rankings That Stick</div>
+      <p class="del-desc">A prioritised SEO action plan that fixes what's costing you traffic and builds a foundation that compounds over time — not just a quick bump.</p>
+    </div>
+    <div class="del-card rv d2">
+      <div class="del-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div class="del-title">Creatives That Stop Scrolls</div>
+      <p class="del-desc">Thumbnails, ads, and reels engineered for maximum attention and click-through. Every frame designed with intention — not just aesthetics.</p>
+    </div>
+    <div class="del-card rv d3">
+      <div class="del-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <div class="del-title">Ads That Actually Convert</div>
+      <p class="del-desc">UGC and performance ads built with AI that feel native to the platform. Authentic enough to trust, optimised enough to scale.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ════ PACKAGES ════ -->
+<section id="plans">
+  <div class="plans-top rv">
+    <div>
+      <div class="lbl"><span class="lbl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Engagements</div>
+      <h2 class="head">Choose How We<br/><span class="o">Work Together</span></h2>
+    </div>
+    <p class="plans-sub">Every engagement is fully AI-powered. Clear scope, zero lock-in, real outcomes.</p>
+  </div>
+  <div class="plans-grid">
+
+    <div class="plan rv d1">
+      <div class="plan-type">One-time Project</div>
+      <div class="plan-name">Audit &amp;<br/>Roadmap</div>
+      <div class="plan-div"></div>
+      <ul class="plan-list">
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Full technical SEO crawl</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Keyword gap + opportunity mapping</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Competitor positioning analysis</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Content audit &amp; gap report</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Prioritised action roadmap</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>60-min live strategy walkthrough</li>
+      </ul>
+      <a href="#cta" class="plan-link">Book a Call →</a>
+    </div>
+
+    <div class="plan feat rv d2">
+      <div class="plan-badge">Most Popular</div>
+      <div class="plan-type">One-time Project</div>
+      <div class="plan-name">Creative<br/>Launch Pack</div>
+      <div class="plan-div"></div>
+      <ul class="plan-list">
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>20 AI-designed thumbnail variants</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>5 UGC ad creatives (scripted + generated)</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>3 short-form reels &amp; hooks</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Brand visual direction guide</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>A/B testing framework</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Platform-native exports &amp; specs</li>
+      </ul>
+      <a href="#cta" class="plan-link">Start This Project →</a>
+    </div>
+
+    <div class="plan rv d3">
+      <div class="plan-type">Monthly Retainer</div>
+      <div class="plan-name">Scale<br/>Partner</div>
+      <div class="plan-div"></div>
+      <ul class="plan-list">
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Full AI marketing strategy</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Monthly content calendar &amp; execution</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Paid ad creation + management</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Ongoing SEO implementation</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Weekly creative drops</li>
+        <li><span class="pl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Monthly performance review call</li>
+      </ul>
+      <a href="#cta" class="plan-link">Let's Talk →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ PROCESS ════ -->
+<section id="proc">
+  <div class="proc-head rv">
+    <div>
+      <div class="lbl"><span class="lbl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>How It Works</div>
+      <h2 class="head">Three Steps.<br/><span class="o">Wild Results.</span></h2>
+    </div>
+    <p class="proc-sub">We move fast, stay transparent, and don't stop until the numbers move.</p>
+  </div>
+  <div class="proc-steps" id="procSteps">
+    <div class="proc-line" id="procLine"></div>
+    <div class="pstep rv d1" id="ps1"><div class="pnum">01</div><div class="ptitle">Brief</div><p class="pdesc">Deep dive into your brand, goals, audience, and competitors. No generic intake forms — real conversations, real clarity.</p></div>
+    <div class="pstep rv d2" id="ps2"><div class="pnum">02</div><div class="ptitle">Build</div><p class="pdesc">Our AI stack + creative team builds your full strategy and content at a pace traditional agencies can't match. You stay in the loop, always.</p></div>
+    <div class="pstep rv d3" id="ps3"><div class="pnum">03</div><div class="ptitle">Scale</div><p class="pdesc">Launch, test, optimise, repeat. Real data guides every decision. We scale what works and cut what doesn't — no ego, just results.</p></div>
+  </div>
+</section>
+
+<!-- ════ WORK ════ -->
+<section id="work">
+  <div class="work-head rv">
+    <div>
+      <div class="lbl"><span class="lbl-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>Creative Direction</div>
+      <h2 class="head">The Kind of<br/><span class="o">Work We Do</span></h2>
+    </div>
+    <a href="#cta" class="btn btn-f">Start a Project →</a>
+  </div>
+  <div class="work-grid">
+    <div class="witem rv"><img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80&auto=format&fit=crop" alt=""/><div class="wover"><div class="wcat">SEO &amp; Content</div><div class="wtype">Technical SEO Architecture</div></div></div>
+    <div class="witem rv d1"><img src="saudi-clasico-thumbnail.png" alt="FanCode RED Saudi Clasico Thumbnail"/><div class="wover"><div class="wcat">Thumbnail Design</div><div class="wtype">Click-Optimised Creative</div></div></div>
+    <div class="witem rv d2"><img src="https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=500&q=80&auto=format&fit=crop" alt=""/><div class="wover"><div class="wcat">UGC Ads</div><div class="wtype">AI-Generated Performance Ads</div></div></div>
+    <div class="witem rv d1"><img src="https://images.unsplash.com/photo-1579547621113-e4bb2a19bdd6?w=500&q=80&auto=format&fit=crop" alt=""/><div class="wover"><div class="wcat">AI Marketing</div><div class="wtype">Full-Funnel Campaign</div></div></div>
+    <div class="witem rv d2"><img src="https://images.unsplash.com/photo-1633613286991-611fe299c4be?w=500&q=80&auto=format&fit=crop" alt=""/><div class="wover"><div class="wcat">Reels &amp; Short-Form</div><div class="wtype">Platform-Native Video Strategy</div></div></div>
+  </div>
+</section>
+
+<!-- ════ MANIFESTO ════ -->
+<div class="mfesto" aria-hidden="true">
+  <div class="mfesto-row fa">
+    <span class="mword">WE DON'T</span><span class="mword o">DO</span><span class="mword">AVERAGE.</span><span class="mword o">WE</span><span class="mword">BUILD</span><span class="mword o">WHAT</span><span class="mword">HITS.</span>
+    <span class="mword">WE DON'T</span><span class="mword o">DO</span><span class="mword">AVERAGE.</span><span class="mword o">WE</span><span class="mword">BUILD</span><span class="mword o">WHAT</span><span class="mword">HITS.</span>
+  </div>
+  <div class="mfesto-row fb">
+    <span class="mword">AI.</span><span class="mword o">SPEED.</span><span class="mword">RESULTS.</span><span class="mword o">NO</span><span class="mword">EXCUSES.</span><span class="mword o">JUST</span><span class="mword">GROWTH.</span>
+    <span class="mword">AI.</span><span class="mword o">SPEED.</span><span class="mword">RESULTS.</span><span class="mword o">NO</span><span class="mword">EXCUSES.</span><span class="mword o">JUST</span><span class="mword">GROWTH.</span>
+  </div>
+</div>
+
+<!-- ════ CONTACT ════ -->
+<section id="cta">
+  <div class="cta-sym-bg"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></div>
+  <div class="contact-grid">
+
+    <div class="contact-left rv">
+      <div class="ctag">
+        <span class="ctag-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>
+        Let's Talk
+      </div>
+      <h2 class="ctitle">Ready to<br/>Make<br/><span style="color:var(--o)">Noise?</span></h2>
+      <p class="cnote2">No pitch decks. No 6-week onboarding. Just a real conversation about your brand — and what's possible when AI does the heavy lifting.</p>
+      <div class="cinfo2">
+        <div class="ci-row"><div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>hello@nxgen.agency</div>
+        <div class="ci-row"><div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>We reply within 24 hours</div>
+        <div class="ci-row"><div class="ci-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>Global — fully remote</div>
+      </div>
+    </div>
+
+    <div class="rv d2">
+      <form class="cform" id="cform" novalidate>
+        <div class="frow">
+          <div class="fgroup" id="fg-name"><label for="cf-name">Your Name</label><input type="text" id="cf-name" autocomplete="name"/></div>
+          <div class="fgroup" id="fg-email"><label for="cf-email">Email Address</label><input type="email" id="cf-email" autocomplete="email"/></div>
+        </div>
+        <div class="fgroup" id="fg-brand"><label for="cf-brand">Brand / Company</label><input type="text" id="cf-brand"/></div>
+        <div class="fgroup" id="fg-svc">
+          <label for="cf-svc">I'm Interested In…</label>
+          <select id="cf-svc">
+            <option value="" disabled selected></option>
+            <option>Full AI-SEO Audit</option>
+            <option>Thumbnail Creator Like a Pro</option>
+            <option>AI UGC Ads &amp; Reels</option>
+            <option>Next-Gen AI Marketing</option>
+            <option>Multiple Services</option>
+            <option>Not Sure Yet — Let's Talk</option>
+          </select>
+        </div>
+        <div class="fgroup" id="fg-msg"><label for="cf-msg">Tell Us About Your Brand</label><textarea id="cf-msg"></textarea></div>
+        <button type="submit" class="sbtn">Send It →</button>
+        <p class="fnote">We'll reply within 24 hours. No spam, ever.</p>
+      </form>
+      <div class="smsg" id="smsg">
+        <div class="smsg-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h4>Message Received.</h4>
+        <p>We'll be in your inbox within 24 hours. Watch this space — things are about to get interesting.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
 <footer>
-  <div class="foot-grid">
-    <div class="foot-brand">
-      <a href="#hero" class="brand" data-cursor>
-        <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
-      </a>
-      <p>Beyond Trend &mdash; AI-first marketing for brands that refuse to look like everyone else.</p>
+  <div class="ft">
+    <div>
+      <div class="flogo">
+        <span class="flogo-sym"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 2 C52 28 72 48 98 50 C72 52 52 72 50 98 C48 72 28 52 2 50 C28 48 48 28 50 2 Z"/></svg></span>
+        NX<b>GEN</b>
+      </div>
+      <div class="ftag">Your Next-Gen AI Powered Marketing Agency</div>
     </div>
-    <div class="foot-col">
-      <h6>Services</h6>
-      <ul>
-        <li><a href="services/seo-audit.html" data-cursor>SEO Audit</a></li>
-        <li><a href="services/thumbnails.html" data-cursor>Thumbnails</a></li>
-        <li><a href="services/ugc-ads.html" data-cursor>UGC &amp; Reels</a></li>
-        <li><a href="services/social-media.html" data-cursor>Social Media</a></li>
-        <li><a href="services/influencer.html" data-cursor>Influencer</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h6>Studio</h6>
-      <ul>
-        <li><a href="services.html" data-cursor>All services</a></li>
-        <li><a href="#process" data-cursor>Process</a></li>
-        <li><a href="contact.html" data-cursor>Contact</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h6>Connect</h6>
-      <ul>
-        <li><a href="mailto:hello@bydtrnd.studio" data-cursor>hello@bydtrnd.studio</a></li>
-        <li><a href="#" data-cursor>Instagram &rarr;</a></li>
-        <li><a href="#" data-cursor>X / Twitter &rarr;</a></li>
-        <li><a href="#" data-cursor>LinkedIn &rarr;</a></li>
-      </ul>
+    <div class="fcols">
+      <div class="fcol"><h5>Services</h5><ul><li><a href="#svc">AI SEO Audit</a></li><li><a href="#svc">Thumbnail Creator</a></li><li><a href="#svc">UGC Ads &amp; Reels</a></li><li><a href="#svc">AI Marketing</a></li></ul></div>
+      <div class="fcol"><h5>Company</h5><ul><li><a href="#who">About</a></li><li><a href="#work">Work</a></li><li><a href="#proc">Process</a></li><li><a href="#cta">Contact</a></li></ul></div>
+      <div class="fcol"><h5>Socials</h5><ul><li><a href="#">Instagram</a></li><li><a href="#">Twitter / X</a></li><li><a href="#">LinkedIn</a></li><li><a href="#">YouTube</a></li></ul></div>
     </div>
   </div>
-  <div class="foot-mark" aria-hidden="true">
-    <div class="foot-mark-track">
-      <span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span>
-    </div>
-  </div>
-  <div class="foot-bottom">
-    <span>&copy; 2026 BYDTRND.studio &middot; Beyond Trend. All rights reserved.</span>
-    <span>Made with care, in the dark.</span>
+  <div class="fbot">
+    <div class="fcopy">© 2026 NXGEN Agency. All rights reserved.</div>
+    <div class="fsoc"><a href="#">Privacy</a><a href="#">Terms</a><a href="mailto:hello@nxgen.agency">hello@nxgen.agency</a></div>
   </div>
 </footer>
 
-<!-- FLOAT PILL -->
-<a href="contact.html" class="fpill" id="fpill" data-cursor>
-  <span class="fp-dot"></span>
-  <span class="fp-txt">Book a call</span>
-  <span class="fp-arr">&rarr;</span>
-</a>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+"use strict";
+const $  = s => document.querySelector(s);
+const $$ = s => document.querySelectorAll(s);
+const ease = 'cubic-bezier(.16,1,.3,1)';
 
-<!-- Libraries -->
-<script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
-<script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-<script src="nxgen-v3.js"></script>
+/* ── TEXT SCRAMBLE ────────────────────── */
+function scramble(el, word, delay){
+  const chars='ABCDEFGHIJKLMNOPQRSTUVWXYZ!@#&*?';
+  let i=0, max=word.length*7;
+  setTimeout(()=>{
+    const iv=setInterval(()=>{
+      el.textContent=word.split('').map((ch,idx)=>{
+        if(ch===' ') return ' ';
+        if(idx<Math.floor(i/7)) return ch;
+        return chars[Math.floor(Math.random()*chars.length)];
+      }).join('');
+      i++;
+      if(i>max){clearInterval(iv);el.textContent=word}
+    },30);
+  },delay||0);
+}
+
+/* ── TYPED BADGE ──────────────────────── */
+const badgePhrases=['Next-Gen AI Marketing','Built to Go Viral','AI-First. Always.','Not Your Average Agency'];
+let bIdx=0;
+function typeBadge(phrase,el,cb){
+  el.textContent='';let i=0;
+  const iv=setInterval(()=>{
+    el.textContent+=phrase[i++];
+    if(i>=phrase.length){clearInterval(iv);if(cb)setTimeout(cb,1900)}
+  },50);
+}
+function deleteBadge(el,cb){
+  const iv=setInterval(()=>{
+    if(!el.textContent.length){clearInterval(iv);if(cb)cb();return}
+    el.textContent=el.textContent.slice(0,-1);
+  },28);
+}
+function cycleBadge(){
+  const el=$('#typedtxt');if(!el)return;
+  bIdx=(bIdx+1)%badgePhrases.length;
+  deleteBadge(el,()=>typeBadge(badgePhrases[bIdx],el,cycleBadge));
+}
+
+/* ── CURTAIN PRELOADER — SYMBOL FIRST ─── */
+const cstar=$('#cstar'), cnumBlock=$('#cnum-block');
+const numEl=$('#cnum'), fill=$('#cfill'), curtain=$('#curtain');
+
+// Step 1: Symbol appears
+setTimeout(()=>{
+  cstar.classList.add('vis');
+  setTimeout(()=>cnumBlock.classList.add('vis'),320);
+},180);
+
+// Step 2: Count 000 → 100
+let pct=0;
+const iv=setInterval(()=>{
+  pct+=Math.random()*9+1;
+  if(pct>=100){
+    pct=100;clearInterval(iv);
+    numEl.textContent='100';fill.style.width='100%';
+    // Step 3: symbol exit → curtains open
+    setTimeout(()=>{
+      cstar.classList.add('exit');
+      setTimeout(openCurtain,380);
+    },340);
+  }
+  numEl.textContent=String(Math.floor(pct)).padStart(3,'0');
+  fill.style.width=pct+'%';
+},72);
+
+function openCurtain(){
+  curtain.classList.add('open');
+  curtain.addEventListener('transitionend',()=>{
+    curtain.style.pointerEvents='none';
+    $$('.orb').forEach((o,i)=>setTimeout(()=>o.style.opacity='1',i*160));
+    $('#heroSym').classList.add('on');
+    heroIn();
+  },{once:true});
+}
+
+/* ── HERO IN ──────────────────────────── */
+function heroIn(){
+  $$('.hwi').forEach((w,i)=>{
+    setTimeout(()=>{
+      w.style.transition=`transform 1.05s ${ease}, opacity .9s ease`;
+      w.style.transform='translateY(0)';w.style.opacity='1';
+    },80+i*130);
+  });
+  setTimeout(()=>{
+    const b=$('#hbadge');
+    b.style.transition=`all .9s ${ease}`;
+    b.style.opacity='1';b.style.transform='translateY(0)';
+    typeBadge(badgePhrases[0],$('#typedtxt'),cycleBadge);
+  },480);
+  setTimeout(()=>{
+    const f=$('#hfoot');
+    f.style.transition=`all .9s ${ease}`;
+    f.style.opacity='1';f.style.transform='translateY(0)';
+  },660);
+  // Cycling scramble words
+  const words=['Scrolling.','Competing.','Sleeping.'];
+  let wi=0;
+  function nextWord(){
+    scramble($('#scramword'),words[wi%words.length]);
+    wi++;setTimeout(nextWord,4000);
+  }
+  setTimeout(nextWord,920);
+}
+
+/* ── SCROLL PROGRESS ──────────────────── */
+const pgbar=$('#pgbar');
+window.addEventListener('scroll',()=>{
+  const total=document.documentElement.scrollHeight-innerHeight;
+  pgbar.style.width=(scrollY/total*100)+'%';
+  $('#nav').classList.toggle('stuck',scrollY>40);
+  $('#fpill').classList.toggle('on',scrollY>600);
+},{passive:true});
+
+/* ── CURSOR ───────────────────────────── */
+const dot=$('#cdot'),ring=$('#cring'),curlbl=$('#curlbl');
+let mx=-999,my=-999,rx=-999,ry=-999;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  curlbl.style.left=mx+'px';curlbl.style.top=my+'px';
+});
+(function raf(){
+  dot.style.left=mx+'px';dot.style.top=my+'px';
+  rx+=(mx-rx)*.10;ry+=(my-ry)*.10;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(raf);
+})();
+$$('a,button,.sitem,.srow,.del-card,.plan').forEach(el=>{
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+$$('.witem,.hstrip-img').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{document.body.classList.add('view');document.body.classList.remove('hov')});
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('view'));
+});
+
+/* ── MOUSE GLOW ───────────────────────── */
+const mg=$('#mouseglow');
+$('#hero').addEventListener('mousemove',e=>{mg.style.left=e.clientX+'px';mg.style.top=e.clientY+'px'});
+
+/* ── SCROLL REVEAL ────────────────────── */
+const ro=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');ro.unobserve(e.target)}});
+},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+$$('.rv').forEach(el=>ro.observe(el));
+
+/* ── SERVICE ACCORDION ────────────────── */
+$$('.srow').forEach(row=>{
+  row.addEventListener('click',()=>{
+    const item=row.parentElement, isOpen=item.classList.contains('open');
+    $$('.sitem').forEach(s=>s.classList.remove('open'));
+    if(!isOpen)item.classList.add('open');
+  });
+});
+
+/* ── PROCESS LINE ─────────────────────── */
+const procIO=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('drawn');
+      [1,2,3].forEach((n,i)=>setTimeout(()=>{const s=document.getElementById('ps'+n);if(s)s.classList.add('lit')},400+i*300));
+      procIO.unobserve(e.target);
+    }
+  });
+},{threshold:.4});
+const ps=$('#procSteps');if(ps)procIO.observe(ps);
+
+/* ── 3D TILT ──────────────────────────── */
+$$('.del-card,.plan,.witem').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(900px) rotateX(${-y*5}deg) rotateY(${x*5}deg) translateZ(6px)`;
+    card.style.transition='transform .1s ease';
+  });
+  card.addEventListener('mouseleave',()=>{card.style.transform='';card.style.transition=`transform .5s ${ease}`});
+});
+
+/* ── MAGNETIC BUTTONS ─────────────────── */
+$$('.btn-f,.npill,.fpill,.sbtn').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.2}px,${(e.clientY-r.top-r.height/2)*.2}px) scale(1.05)`;
+  });
+  btn.addEventListener('mouseleave',()=>btn.style.transform='');
+});
+
+/* ── LENIS SMOOTH SCROLL ──────────────── */
+if(window.Lenis){
+  const lenis=new Lenis({duration:1.35,easing:t=>Math.min(1,1.001-Math.pow(2,-10*t)),orientation:'vertical',smoothWheel:true,wheelMultiplier:.88,touchMultiplier:1.4});
+  function lenisRaf(t){lenis.raf(t);requestAnimationFrame(lenisRaf)}
+  requestAnimationFrame(lenisRaf);
+  if(window.ScrollTrigger) lenis.on('scroll',ScrollTrigger.update);
+}
+
+/* ── CONTACT FORM ─────────────────────── */
+$$('.fgroup input,.fgroup select,.fgroup textarea').forEach(el=>{
+  const fg=el.closest('.fgroup');
+  el.addEventListener('focus',()=>fg.classList.add('active'));
+  el.addEventListener('blur',()=>{
+    fg.classList.remove('active');
+    fg.classList.toggle('filled',!!(el.value&&el.value.trim()));
+  });
+  el.addEventListener('change',()=>fg.classList.toggle('filled',!!el.value));
+  el.addEventListener('mouseenter',()=>document.body.classList.add('hov'));
+  el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
+});
+const cform=$('#cform'),smsg=$('#smsg');
+if(cform) cform.addEventListener('submit',e=>{
+  e.preventDefault();
+  cform.style.cssText+=`;opacity:0;transform:translateY(-14px);transition:all .45s ${ease}`;
+  setTimeout(()=>{cform.style.display='none';smsg.classList.add('show')},440);
+});
+
+/* ── GSAP ─────────────────────────────── */
+if(window.gsap&&window.ScrollTrigger){
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.to('.o1',{yPercent:-26,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:1.5}});
+  gsap.to('.o2',{yPercent:20,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:2}});
+  gsap.to('.hhead',{yPercent:-10,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:1.2}});
+  gsap.to('.hero-sym-bg svg',{rotation:45,ease:'none',scrollTrigger:{trigger:'#hero',start:'top top',end:'bottom top',scrub:2}});
+  gsap.utils.toArray('.sitem').forEach((el,i)=>{
+    gsap.from(el,{x:-40,opacity:0,duration:.8,delay:i*.08,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%',toggleActions:'play none none none'}});
+  });
+  gsap.utils.toArray('.pstep').forEach((el,i)=>{
+    gsap.from(el,{y:50,opacity:0,duration:.9,delay:i*.18,ease:'power3.out',scrollTrigger:{trigger:'#proc',start:'top 75%',toggleActions:'play none none none'}});
+  });
+  gsap.utils.toArray('.plan').forEach((el,i)=>{
+    gsap.from(el,{y:60,opacity:0,duration:.9,delay:i*.14,ease:'power3.out',scrollTrigger:{trigger:'#plans',start:'top 78%',toggleActions:'play none none none'}});
+  });
+  gsap.utils.toArray('.del-card').forEach((el,i)=>{
+    gsap.from(el,{y:44,opacity:0,duration:.85,delay:i*.15,ease:'power3.out',scrollTrigger:{trigger:'#deliver',start:'top 80%',toggleActions:'play none none none'}});
+  });
+  gsap.utils.toArray('.witem').forEach((el,i)=>{
+    gsap.from(el,{scale:.96,opacity:0,duration:.9,delay:i*.09,ease:'power3.out',scrollTrigger:{trigger:'#work',start:'top 80%',toggleActions:'play none none none'}});
+  });
+  gsap.utils.toArray('.head').forEach(h=>{
+    gsap.from(h,{yPercent:18,opacity:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:h,start:'top 88%',toggleActions:'play none none none'}});
+  });
+  gsap.to('.hstrip-inner',{x:'-3%',ease:'none',scrollTrigger:{trigger:'.hstrip',start:'top bottom',end:'bottom top',scrub:1}});
+  gsap.to('.mfesto-row.fa',{x:'-2%',ease:'none',scrollTrigger:{trigger:'.mfesto',start:'top bottom',end:'bottom top',scrub:1.5}});
+  gsap.to('.mfesto-row.fb',{x:'2%',ease:'none',scrollTrigger:{trigger:'.mfesto',start:'top bottom',end:'bottom top',scrub:1.2}});
+  // Slowly rotate the CTA bg symbol on scroll
+  gsap.to('.cta-sym-bg svg',{rotation:60,ease:'none',scrollTrigger:{trigger:'#cta',start:'top bottom',end:'bottom top',scrub:3}});
+  gsap.utils.toArray('#cform .fgroup, #cform .frow, #cform .sbtn, #cform .fnote').forEach((el,i)=>{
+    gsap.from(el,{y:28,opacity:0,duration:.75,delay:i*.08,ease:'power3.out',scrollTrigger:{trigger:'#cta',start:'top 78%',toggleActions:'play none none none'}});
+  });
+}
+
+})();
+</script>
 </body>
 </html>
