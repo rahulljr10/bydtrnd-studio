@@ -1,6 +1,6 @@
 /* ============================================================
-   NXGEN v3 — Behaviors
-   - Preloader counter + curtains
+   BYDTRND — Behaviors
+   - Preloader counter + curtains (homepage only)
    - Lenis smooth scroll (lerp 0.08)
    - Custom cursor with RAF lerp (star shape, mix-blend-mode:difference)
    - Scroll progress
@@ -17,26 +17,40 @@
    ============================================================ */
 document.documentElement.classList.remove('no-js');
 
-/* ---------- Preloader ---------- */
+/* ---------- Preloader — homepage only ---------- */
 (function(){
   const pre = document.querySelector('.preload');
   if (!pre) return;
 
-  // NXGEN_v3.html only: skip the curtain animation when the user
-  // arrived from another page (document.referrer is non-empty) — e.g.
-  // navigating back from a sub-page. Fresh opens (address bar /
-  // bookmark / new tab) have an empty referrer and still play the
-  // full preloader. Sub-pages keep their normal preloader behavior.
-  const isHome = /(?:^|\/)NXGEN_v3\.html$/.test(location.pathname) ||
+  // Only run the full animation on the homepage (body.home).
+  // All other pages don't include the preloader HTML at all,
+  // but this guard is a safety net in case they ever do.
+  const isHome = document.body.classList.contains('home') ||
                  location.pathname === '/' ||
-                 location.pathname.endsWith('/');
-  if (isHome && document.referrer){
+                 /(?:^|\/)index\.html$/.test(location.pathname);
+
+  if (!isHome) {
+    // Not homepage — hide immediately, no animation
     pre.classList.add('done');
     document.body.classList.add('ready');
     pre.style.display = 'none';
     return;
   }
 
+  // Homepage: skip curtain animation when navigating back from sub-pages
+  if (document.referrer) {
+    try {
+      const ref = new URL(document.referrer);
+      if (ref.hostname === location.hostname) {
+        pre.classList.add('done');
+        document.body.classList.add('ready');
+        pre.style.display = 'none';
+        return;
+      }
+    } catch(e) {}
+  }
+
+  // Fresh homepage visit — run full preloader
   const count = pre.querySelector('.preload-count > span');
   const bar = pre.querySelector('.preload-bar > div');
   const dur = 1500;
@@ -69,9 +83,7 @@ document.documentElement.classList.remove('no-js');
   });
   function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
   requestAnimationFrame(raf);
-  // expose for anchor scrolling
   window.__lenis = lenis;
-  // bridge to GSAP ScrollTrigger
   if (typeof ScrollTrigger !== 'undefined'){
     lenis.on('scroll', ScrollTrigger.update);
   }
@@ -87,12 +99,10 @@ document.documentElement.classList.remove('no-js');
     mx = e.clientX; my = e.clientY;
     star.style.transform = `translate3d(${mx}px, ${my}px, 0) translate(-50%,-50%)`;
   });
-  // hover state
   document.querySelectorAll('a, button, .svc-head, .svc-card, .price-card, .faq-q, [data-cursor]').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('hover'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('hover'));
   });
-  // click flash
   addEventListener('mousedown', () => document.body.classList.add('clicking'));
   addEventListener('mouseup', () => document.body.classList.remove('clicking'));
 })();
@@ -199,7 +209,6 @@ document.documentElement.classList.remove('no-js');
       }
       requestAnimationFrame(frame);
     }
-    // initial set after preloader
     setTimeout(() => set(list[0]), 1400);
     setInterval(() => {
       idx = (idx + 1) % list.length;
@@ -215,7 +224,6 @@ document.documentElement.classList.remove('no-js');
     if (!head) return;
     head.addEventListener('click', () => {
       const wasOpen = row.classList.contains('open');
-      // single-open accordion
       row.parentElement.querySelectorAll('.svc-row.open').forEach(r => r.classList.remove('open'));
       if (!wasOpen) row.classList.add('open');
     });
@@ -299,7 +307,6 @@ document.documentElement.classList.remove('no-js');
     input.addEventListener('blur', check);
     check();
   });
-  // Demo submit
   const form = document.querySelector('.form');
   if (form){
     form.addEventListener('submit', e => {

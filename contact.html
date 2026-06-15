@@ -10,124 +10,75 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" />
 <link rel="stylesheet" href="bydtrnd.css" />
 <style>
-/* Contact page hero */
-.contact-hero{
-  min-height: 52vh;
-  display: flex; flex-direction: column; justify-content: flex-end;
-  padding: var(--nav-h, 90px) var(--x) 72px;
-  position: relative; overflow: hidden;
-}
-.contact-hero::before{
-  content: '';
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 70% 50%, rgba(139,30,60,.18) 0%, transparent 70%);
-  pointer-events: none;
-}
-.contact-hero-eyebrow{
-  font-family: var(--mono); font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
-  color: rgba(250,250,248,.5); margin-bottom: 20px;
-}
-.contact-hero h1{
-  font-family: var(--syne); font-weight: 800;
-  font-size: clamp(52px, 7vw, 100px); line-height: .9; letter-spacing: -.04em;
-  margin-bottom: 28px;
-}
-.contact-hero h1 em{ font-family: var(--serif); font-style: italic; font-weight: 400; }
-.contact-hero p{
-  font-size: 16px; line-height: 1.65; color: rgba(250,250,248,.6);
-  max-width: 46ch;
-}
-
-/* Contact body layout */
-.contact-body{
-  padding: 80px var(--x) 120px;
-}
-.contact-layout{
-  display: grid;
-  grid-template-columns: 1fr 1.3fr;
-  gap: 80px;
-  align-items: start;
-}
-.contact-aside{
-  position: sticky; top: 120px;
-  display: flex; flex-direction: column; gap: 48px;
-}
-.contact-aside-block h3{
-  font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
-  color: rgba(250,250,248,.4); margin-bottom: 16px;
-}
-.reach{
-  display: flex; flex-direction: column; gap: 12px;
-}
-.reach a{
-  font-size: 15px; color: rgba(250,250,248,.75); text-decoration: none;
-  transition: color .2s ease;
-  display: inline-flex; align-items: center; gap: 8px;
-}
-.reach a:hover{ color: var(--w); }
-.aside-note{
-  font-size: 13px; line-height: 1.65; color: rgba(250,250,248,.45);
-  border-left: 1px solid rgba(250,250,248,.1); padding-left: 16px;
-}
-@media (max-width: 860px){
-  .contact-layout{ grid-template-columns: 1fr; gap: 48px; }
-  .contact-aside{ position: static; }
-  .contact-hero h1{ font-size: clamp(44px, 10vw, 72px); }
-}
+.contact-hero{min-height:52vh;display:flex;flex-direction:column;justify-content:flex-end;padding:var(--nav-h,90px) var(--x) 72px;position:relative;overflow:hidden;}
+.contact-hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 70% 50%,rgba(139,30,60,.18) 0%,transparent 70%);pointer-events:none;}
+.contact-hero-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,250,248,.5);margin-bottom:20px;}
+.contact-hero h1{font-family:var(--syne);font-weight:800;font-size:clamp(52px,7vw,100px);line-height:.9;letter-spacing:-.04em;margin-bottom:28px;}
+.contact-hero h1 em{font-family:var(--serif);font-style:italic;font-weight:400;}
+.contact-hero p{font-size:16px;line-height:1.65;color:rgba(250,250,248,.6);max-width:46ch;}
+.contact-body{padding:80px var(--x) 120px;}
+.contact-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:start;}
+.contact-aside{position:sticky;top:120px;display:flex;flex-direction:column;gap:48px;}
+.contact-aside-block h3{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,250,248,.4);margin-bottom:16px;}
+.reach{display:flex;flex-direction:column;gap:12px;}
+.reach a{font-size:15px;color:rgba(250,250,248,.75);text-decoration:none;transition:color .2s ease;display:inline-flex;align-items:center;gap:8px;}
+.reach a:hover{color:var(--w);}
+.aside-note{font-size:13px;line-height:1.65;color:rgba(250,250,248,.45);border-left:1px solid rgba(250,250,248,.1);padding-left:16px;}
+@media(max-width:860px){.contact-layout{grid-template-columns:1fr;gap:48px;}.contact-aside{position:static;}.contact-hero h1{font-size:clamp(44px,10vw,72px);}}
 </style>
 </head>
 <body class="no-js">
-
-<!-- GRAIN -->
 <div class="grain" aria-hidden="true"></div>
-
-<!-- CURSOR -->
 <div class="cursor-star" aria-hidden="true"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z"/></svg></div>
-
-<!-- SCROLL PROGRESS -->
 <div class="scrollbar" aria-hidden="true"><div></div></div>
 
-<!-- PRELOADER -->
-<div class="preload" id="preload" aria-hidden="true">
-  <div class="curtain l"></div>
-  <div class="curtain r"></div>
-  <div class="preload-stage">
-    <span class="cstar light" aria-hidden="true">
-      <svg class="base" viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#2A0E1C"/></svg>
-      <span class="layer r"><svg viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#8B1E3C"/></svg></span>
-      <span class="layer i"><svg viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#1D04BD"/></svg></span>
-    </span>
-    <div class="preload-count"><span>000</span><em>%</em></div>
-    <div class="preload-bar"><div></div></div>
-    <div class="preload-label">Loading BYDTRND.studio</div>
-  </div>
-</div>
-
-<!-- NAV -->
 <nav class="nav">
   <a href="index.html" class="brand" data-cursor>
     <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
   </a>
   <div class="nav-links">
-    <a href="services.html" data-cursor>Services</a>
+    <div class="nav-drop-wrap">
+      <a href="services.html" class="nav-drop-toggle" data-cursor>Services <span class="nav-arr"></span></a>
+      <div class="nav-dropdown">
+        <a href="services/seo-audit.html" class="nd-item" data-cursor>
+          <span class="nd-num">/01</span>
+          <span class="nd-name">Full AI-SEO <em>Audit</em></span>
+        </a>
+        <a href="services/thumbnails.html" class="nd-item" data-cursor>
+          <span class="nd-num">/02</span>
+          <span class="nd-name">Thumbnail Creator <em>Pro</em></span>
+        </a>
+        <a href="services/ugc-ads.html" class="nd-item" data-cursor>
+          <span class="nd-num">/03</span>
+          <span class="nd-name">AI UGC Ads <em>&amp; Reels</em></span>
+        </a>
+        <a href="services/social-media.html" class="nd-item" data-cursor>
+          <span class="nd-num">/04</span>
+          <span class="nd-name">Social Media <em>Marketing</em></span>
+        </a>
+        <a href="services/influencer.html" class="nd-item" data-cursor>
+          <span class="nd-num">/05</span>
+          <span class="nd-name">Influencer <em>Marketing</em></span>
+        </a>
+        <a href="services.html" class="nd-all" data-cursor>View all services <span>&rarr;</span></a>
+      </div>
+    </div>
     <a href="index.html#process" data-cursor>Process</a>
+    <a href="contact.html" data-cursor>Contact</a>
   </div>
   <a href="pricing.html" class="nav-cta" data-cursor>
     <span class="dot"></span> What&apos;s the damage? &rarr;
   </a>
 </nav>
 
-<!-- CONTACT HERO -->
 <div class="contact-hero">
   <div class="contact-hero-eyebrow">(06) Contact</div>
   <h1>Tell us what<br/>you&apos;re <em>building.</em></h1>
   <p>No pitch decks. No 6-week onboarding. Just a real conversation about your brand &mdash; and what&apos;s possible when AI does the heavy lifting.</p>
 </div>
 
-<!-- CONTACT BODY -->
 <div class="contact-body">
   <div class="contact-layout">
-
     <div class="contact-aside rv">
       <div class="contact-aside-block">
         <h3>Get in touch</h3>
@@ -146,94 +97,59 @@
         <p class="aside-note">Async-first &mdash; timezone doesn&apos;t matter. Brief us any time, we&apos;ll get back within 24 hours.</p>
       </div>
     </div>
-
     <div class="rv d1">
       <form class="form" autocomplete="off">
-        <div class="field">
-          <input type="text" id="f-name" name="name" required />
-          <label for="f-name">Your name</label>
-        </div>
-        <div class="field">
-          <input type="email" id="f-email" name="email" required />
-          <label for="f-email">Email</label>
-        </div>
-        <div class="field">
-          <input type="text" id="f-brand" name="brand" />
-          <label for="f-brand">Brand / company</label>
-        </div>
-        <div class="field">
-          <input type="text" id="f-budget" name="budget" />
-          <label for="f-budget">Monthly budget</label>
-        </div>
-        <div class="field full">
-          <textarea id="f-msg" name="msg" rows="5" required></textarea>
-          <label for="f-msg">What are you trying to fix?</label>
-        </div>
+        <div class="field"><input type="text" id="f-name" name="name" required /><label for="f-name">Your name</label></div>
+        <div class="field"><input type="email" id="f-email" name="email" required /><label for="f-email">Email</label></div>
+        <div class="field"><input type="text" id="f-brand" name="brand" /><label for="f-brand">Brand / company</label></div>
+        <div class="field"><input type="text" id="f-budget" name="budget" /><label for="f-budget">Monthly budget</label></div>
+        <div class="field full"><textarea id="f-msg" name="msg" rows="5" required></textarea><label for="f-msg">What are you trying to fix?</label></div>
         <div class="submit">
           <button type="submit">
             <span class="txt">Send message</span>
             <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
           </button>
         </div>
-        <div class="meta">
-          <span>Reply within 1 business day</span>
-          <span>No pitch decks, ever</span>
-        </div>
+        <div class="meta"><span>Reply within 1 business day</span><span>No pitch decks, ever</span></div>
       </form>
     </div>
-
   </div>
 </div>
 
-<!-- FOOTER -->
 <footer>
   <div class="foot-grid">
     <div class="foot-brand">
-      <a href="index.html" class="brand" data-cursor>
-        <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
-      </a>
+      <a href="index.html" class="brand" data-cursor><span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span></a>
       <p>Beyond Trend &mdash; AI-first marketing for brands that refuse to look like everyone else.</p>
     </div>
-    <div class="foot-col">
-      <h6>Services</h6>
-      <ul>
-        <li><a href="services/seo-audit.html" data-cursor>SEO Audit</a></li>
-        <li><a href="services/thumbnails.html" data-cursor>Thumbnails</a></li>
-        <li><a href="services/ugc-ads.html" data-cursor>UGC &amp; Reels</a></li>
-        <li><a href="services/social-media.html" data-cursor>Social Media</a></li>
-        <li><a href="services/influencer.html" data-cursor>Influencer</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h6>Studio</h6>
-      <ul>
-        <li><a href="services.html" data-cursor>All services</a></li>
-        <li><a href="index.html#process" data-cursor>Process</a></li>
-        <li><a href="contact.html" data-cursor>Contact</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h6>Connect</h6>
-      <ul>
-        <li><a href="mailto:hello@bydtrnd.studio" data-cursor>hello@bydtrnd.studio</a></li>
-        <li><a href="#" data-cursor>Instagram &rarr;</a></li>
-        <li><a href="#" data-cursor>X / Twitter &rarr;</a></li>
-        <li><a href="#" data-cursor>LinkedIn &rarr;</a></li>
-      </ul>
-    </div>
+    <div class="foot-col"><h6>Services</h6><ul>
+      <li><a href="services/seo-audit.html" data-cursor>SEO Audit</a></li>
+      <li><a href="services/thumbnails.html" data-cursor>Thumbnails</a></li>
+      <li><a href="services/ugc-ads.html" data-cursor>UGC &amp; Reels</a></li>
+      <li><a href="services/social-media.html" data-cursor>Social Media</a></li>
+      <li><a href="services/influencer.html" data-cursor>Influencer</a></li>
+    </ul></div>
+    <div class="foot-col"><h6>Studio</h6><ul>
+      <li><a href="services.html" data-cursor>All services</a></li>
+      <li><a href="index.html#process" data-cursor>Process</a></li>
+      <li><a href="contact.html" data-cursor>Contact</a></li>
+    </ul></div>
+    <div class="foot-col"><h6>Connect</h6><ul>
+      <li><a href="mailto:hello@bydtrnd.studio" data-cursor>hello@bydtrnd.studio</a></li>
+      <li><a href="#" data-cursor>Instagram &rarr;</a></li>
+      <li><a href="#" data-cursor>X / Twitter &rarr;</a></li>
+      <li><a href="#" data-cursor>LinkedIn &rarr;</a></li>
+    </ul></div>
   </div>
-  <div class="foot-mark" aria-hidden="true">
-    <div class="foot-mark-track">
-      <span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span>
-    </div>
-  </div>
+  <div class="foot-mark" aria-hidden="true"><div class="foot-mark-track">
+    <span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span>
+  </div></div>
   <div class="foot-bottom">
     <span>&copy; 2026 BYDTRND.studio &middot; Beyond Trend. All rights reserved.</span>
     <span>Made with care, in the dark.</span>
   </div>
 </footer>
 
-<!-- Libraries -->
 <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="bydtrnd.js"></script>

@@ -10,42 +10,49 @@
 <link rel="stylesheet" href="bydtrnd.css" />
 </head>
 <body class="no-js">
-
 <div class="grain" aria-hidden="true"></div>
 <div class="cursor-star" aria-hidden="true"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z"/></svg></div>
 <div class="scrollbar" aria-hidden="true"><div></div></div>
 
-<!-- PRELOADER -->
-<div class="preload" id="preload" aria-hidden="true">
-  <div class="curtain l"></div>
-  <div class="curtain r"></div>
-  <div class="preload-stage">
-    <span class="cstar light" aria-hidden="true">
-      <svg class="base" viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#2A0E1C"/></svg>
-      <span class="layer r"><svg viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#8B1E3C"/></svg></span>
-      <span class="layer i"><svg viewBox="0 0 100 100"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z" fill="#1D04BD"/></svg></span>
-    </span>
-    <div class="preload-count"><span>000</span><em>%</em></div>
-    <div class="preload-bar"><div></div></div>
-    <div class="preload-label">Services</div>
-  </div>
-</div>
-
-<!-- NAV -->
 <nav class="nav">
   <a href="index.html" class="brand" data-cursor>
     <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
   </a>
   <div class="nav-links">
-    <a href="services.html" data-cursor>Services</a>
+    <div class="nav-drop-wrap">
+      <a href="services.html" class="nav-drop-toggle" data-cursor>Services <span class="nav-arr"></span></a>
+      <div class="nav-dropdown">
+        <a href="services/seo-audit.html" class="nd-item" data-cursor>
+          <span class="nd-num">/01</span>
+          <span class="nd-name">Full AI-SEO <em>Audit</em></span>
+        </a>
+        <a href="services/thumbnails.html" class="nd-item" data-cursor>
+          <span class="nd-num">/02</span>
+          <span class="nd-name">Thumbnail Creator <em>Pro</em></span>
+        </a>
+        <a href="services/ugc-ads.html" class="nd-item" data-cursor>
+          <span class="nd-num">/03</span>
+          <span class="nd-name">AI UGC Ads <em>&amp; Reels</em></span>
+        </a>
+        <a href="services/social-media.html" class="nd-item" data-cursor>
+          <span class="nd-num">/04</span>
+          <span class="nd-name">Social Media <em>Marketing</em></span>
+        </a>
+        <a href="services/influencer.html" class="nd-item" data-cursor>
+          <span class="nd-num">/05</span>
+          <span class="nd-name">Influencer <em>Marketing</em></span>
+        </a>
+        <a href="services.html" class="nd-all" data-cursor>View all services <span>&rarr;</span></a>
+      </div>
+    </div>
     <a href="index.html#process" data-cursor>Process</a>
+    <a href="contact.html" data-cursor>Contact</a>
   </div>
   <a href="pricing.html" class="nav-cta" data-cursor>
     <span class="dot"></span> What&apos;s the damage? &rarr;
   </a>
 </nav>
 
-<!-- HERO -->
 <header class="svc-hero">
   <div class="wrap">
     <div class="crumbs">
@@ -63,7 +70,6 @@
   </div>
 </header>
 
-<!-- CARDS -->
 <section class="svc-cards">
   <div class="wrap">
     <div class="svc-cards-grid">
@@ -71,55 +77,39 @@
         <div class="num">/01 &middot; From $697</div>
         <h3>Full AI-SEO <em>Audit</em></h3>
         <p>Forensic teardown of your search surface. Technical SEO, content gaps, keyword map, competitor + backlink audit, AEO entity sweep, and a 90-day roadmap ranked by revenue impact.</p>
-        <span class="go">
-          <span>Read the full service</span>
-          <span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-        </span>
+        <span class="go"><span>Read the full service</span><span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span></span>
       </a>
       <a href="services/thumbnails.html" class="svc-card rv d1" data-cursor>
         <div class="num">/02 &middot; From $1,997/mo</div>
         <h3>Thumbnail Creator, <em>Pro</em></h3>
         <p>CTR-engineered cover art for YouTube, Shorts, Reels and TikTok. AI ideation, CTR psychology, A/B variants per upload, platform-correct sizing, weekly performance reads.</p>
-        <span class="go">
-          <span>Read the full service</span>
-          <span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-        </span>
+        <span class="go"><span>Read the full service</span><span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span></span>
       </a>
       <a href="services/ugc-ads.html" class="svc-card rv" data-cursor>
         <div class="num">/03 &middot; From $2,497/mo</div>
         <h3>AI UGC Ads &amp; <em>Reels</em></h3>
         <p>Native-feel UGC at scale. AI avatars where it serves volume, human creators where trust matters. Hook-first scripts, multi-format export, weekly creative drops, hook A/B testing.</p>
-        <span class="go">
-          <span>Read the full service</span>
-          <span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-        </span>
+        <span class="go"><span>Read the full service</span><span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span></span>
       </a>
       <a href="services/social-media.html" class="svc-card rv d1" data-cursor>
         <div class="num">/04 &middot; From $1,497/mo</div>
         <h3>Social Media <em>Marketing</em></h3>
         <p>AI-powered content calendar, community management, growth experiments, full platform management, outcome-only analytics. Strategy, calendar, posting, ops — end-to-end.</p>
-        <span class="go">
-          <span>Read the full service</span>
-          <span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-        </span>
+        <span class="go"><span>Read the full service</span><span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span></span>
       </a>
-      <a href="services/influencer.html" class="svc-card rv d2" data-cursor style="grid-column: 1 / -1;">
+      <a href="services/influencer.html" class="svc-card rv d2" data-cursor style="grid-column:1/-1;">
         <div class="num">/05 &middot; From $2,997/mo</div>
         <h3>Influencer <em>Marketing</em></h3>
-        <p>End-to-end influencer ops. AI-assisted discovery and vetting (audience quality, brand fit, performance history), campaign strategy, contract support, execution monitoring, real ROI tracking — not influencer-grade vanity stats.</p>
-        <span class="go">
-          <span>Read the full service</span>
-          <span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-        </span>
+        <p>End-to-end influencer ops. AI-assisted discovery and vetting (audience quality, brand fit, performance history), campaign strategy, contract support, execution monitoring, real ROI tracking.</p>
+        <span class="go"><span>Read the full service</span><span class="arr"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span></span>
       </a>
     </div>
   </div>
 </section>
 
-<!-- WINE CTA -->
 <section class="wine-cta">
   <div class="wrap">
-    <div class="sec-eyebrow rv">(—) Ready to start</div>
+    <div class="sec-eyebrow rv">(&mdash;) Ready to start</div>
     <h2 class="rv d1">Not sure which engine<br/><em>you need?</em></h2>
     <div class="actions rv d2">
       <a href="contact.html" class="btn primary" data-cursor>
@@ -134,50 +124,36 @@
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="foot-grid">
     <div class="foot-brand">
-      <a href="index.html" class="brand" data-cursor>
-    <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
-  </a>
+      <a href="index.html" class="brand" data-cursor><span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span></a>
       <p>Beyond Trend — AI-first marketing for brands that refuse to look like everyone else.</p>
     </div>
-    <div class="foot-col">
-      <h6>Services</h6>
-      <ul>
-        <li><a href="services/seo-audit.html" data-cursor>SEO Audit</a></li>
-        <li><a href="services/thumbnails.html" data-cursor>Thumbnails</a></li>
-        <li><a href="services/ugc-ads.html" data-cursor>UGC &amp; Reels</a></li>
-        <li><a href="services/social-media.html" data-cursor>Social Media</a></li>
-        <li><a href="services/influencer.html" data-cursor>Influencer</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h6>Studio</h6>
-      <ul>
-        <li><a href="services.html" data-cursor>All services</a></li>
-        <li><a href="index.html#process" data-cursor>Process</a></li>
-        <li><a href="contact.html" data-cursor>Contact</a></li>
-      </ul>
-    </div>
-    <div class="foot-col">
-      <h6>Connect</h6>
-      <ul>
-        <li><a href="mailto:hello@bydtrnd.studio" data-cursor>hello@bydtrnd.studio</a></li>
-        <li><a href="#" data-cursor>Instagram &rarr;</a></li>
-        <li><a href="#" data-cursor>X / Twitter &rarr;</a></li>
-        <li><a href="#" data-cursor>LinkedIn &rarr;</a></li>
-      </ul>
-    </div>
+    <div class="foot-col"><h6>Services</h6><ul>
+      <li><a href="services/seo-audit.html" data-cursor>SEO Audit</a></li>
+      <li><a href="services/thumbnails.html" data-cursor>Thumbnails</a></li>
+      <li><a href="services/ugc-ads.html" data-cursor>UGC &amp; Reels</a></li>
+      <li><a href="services/social-media.html" data-cursor>Social Media</a></li>
+      <li><a href="services/influencer.html" data-cursor>Influencer</a></li>
+    </ul></div>
+    <div class="foot-col"><h6>Studio</h6><ul>
+      <li><a href="services.html" data-cursor>All services</a></li>
+      <li><a href="index.html#process" data-cursor>Process</a></li>
+      <li><a href="contact.html" data-cursor>Contact</a></li>
+    </ul></div>
+    <div class="foot-col"><h6>Connect</h6><ul>
+      <li><a href="mailto:hello@bydtrnd.studio" data-cursor>hello@bydtrnd.studio</a></li>
+      <li><a href="#" data-cursor>Instagram &rarr;</a></li>
+      <li><a href="#" data-cursor>X / Twitter &rarr;</a></li>
+      <li><a href="#" data-cursor>LinkedIn &rarr;</a></li>
+    </ul></div>
   </div>
-  <div class="foot-mark" aria-hidden="true">
-    <div class="foot-mark-track">
-      <span>BEYOND TREND&nbsp;·&nbsp;</span><span>BEYOND TREND&nbsp;·&nbsp;</span><span>BEYOND TREND&nbsp;·&nbsp;</span><span>BEYOND TREND&nbsp;·&nbsp;</span>
-    </div>
-  </div>
+  <div class="foot-mark" aria-hidden="true"><div class="foot-mark-track">
+    <span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span><span>BEYOND TREND&nbsp;&middot;&nbsp;</span>
+  </div></div>
   <div class="foot-bottom">
-    <span>© 2026 BYDTRND.studio · Beyond Trend. All rights reserved.</span>
+    <span>&copy; 2026 BYDTRND.studio &middot; Beyond Trend. All rights reserved.</span>
     <span>Made with care, in the dark.</span>
   </div>
 </footer>
