@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" />
 <link rel="stylesheet" href="bydtrnd.css" />
 <style>
+/* Contact page hero */
 .contact-hero{
   min-height: 52vh;
   display: flex; flex-direction: column; justify-content: flex-end;
@@ -36,7 +37,11 @@
   font-size: 16px; line-height: 1.65; color: rgba(250,250,248,.6);
   max-width: 46ch;
 }
-.contact-body{ padding: 80px var(--x) 120px; }
+
+/* Contact body layout */
+.contact-body{
+  padding: 80px var(--x) 120px;
+}
 .contact-layout{
   display: grid;
   grid-template-columns: 1fr 1.3fr;
@@ -51,7 +56,9 @@
   font-family: var(--mono); font-size: 10px; letter-spacing: .22em; text-transform: uppercase;
   color: rgba(250,250,248,.4); margin-bottom: 16px;
 }
-.reach{ display: flex; flex-direction: column; gap: 12px; }
+.reach{
+  display: flex; flex-direction: column; gap: 12px;
+}
 .reach a{
   font-size: 15px; color: rgba(250,250,248,.75); text-decoration: none;
   transition: color .2s ease;
@@ -70,9 +77,17 @@
 </style>
 </head>
 <body class="no-js">
+
+<!-- GRAIN -->
 <div class="grain" aria-hidden="true"></div>
+
+<!-- CURSOR -->
 <div class="cursor-star" aria-hidden="true"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50,0 C51,40 60,49 100,50 C60,51 51,60 50,100 C49,60 40,51 0,50 C40,49 49,40 50,0 Z"/></svg></div>
+
+<!-- SCROLL PROGRESS -->
 <div class="scrollbar" aria-hidden="true"><div></div></div>
+
+<!-- PRELOADER -->
 <div class="preload" id="preload" aria-hidden="true">
   <div class="curtain l"></div>
   <div class="curtain r"></div>
@@ -87,6 +102,8 @@
     <div class="preload-label">Loading BYDTRND.studio</div>
   </div>
 </div>
+
+<!-- NAV -->
 <nav class="nav">
   <a href="index.html" class="brand" data-cursor>
     <span class="logo">BYDTRND<span class="studio"><span class="dot">.</span>studio</span></span>
@@ -99,13 +116,18 @@
     <span class="dot"></span> What&apos;s the damage? &rarr;
   </a>
 </nav>
+
+<!-- CONTACT HERO -->
 <div class="contact-hero">
   <div class="contact-hero-eyebrow">(06) Contact</div>
   <h1>Tell us what<br/>you&apos;re <em>building.</em></h1>
   <p>No pitch decks. No 6-week onboarding. Just a real conversation about your brand &mdash; and what&apos;s possible when AI does the heavy lifting.</p>
 </div>
+
+<!-- CONTACT BODY -->
 <div class="contact-body">
   <div class="contact-layout">
+
     <div class="contact-aside rv">
       <div class="contact-aside-block">
         <h3>Get in touch</h3>
@@ -124,6 +146,7 @@
         <p class="aside-note">Async-first &mdash; timezone doesn&apos;t matter. Brief us any time, we&apos;ll get back within 24 hours.</p>
       </div>
     </div>
+
     <div class="rv d1">
       <form class="form" autocomplete="off">
         <div class="field">
@@ -158,8 +181,11 @@
         </div>
       </form>
     </div>
+
   </div>
 </div>
+
+<!-- FOOTER -->
 <footer>
   <div class="foot-grid">
     <div class="foot-brand">
@@ -206,6 +232,8 @@
     <span>Made with care, in the dark.</span>
   </div>
 </footer>
+
+<!-- Libraries -->
 <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="bydtrnd.js"></script>
