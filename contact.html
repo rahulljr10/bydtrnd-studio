@@ -420,6 +420,21 @@ body.contact-page {
   to   { transform: translateX(-50%); }
 }
 
+/* ── Dark backgrounds (override bydtrnd.css light --bg) ── */
+.ct-strip,
+.ct-body {
+  background: #080808;
+}
+
+/* ── Override rv hidden state ── */
+/* bydtrnd.js returns early without .preload div, so IntersectionObserver
+   never fires — force rv elements visible on the contact page */
+body.contact-page .rv {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+}
+
 /* ── Responsive ── */
 @media (max-width: 900px) {
   .ct-hero { grid-template-columns: 1fr; min-height: auto; padding-top: calc(var(--nav-h, 90px) + 32px); }
