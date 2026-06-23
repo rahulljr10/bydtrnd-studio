@@ -3,39 +3,83 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BYDTRND.studio â Beyond Trend Â· AI marketing studio</title>
-<meta name="description" content="BYDTRND.studio (Beyond Trend) is an AI-first marketing studio. SEO + AEO that compounds, UGC at scale, thumbnails engineered for CTR, social and influencer ops â async by design, week-one delivery." />
+<title>BYDTRND.studio — Beyond Trend · AI marketing studio</title>
+<meta name="description" content="BYDTRND.studio (Beyond Trend) is an AI-first marketing studio. SEO + AEO that compounds, UGC at scale, thumbnails engineered for CTR, social and influencer ops — async by design, week-one delivery." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500&family=Space+Grotesk:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" />
 <link rel="stylesheet" href="bydtrnd.css" />
 <style>
-/* âââ Reels strip âââ */
-.reels-wrap{margin:52px 0 0;width:100%}
-.reels-meta{display:flex;justify-content:space-between;align-items:center;padding:0 var(--x,80px);margin-bottom:20px}
-.reels-label{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(250,250,248,.4)}
-.reels-hint{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,250,248,.2)}
-.reels-scroll{display:flex;gap:16px;overflow-x:auto;padding:0 var(--x,80px) 28px;scroll-snap-type:x mandatory;-ms-overflow-style:none;scrollbar-width:none;cursor:grab}
-.reels-scroll::-webkit-scrollbar{display:none}
-.reels-scroll:active{cursor:grabbing}
-.reel-card{flex:0 0 256px;height:455px;border-radius:14px;overflow:hidden;position:relative;scroll-snap-align:start;background:#0d0d0d;border:1px solid rgba(250,250,248,.07);transition:border-color .25s,transform .25s}
-.reel-card:hover{border-color:rgba(250,250,248,.18);transform:translateY(-3px)}
-.reel-vid{width:100%;height:100%;object-fit:cover;display:block}
-.reel-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:13px;background:linear-gradient(to top,rgba(0,0,0,.55) 0%,transparent 45%)}
-.reel-tag{font-family:var(--mono);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,250,248,.85);background:rgba(0,0,0,.6);padding:5px 9px;border-radius:4px;align-self:flex-start;backdrop-filter:blur(6px)}
-.reel-sound{background:rgba(0,0,0,.55);border:1px solid rgba(255,255,255,.18);border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fff;align-self:flex-end;backdrop-filter:blur(8px);transition:background .2s,border-color .2s;padding:0}
-.reel-sound:hover{background:rgba(139,30,60,.8);border-color:transparent}
-.reel-sound svg{width:14px;height:14px;flex-shrink:0;pointer-events:none}
-.reel-ph{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:14px;background:linear-gradient(135deg,#0d0d0d 0%,#120407 60%,#0d0d0d 100%)}
-.reel-ph-icon{width:44px;height:44px;border:1px solid rgba(250,250,248,.12);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(250,250,248,.22);font-size:22px;line-height:1}
-.reel-ph p{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,250,248,.18);text-align:center;line-height:1.9;margin:0}
-/* Multi-line CTA title with scramble */
+/* ── Process numbers — full white ── */
+.proc-num{color:#fff!important;opacity:1!important}
+
+/* ── Work / Reels section ── */
+.work{position:relative;padding:100px 0 0;overflow:hidden}
+.work-bg{position:absolute;inset:0;background-image:radial-gradient(rgba(139,30,60,.055) 1px,transparent 1px);background-size:28px 28px;pointer-events:none}
+.work-head{padding:0 var(--x,80px);margin-bottom:44px}
+.work-ey{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(250,250,248,.36);margin-bottom:18px}
+.work-title{font-size:clamp(34px,4.5vw,58px);line-height:1.06;color:#fafaf8;margin:0 0 14px;font-weight:700}
+.work-title em{font-style:italic;color:#8B1E3C}
+.work-desc{font-family:var(--mono);font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,248,.26)}
+
+/* Strip */
+.work-strip{display:flex;gap:18px;overflow-x:auto;padding:0 var(--x,80px) 60px;scroll-snap-type:x mandatory;-ms-overflow-style:none;scrollbar-width:none;cursor:grab;position:relative;z-index:1}
+.work-strip::-webkit-scrollbar{display:none}
+.work-strip:active{cursor:grabbing}
+
+/* Card */
+.wk-card{flex:0 0 258px;height:458px;border-radius:14px;overflow:hidden;position:relative;scroll-snap-align:start;background:#080005;border:1px solid rgba(139,30,60,.14);transition:border-color .4s,box-shadow .4s,transform .3s}
+.wk-card:not(.wk-ph-card):hover{transform:translateY(-5px);border-color:rgba(139,30,60,.42)}
+.wk-card.is-active{border-color:rgba(139,30,60,.72);box-shadow:0 0 28px rgba(139,30,60,.17),0 0 80px rgba(139,30,60,.07),inset 0 0 22px rgba(139,30,60,.04)}
+
+/* Video */
+.wk-vid{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Corner brackets */
+.wk-frm{position:absolute;width:14px;height:14px;z-index:5;pointer-events:none;transition:opacity .4s}
+.wk-frm.tl{top:9px;left:9px;border-top:1.5px solid rgba(139,30,60,.55);border-left:1.5px solid rgba(139,30,60,.55)}
+.wk-frm.tr{top:9px;right:9px;border-top:1.5px solid rgba(139,30,60,.55);border-right:1.5px solid rgba(139,30,60,.55)}
+.wk-frm.bl{bottom:9px;left:9px;border-bottom:1.5px solid rgba(139,30,60,.55);border-left:1.5px solid rgba(139,30,60,.55)}
+.wk-frm.br{bottom:9px;right:9px;border-bottom:1.5px solid rgba(139,30,60,.55);border-right:1.5px solid rgba(139,30,60,.55)}
+.wk-card.is-active .wk-frm{opacity:1}
+.wk-card:not(.is-active) .wk-frm{opacity:.45}
+
+/* Scan lines */
+.wk-scan{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.048) 2px,rgba(0,0,0,.048) 4px);pointer-events:none;z-index:2}
+
+/* Overlay */
+.wk-ov{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;padding:12px;background:linear-gradient(to bottom,rgba(0,0,0,.54) 0%,transparent 34%,transparent 54%,rgba(0,0,0,.72) 100%);z-index:3}
+.wk-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+
+/* Live badge */
+.wk-live{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,250,248,.92);background:rgba(139,30,60,.65);padding:4px 9px;border-radius:3px;backdrop-filter:blur(8px);opacity:0;transition:opacity .4s}
+.wk-card.is-active .wk-live{opacity:1}
+.wk-live-dot{width:5px;height:5px;border-radius:50%;background:#ff5577;flex-shrink:0;animation:wkdot 1.3s ease-in-out infinite}
+@keyframes wkdot{0%,100%{opacity:1}50%{opacity:.22}}
+
+/* Tag */
+.wk-tag{font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,248,.72);background:rgba(0,0,0,.52);padding:4px 9px;border-radius:3px;backdrop-filter:blur(6px)}
+
+/* Bottom */
+.wk-btm{display:flex;align-items:flex-end;justify-content:space-between;gap:8px}
+.wk-info{display:flex;flex-direction:column;gap:3px}
+.wk-name{font-family:var(--sans);font-size:14px;font-weight:500;color:#fafaf8;letter-spacing:.01em}
+.wk-kind{font-family:var(--mono);font-size:8px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,248,.36)}
+.wk-snd{width:36px;height:36px;border-radius:50%;background:rgba(0,0,0,.52);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;cursor:pointer;color:#fafaf8;backdrop-filter:blur(8px);padding:0;flex-shrink:0;transition:background .2s,border-color .2s,box-shadow .2s}
+.wk-snd:hover{background:rgba(139,30,60,.75);border-color:rgba(139,30,60,.4);box-shadow:0 0 14px rgba(139,30,60,.45)}
+.wk-snd svg{width:14px;height:14px;pointer-events:none}
+
+/* Placeholder card */
+.wk-ph-card{background:linear-gradient(145deg,#080005 0%,#0c0209 50%,#060810 100%)}
+.wk-ph-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(139,30,60,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(139,30,60,.05) 1px,transparent 1px);background-size:32px 32px}
+.wk-ph-inner{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;gap:16px;position:relative;z-index:1}
+.wk-ph-ring{width:46px;height:46px;border:1px solid rgba(139,30,60,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(139,30,60,.42)}
+.wk-ph-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,250,248,.18);text-align:center;line-height:2;margin:0}
+
+/* ── CTA ── */
 .cta-title br{display:block}
 .cta-title .scramble{display:inline}
-/* Push CTA actions further down */
 .cta .cta-actions{margin-top:48px}
-/* Process numbers — full white */
-.proc-num{color:#fff!important;opacity:1!important;}
 </style>
 </head>
 <body class="no-js home">
@@ -49,7 +93,7 @@
 <!-- SCROLL PROGRESS -->
 <div class="scrollbar" aria-hidden="true"><div></div></div>
 
-<!-- PRELOADER â homepage only -->
+<!-- PRELOADER — homepage only -->
 <div class="preload" id="preload" aria-hidden="true">
   <div class="curtain l"></div>
   <div class="curtain r"></div>
@@ -389,7 +433,7 @@
       </div>
       <div class="thumb-right rv d1">
         <span class="tr-tag">Cover art &middot; CTR-engineered</span>
-        <img src="saudi-clasico-thumbnail.png" alt="FanCode RED Saudi Clasico Thumbnail â CTR-engineered" />
+        <img src="saudi-clasico-thumbnail.png" alt="FanCode RED Saudi Clasico Thumbnail — CTR-engineered" />
       </div>
     </div>
   </div>
@@ -497,8 +541,126 @@
   </div>
 </div>
 
+<!-- WORK — Selected Reels -->
+<section class="work" id="work">
+  <div class="work-bg" aria-hidden="true"></div>
 
+  <div class="work-head">
+    <div class="work-ey rv">(05) &mdash; Selected Work</div>
+    <h2 class="work-title rv d1">AI creative<br/><em>in the wild.</em></h2>
+    <p class="work-desc rv d2">Real UGC ads &amp; social reels &mdash; drag to explore</p>
+  </div>
 
+  <div class="work-strip" id="workStrip">
+
+    <!-- Card 1 — live video -->
+    <article class="wk-card" id="wkCard0">
+      <video class="wk-vid" src="videos/client-ugc-albanese.mp4" loop playsinline muted preload="metadata"></video>
+      <span class="wk-frm tl" aria-hidden="true"></span>
+      <span class="wk-frm tr" aria-hidden="true"></span>
+      <span class="wk-frm bl" aria-hidden="true"></span>
+      <span class="wk-frm br" aria-hidden="true"></span>
+      <div class="wk-scan" aria-hidden="true"></div>
+      <div class="wk-ov">
+        <div class="wk-top">
+          <span class="wk-live"><span class="wk-live-dot"></span>Playing</span>
+          <span class="wk-tag">AI Ad &middot; UGC</span>
+        </div>
+        <div class="wk-btm">
+          <div class="wk-info">
+            <span class="wk-name">Albanese</span>
+            <span class="wk-kind">AI UGC Ad &middot; 9:16</span>
+          </div>
+          <button class="wk-snd" aria-label="Toggle sound" data-muted="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Placeholder card 2 -->
+    <article class="wk-card wk-ph-card">
+      <div class="wk-ph-bg" aria-hidden="true"></div>
+      <span class="wk-frm tl" aria-hidden="true"></span>
+      <span class="wk-frm tr" aria-hidden="true"></span>
+      <span class="wk-frm bl" aria-hidden="true"></span>
+      <span class="wk-frm br" aria-hidden="true"></span>
+      <div class="wk-ph-inner">
+        <div class="wk-ph-ring">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <p class="wk-ph-lbl">Client Reel<br/>Coming Soon</p>
+      </div>
+    </article>
+
+    <!-- Placeholder card 3 -->
+    <article class="wk-card wk-ph-card">
+      <div class="wk-ph-bg" aria-hidden="true"></div>
+      <span class="wk-frm tl" aria-hidden="true"></span>
+      <span class="wk-frm tr" aria-hidden="true"></span>
+      <span class="wk-frm bl" aria-hidden="true"></span>
+      <span class="wk-frm br" aria-hidden="true"></span>
+      <div class="wk-ph-inner">
+        <div class="wk-ph-ring">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <p class="wk-ph-lbl">Brand Reel<br/>Coming Soon</p>
+      </div>
+    </article>
+
+    <!-- Placeholder card 4 -->
+    <article class="wk-card wk-ph-card">
+      <div class="wk-ph-bg" aria-hidden="true"></div>
+      <span class="wk-frm tl" aria-hidden="true"></span>
+      <span class="wk-frm tr" aria-hidden="true"></span>
+      <span class="wk-frm bl" aria-hidden="true"></span>
+      <span class="wk-frm br" aria-hidden="true"></span>
+      <div class="wk-ph-inner">
+        <div class="wk-ph-ring">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <p class="wk-ph-lbl">UGC Ad<br/>Coming Soon</p>
+      </div>
+    </article>
+
+    <!-- Placeholder card 5 -->
+    <article class="wk-card wk-ph-card">
+      <div class="wk-ph-bg" aria-hidden="true"></div>
+      <span class="wk-frm tl" aria-hidden="true"></span>
+      <span class="wk-frm tr" aria-hidden="true"></span>
+      <span class="wk-frm bl" aria-hidden="true"></span>
+      <span class="wk-frm br" aria-hidden="true"></span>
+      <div class="wk-ph-inner">
+        <div class="wk-ph-ring">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </div>
+        <p class="wk-ph-lbl">Social Reel<br/>Coming Soon</p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-orb" aria-hidden="true"></div>
+  <div class="cta-eyebrow rv">(06) &mdash; Let&apos;s Build</div>
+  <h2 class="cta-title rv d1">
+    Make your brand<br/>
+    <em class="scramble" data-words="impossible|unforgettable|undeniable|irresistible">impossible</em><br/>
+    to scroll past.
+  </h2>
+  <div class="cta-actions rv d2">
+    <a href="contact.html" class="btn primary" data-cursor>
+      <span>Book a call</span>
+      <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </a>
+    <a href="services.html" class="btn secondary" data-cursor>
+      <span>See all services</span>
+      <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
+    </a>
+  </div>
+</section>
 
 <!-- FOOTER -->
 <footer>
@@ -560,44 +722,49 @@
 <script src="https://unpkg.com/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="bydtrnd.js"></script>
 <script>
-/* ââ Reel video: autoplay in viewport, pause out; sound toggle ââ */
+/* ── Work strip: autoplay + active glow on viewport entry; sound toggle; drag-scroll ── */
 (function(){
-  var MUTED_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
-  var SOUND_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
+  var MUTED = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>';
+  var SOUND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>';
 
-  var cards = document.querySelectorAll('.reel-card');
+  /* Autoplay + active class via IntersectionObserver */
+  var cards = document.querySelectorAll('.wk-card');
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      var vid = e.target.querySelector('.reel-vid');
-      if(!vid) return;
-      if(e.isIntersecting){ vid.play(); } else { vid.pause(); }
+      var vid = e.target.querySelector('.wk-vid');
+      if(e.isIntersecting){
+        e.target.classList.add('is-active');
+        if(vid){ vid.play().catch(function(){}); }
+      } else {
+        e.target.classList.remove('is-active');
+        if(vid){ vid.pause(); }
+      }
     });
-  }, {threshold: 0.4});
+  },{threshold:0.5});
   cards.forEach(function(c){ io.observe(c); });
 
   /* Sound toggle */
-  document.querySelectorAll('.reel-sound').forEach(function(btn){
-    btn.addEventListener('click', function(e){
+  document.querySelectorAll('.wk-snd').forEach(function(btn){
+    btn.addEventListener('click',function(e){
       e.stopPropagation();
-      var vid = btn.closest('.reel-card').querySelector('.reel-vid');
+      var vid = btn.closest('.wk-card').querySelector('.wk-vid');
       if(!vid) return;
-      var muted = btn.dataset.muted === 'true';
-      vid.muted = !muted;
-      btn.dataset.muted = String(!muted);
-      btn.innerHTML = muted ? SOUND_ICON : MUTED_ICON;
-      /* Unmuting requires user-gesture play */
-      if(muted){ vid.play().catch(function(){}); }
+      var m = btn.dataset.muted === 'true';
+      vid.muted = !m;
+      btn.dataset.muted = String(!m);
+      btn.innerHTML = m ? SOUND : MUTED;
+      if(m){ vid.play().catch(function(){}); }
     });
   });
 
-  /* Drag-scroll the reel strip */
-  var strip = document.getElementById('reelsScroll');
+  /* Drag-scroll */
+  var strip = document.getElementById('workStrip');
   if(strip){
-    var isDown=false, startX, scrollLeft;
-    strip.addEventListener('mousedown', function(e){ isDown=true; strip.classList.add('active'); startX=e.pageX-strip.offsetLeft; scrollLeft=strip.scrollLeft; });
-    strip.addEventListener('mouseleave', function(){ isDown=false; strip.classList.remove('active'); });
-    strip.addEventListener('mouseup', function(){ isDown=false; strip.classList.remove('active'); });
-    strip.addEventListener('mousemove', function(e){ if(!isDown) return; e.preventDefault(); var x=e.pageX-strip.offsetLeft; strip.scrollLeft=scrollLeft-(x-startX)*1.2; });
+    var dn=false,sx,sl;
+    strip.addEventListener('mousedown',function(e){ dn=true; strip.classList.add('active'); sx=e.pageX-strip.offsetLeft; sl=strip.scrollLeft; });
+    strip.addEventListener('mouseleave',function(){ dn=false; strip.classList.remove('active'); });
+    strip.addEventListener('mouseup',function(){ dn=false; strip.classList.remove('active'); });
+    strip.addEventListener('mousemove',function(e){ if(!dn) return; e.preventDefault(); strip.scrollLeft=sl-(e.pageX-strip.offsetLeft-sx)*1.2; });
   }
 })();
 </script>
