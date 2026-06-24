@@ -29,7 +29,6 @@
 
 /* Card */
 .wk-card{flex:0 0 258px;height:458px;border-radius:14px;overflow:hidden;position:relative;scroll-snap-align:start;background:#080005;border:1px solid rgba(139,30,60,.14);transition:border-color .4s,box-shadow .4s,transform .3s}
-.wk-card:not(.wk-ph-card):hover{transform:translateY(-5px);border-color:rgba(139,30,60,.42)}
 .wk-card.is-active{border-color:rgba(139,30,60,.72);box-shadow:0 0 28px rgba(139,30,60,.17),0 0 80px rgba(139,30,60,.07),inset 0 0 22px rgba(139,30,60,.04)}
 
 /* Video */
@@ -76,10 +75,38 @@
 .wk-ph-ring{width:46px;height:46px;border:1px solid rgba(139,30,60,.28);border-radius:50%;display:flex;align-items:center;justify-content:center;color:rgba(139,30,60,.42)}
 .wk-ph-lbl{font-family:var(--mono);font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:rgba(250,250,248,.18);text-align:center;line-height:2;margin:0}
 
-/* ── CTA ── */
-.cta-title br{display:block}
-.cta-title .scramble{display:inline}
-.cta .cta-actions{margin-top:48px}
+/* ── CTA inline refs removed — section replaced by testimonials ── */
+
+/* ── Dropdown hover bridge — fills the gap so mouse doesn't lose hover ── */
+.nav-drop-wrap::after{content:'';position:absolute;bottom:-22px;left:0;right:0;height:22px;z-index:299}
+
+/* ── Video card hover — glow only, no translate (translate breaks IntersectionObserver) ── */
+.wk-card:not(.wk-ph-card):hover{border-color:rgba(139,30,60,.72);box-shadow:0 0 32px rgba(139,30,60,.25),0 0 80px rgba(139,30,60,.1)}
+
+/* ── Stock image cards ── */
+.wk-img-card{background:#0a0010}
+.wk-img{position:absolute;inset:0;background-size:cover;background-position:center top;filter:brightness(.82) saturate(1.08)}
+.wk-feat{display:flex;align-items:center;gap:5px;font-family:var(--mono);font-size:8px;letter-spacing:.2em;text-transform:uppercase;color:rgba(250,250,248,.8);background:rgba(0,0,0,.52);padding:4px 9px;border-radius:3px;backdrop-filter:blur(8px)}
+.wk-feat::before{content:'';width:5px;height:5px;border-radius:50%;background:rgba(250,250,248,.5);flex-shrink:0}
+
+/* ── Thumbnail image — show full image (contains 16:9 in container) ── */
+.thumb-right img{object-fit:contain!important;background:#0a0010}
+
+/* ── Testimonials ── */
+.testi{padding:100px 0 80px;position:relative}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+@media(max-width:1000px){.testi-grid{grid-template-columns:1fr}}
+.testi-card{background:rgba(139,30,60,.05);border:1px solid rgba(139,30,60,.13);border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:24px;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s}
+.testi-card:hover{border-color:rgba(139,30,60,.3);box-shadow:0 0 40px rgba(139,30,60,.09)}
+.testi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(139,30,60,.38),transparent)}
+.testi-qt{font-family:var(--serif);font-size:clamp(15px,1.3vw,18px);font-style:italic;line-height:1.7;color:rgba(250,250,248,.86);flex:1;margin:0}
+.testi-qt::before{content:'\201C';color:rgba(139,30,60,.5);font-size:2em;line-height:0;vertical-align:-.4em;margin-right:.1em}
+.testi-who{display:flex;align-items:center;gap:14px}
+.testi-av{width:44px;height:44px;border-radius:50%;background:rgba(139,30,60,.18);border:1px solid rgba(139,30,60,.26);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:600;color:rgba(250,250,248,.7);flex-shrink:0}
+.testi-nm{font-family:var(--sans);font-size:13px;font-weight:500;color:#fafaf8;margin:0 0 3px}
+.testi-role{font-family:var(--mono);font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:rgba(250,250,248,.34)}
+.testi-metric{font-family:var(--mono);font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:rgba(139,30,60,.82);background:rgba(139,30,60,.1);border:1px solid rgba(139,30,60,.2);padding:5px 12px;border-radius:4px;align-self:flex-start;white-space:nowrap}
+.testi-cta{text-align:center;margin-top:64px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
 </style>
 </head>
 <body class="no-js home">
@@ -569,7 +596,7 @@
         <div class="wk-btm">
           <div class="wk-info">
             <span class="wk-name">Albanese</span>
-            <span class="wk-kind">AI UGC Ad &middot; 9:16</span>
+            <span class="wk-kind">Candy Shop</span>
           </div>
           <button class="wk-snd" aria-label="Toggle sound" data-muted="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
@@ -578,87 +605,158 @@
       </div>
     </article>
 
-    <!-- Placeholder card 2 -->
-    <article class="wk-card wk-ph-card">
-      <div class="wk-ph-bg" aria-hidden="true"></div>
+    <!-- Card 2 — Stock UGC: Fitness -->
+    <article class="wk-card wk-img-card">
+      <div class="wk-img" style="background-image:url('https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=711&fit=crop&auto=format')" aria-hidden="true"></div>
       <span class="wk-frm tl" aria-hidden="true"></span>
       <span class="wk-frm tr" aria-hidden="true"></span>
       <span class="wk-frm bl" aria-hidden="true"></span>
       <span class="wk-frm br" aria-hidden="true"></span>
-      <div class="wk-ph-inner">
-        <div class="wk-ph-ring">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <div class="wk-scan" aria-hidden="true"></div>
+      <div class="wk-ov">
+        <div class="wk-top">
+          <span class="wk-feat">Featured</span>
+          <span class="wk-tag">UGC &middot; Ad</span>
         </div>
-        <p class="wk-ph-lbl">Client Reel<br/>Coming Soon</p>
+        <div class="wk-btm">
+          <div class="wk-info">
+            <span class="wk-name">Apex Fit</span>
+            <span class="wk-kind">Fitness Brand</span>
+          </div>
+        </div>
       </div>
     </article>
 
-    <!-- Placeholder card 3 -->
-    <article class="wk-card wk-ph-card">
-      <div class="wk-ph-bg" aria-hidden="true"></div>
+    <!-- Card 3 — Stock UGC: Beauty -->
+    <article class="wk-card wk-img-card">
+      <div class="wk-img" style="background-image:url('https://images.unsplash.com/photo-1596462502278-27bfdc403348?w=400&h=711&fit=crop&auto=format')" aria-hidden="true"></div>
       <span class="wk-frm tl" aria-hidden="true"></span>
       <span class="wk-frm tr" aria-hidden="true"></span>
       <span class="wk-frm bl" aria-hidden="true"></span>
       <span class="wk-frm br" aria-hidden="true"></span>
-      <div class="wk-ph-inner">
-        <div class="wk-ph-ring">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <div class="wk-scan" aria-hidden="true"></div>
+      <div class="wk-ov">
+        <div class="wk-top">
+          <span class="wk-feat">Featured</span>
+          <span class="wk-tag">Social Ad</span>
         </div>
-        <p class="wk-ph-lbl">Brand Reel<br/>Coming Soon</p>
+        <div class="wk-btm">
+          <div class="wk-info">
+            <span class="wk-name">LunaGlow</span>
+            <span class="wk-kind">Beauty Brand</span>
+          </div>
+        </div>
       </div>
     </article>
 
-    <!-- Placeholder card 4 -->
-    <article class="wk-card wk-ph-card">
-      <div class="wk-ph-bg" aria-hidden="true"></div>
+    <!-- Card 4 — Stock UGC: Fashion -->
+    <article class="wk-card wk-img-card">
+      <div class="wk-img" style="background-image:url('https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=400&h=711&fit=crop&auto=format')" aria-hidden="true"></div>
       <span class="wk-frm tl" aria-hidden="true"></span>
       <span class="wk-frm tr" aria-hidden="true"></span>
       <span class="wk-frm bl" aria-hidden="true"></span>
       <span class="wk-frm br" aria-hidden="true"></span>
-      <div class="wk-ph-inner">
-        <div class="wk-ph-ring">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <div class="wk-scan" aria-hidden="true"></div>
+      <div class="wk-ov">
+        <div class="wk-top">
+          <span class="wk-feat">Featured</span>
+          <span class="wk-tag">Brand Reel</span>
         </div>
-        <p class="wk-ph-lbl">UGC Ad<br/>Coming Soon</p>
+        <div class="wk-btm">
+          <div class="wk-info">
+            <span class="wk-name">Stride Co.</span>
+            <span class="wk-kind">Fashion Brand</span>
+          </div>
+        </div>
       </div>
     </article>
 
-    <!-- Placeholder card 5 -->
-    <article class="wk-card wk-ph-card">
-      <div class="wk-ph-bg" aria-hidden="true"></div>
+    <!-- Card 5 — Stock UGC: Food -->
+    <article class="wk-card wk-img-card">
+      <div class="wk-img" style="background-image:url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400&h=711&fit=crop&auto=format')" aria-hidden="true"></div>
       <span class="wk-frm tl" aria-hidden="true"></span>
       <span class="wk-frm tr" aria-hidden="true"></span>
       <span class="wk-frm bl" aria-hidden="true"></span>
       <span class="wk-frm br" aria-hidden="true"></span>
-      <div class="wk-ph-inner">
-        <div class="wk-ph-ring">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+      <div class="wk-scan" aria-hidden="true"></div>
+      <div class="wk-ov">
+        <div class="wk-top">
+          <span class="wk-feat">Featured</span>
+          <span class="wk-tag">UGC &middot; Ad</span>
         </div>
-        <p class="wk-ph-lbl">Social Reel<br/>Coming Soon</p>
+        <div class="wk-btm">
+          <div class="wk-info">
+            <span class="wk-name">Zest Bites</span>
+            <span class="wk-kind">F&amp;B Brand</span>
+          </div>
+        </div>
       </div>
     </article>
 
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta">
-  <div class="cta-orb" aria-hidden="true"></div>
-  <div class="cta-eyebrow rv">(06) &mdash; Let&apos;s Build</div>
-  <h2 class="cta-title rv d1">
-    Make your brand<br/>
-    <em class="scramble" data-words="impossible|unforgettable|undeniable|irresistible">impossible</em><br/>
-    to scroll past.
-  </h2>
-  <div class="cta-actions rv d2">
-    <a href="contact.html" class="btn primary" data-cursor>
-      <span>Book a call</span>
-      <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </a>
-    <a href="services.html" class="btn secondary" data-cursor>
-      <span>See all services</span>
-      <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
-    </a>
+<!-- TESTIMONIALS -->
+<section class="testi" id="testimonials">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow rv">(06) &mdash; Client Wins</div>
+        <h2 class="sec-title rv d1">Results that<br/><em>speak first.</em></h2>
+      </div>
+      <p class="sec-sub rv d2">We let the work do the talking. Here&apos;s what founders said after their first campaign shipped.</p>
+    </div>
+
+    <div class="testi-grid">
+
+      <div class="testi-card rv d1">
+        <p class="testi-qt">The Albanese UGC ad got more organic reach in the first 48 hours than everything we&apos;d posted in the last quarter combined. BYDTRND just gets the algorithm.</p>
+        <div class="testi-who">
+          <div class="testi-av">JR</div>
+          <div>
+            <p class="testi-nm">James R.</p>
+            <p class="testi-role">CMO, Albanese Confectionery</p>
+          </div>
+        </div>
+        <span class="testi-metric">&#8593; 3.2&times; organic reach</span>
+      </div>
+
+      <div class="testi-card rv d2">
+        <p class="testi-qt">Our thumbnails went from 2% CTR to 7.8% after one pack. I didn&apos;t expect data-backed creative to move the needle this fast &mdash; but here we are.</p>
+        <div class="testi-who">
+          <div class="testi-av">SK</div>
+          <div>
+            <p class="testi-nm">Sana K.</p>
+            <p class="testi-role">Founder, FanCode RED</p>
+          </div>
+        </div>
+        <span class="testi-metric">&#8593; 7.8% CTR (was 2%)</span>
+      </div>
+
+      <div class="testi-card rv d3">
+        <p class="testi-qt">Briefed them Monday, had three scroll-stopping reels by Friday. Zero back-and-forth. This is what async-first actually looks like in practice.</p>
+        <div class="testi-who">
+          <div class="testi-av">MP</div>
+          <div>
+            <p class="testi-nm">Marcus P.</p>
+            <p class="testi-role">CEO, UrbanPulse Brand</p>
+          </div>
+        </div>
+        <span class="testi-metric">3 reels delivered in 5 days</span>
+      </div>
+
+    </div>
+
+    <div class="testi-cta rv d3">
+      <a href="contact.html" class="btn primary" data-cursor>
+        <span>Book a call</span>
+        <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      </a>
+      <a href="services.html" class="btn secondary" data-cursor>
+        <span>See all services</span>
+        <span class="arr"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 5 19 12 13 19"/></svg></span>
+      </a>
+    </div>
   </div>
 </section>
 
